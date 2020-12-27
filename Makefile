@@ -50,24 +50,23 @@ ifeq ($(FPGA_SERVER), localhost)
 	make -C $(FPGA_DIR) clean
 else 
 	rsync -avz --delete --exclude .git $(UART_DIR) $(FPGA_USER)@$(FPGA_SERVER):$(REMOTE_ROOT_DIR)
-	ssh $(FPGA_USER)@$(FPGA_SERVER) 'cd $(USER)/$(REMOTE_ROOT_DIR); make clean SIM_SERVER=localhost FPGA_SERVER=localhost'
+	ssh $(FPGA_USER)@$(FPGA_SERVER) 'cd $(REMOTE_ROOT_DIR); make clean SIM_SERVER=localhost FPGA_SERVER=localhost'
 endif
 
 #
 # DOCUMENT
 #
 
-#doc:
-#	make -C document/$(DOC_TYPE) $(DOC_TYPE).pdf
+doc:
+	make -C document/$(DOC_TYPE) $(DOC_TYPE).pdf
 
-#doc-clean:
-#	make -C document/$(DOC_TYPE) clean
+doc-clean:
+	make -C document/$(DOC_TYPE) clean
 
-#doc-pdfclean:
-#	make -C document/$(DOC_TYPE) pdfclean
+doc-pdfclean:
+	make -C document/$(DOC_TYPE) pdfclean
 
-clean: sim-clean fpga-clean 
-#doc-clean
+clean: sim-clean fpga-clean doc-clean
 
 .PHONY: sim sim-waves fpga fpga_clean doc doc-clean doc-pdfclean clean
 
