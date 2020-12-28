@@ -1,0 +1,31 @@
+s\_axil\_awaddr & input & ADDR\_W & Address write channel address \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_awcache & input & 4 & Address write channel memory type. Transactions set with Normal Non-cacheable Modifiable and Bufferable (0011). \\ \hline
+s\_axil\_awprot & input & 3 & Address write channel protection type. Transactions set with Normal Secure and Data attributes (000). \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_awvalid & input & 1 & Address write channel valid \\ \hline
+s\_axil\_awready & output & 1 & Address write channel ready \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_wdata & input & DATA\_W & Write channel data \\ \hline
+s\_axil\_wstrb & input & DATA\_W/8 & Write channel write strobe \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_wvalid & input & 1 & Write channel valid \\ \hline
+s\_axil\_wready & output & 1 & Write channel ready \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_bresp & output & 2 & Write response channel response \\ \hline
+s\_axil\_bvalid & output & 1 & Write response channel valid \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_bready & input & 1 & Write response channel ready \\ \hline
+s\_axil\_araddr & input & ADDR\_W & Address read channel address \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_arcache & input & 4 & Address read channel memory type. Transactions set with Normal Non-cacheable Modifiable and Bufferable (0011). \\ \hline
+s\_axil\_arprot & input & 3 & Address read channel protection type. Transactions set with Normal Secure and Data attributes (000). \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_arvalid & input & 1 & Address read channel valid \\ \hline
+s\_axil\_arready & output & 1 & Address read channel ready \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_rdata & output & DATA\_W & Read channel data \\ \hline
+s\_axil\_rresp & output & 2 & Read channel response \\ \hline
+\rowcolor{iob-blue}
+s\_axil\_rvalid & output & 1 & Read channel valid \\ \hline
+s\_axil\_rready & input & 1 & Read channel ready \\ \hline
