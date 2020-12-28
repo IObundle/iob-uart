@@ -61,13 +61,8 @@ endif
 #
 DOC_TYPE:=pb
 #DOC_TYPE:=ug
-<<<<<<< HEAD
 INTEL ?=1
 XILINX ?=0
-=======
-INTEL ?=0
-XILINX ?=1
->>>>>>> 86432fd
 VERSION= 0.1
 VLINE:="V$(VERSION)"
 $(CORE_NAME)_version.txt:
