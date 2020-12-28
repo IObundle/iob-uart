@@ -1,0 +1,1050 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Mon Dec 28 12:21:16 2020
+# Process ID: 32543
+# Current directory: /home/trainee/bjoudat/iob-soc/submodules/UART/hardware/fpga/vivado/XCKU
+# Command line: vivado -nojournal -log vivado.log -mode batch -source ../uart.tcl -tclargs iob_uart ../../../../hardware/src/iob_uart.v ../../../../hardware/include ../../../../submodules/LIB/hardware/include ../../../../submodules/INTERCON/hardware/include ../../../../hardware/include  xcku040-fbva676-1-c
+# Log file: /home/trainee/bjoudat/iob-soc/submodules/UART/hardware/fpga/vivado/XCKU/vivado.log
+# Journal file: 
+#-----------------------------------------------------------
+source ../uart.tcl
+# set TOP [lindex $argv 0]
+# set VSRC [lindex $argv 1]
+# set HW_INCLUDE [lindex $argv 2]
+# set HW_DEFINE [lindex $argv 3]
+# set PART [lindex $argv 4]
+# puts $VSRC
+../../../../hardware/src/iob_uart.v
+# foreach file [split $VSRC \ ] {
+#     puts $file
+#     if {$file != "" && $file != " " && $file != "\n"} {
+#         read_verilog -sv $file
+#     }
+# }
+../../../../hardware/src/iob_uart.v
+# set_property part $PART [current_project]
+# synth_design -include_dirs $HW_INCLUDE -verilog_define $HW_DEFINE -part $PART -top $TOP -mode out_of_context -flatten_hierarchy none -verbose
+Command: synth_design -include_dirs {../../../../hardware/include ../../../../submodules/LIB/hardware/include ../../../../submodules/INTERCON/hardware/include ../../../../hardware/include} -verilog_define {} -part xcku040-fbva676-1-c -top iob_uart -mode out_of_context -flatten_hierarchy none -verbose
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcku040'
+INFO: [Common 17-1540] The version limit for your license is '2018.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 32649 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1383.312 ; gain = 26.000 ; free physical = 102533 ; free virtual = 126862
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'iob_uart' [/home/trainee/bjoudat/iob-soc/submodules/UART/hardware/src/iob_uart.v:4]
+	Parameter DATA_W bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'iob_uart' (1#1) [/home/trainee/bjoudat/iob-soc/submodules/UART/hardware/src/iob_uart.v:4]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1424.852 ; gain = 67.539 ; free physical = 102544 ; free virtual = 126873
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1424.852 ; gain = 67.539 ; free physical = 102544 ; free virtual = 126873
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcku040-fbva676-1-c
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1432.852 ; gain = 75.539 ; free physical = 102544 ; free virtual = 126873
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xcku040-fbva676-1-c
+WARNING: [Synth 8-6014] Unused sequential element send_bitcnt_reg was removed.  [/home/trainee/bjoudat/iob-soc/submodules/UART/hardware/src/iob_uart.v:148]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1448.867 ; gain = 91.555 ; free physical = 102536 ; free virtual = 126865
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               16 Bit    Registers := 3     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 6     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 5     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 5     
+	   2 Input      1 Bit        Muxes := 5     
+	   4 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component detection 
+Module iob_uart 
+File: /home/trainee/bjoudat/iob-soc/submodules/UART/hardware/src/iob_uart.v 
+Found Register "wstrb_reg_reg" of size 1-bit
+Found Register "ready_reg" of size 1-bit
+Found Register "cts_int_reg" of size 2-bit
+Found Register "rst_soft_reg" of size 1-bit
+Found Register "bit_duration_reg" of size 16-bit
+Found Comparator "send_counter0" of operand size {<const>, 16 Bit} at Line:170
+Found Adder "send_counter0" of operand size {<const>, 16 Bit} at Line:171
+Found Register "send_counter_reg" of size 16-bit
+Found Comparator "send_counter1" of operand size {16 Bit, 16 Bit} at Line:168
+Found Adder "send_bitcnt0" of operand size {<const>, 4 Bit} at Line:180
+Found Register "send_bitcnt_reg" of size 4-bit
+Found Comparator "tx_wait" of operand size {<const>, 4 Bit} at Line:148
+Found Adder "recv_counter0" of operand size {<const>, 16 Bit} at Line:211
+Found Comparator "recv_state0" of operand size {16 Bit, 16 Bit} at Line:231
+Found Register "recv_counter_reg" of size 16-bit
+Found Comparator "recv_state0" of operand size {16 Bit, 16 Bit} at Line:226
+Found Adder "recv_state0" of operand size {<const>, 4 Bit} at Line:233
+Found Register "recv_state_reg" of size 4-bit
+Found Register "recv_pattern_reg" of size 8-bit
+Found Register "recv_buf_data_reg" of size 8-bit
+Found Comparator "data_read_en0" of operand size {<const>, 3 Bit} at Line:145
+Found Register "recv_buf_valid_reg" of size 1-bit
+Found Register "address_reg_reg" of size 3-bit
+Found Register "tx_en_reg" of size 1-bit
+Found Register "send_pattern_reg" of size 10-bit
+Found Register "rx_en_reg" of size 1-bit
+Hierarchical RTL Component report 
+Module iob_uart 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               16 Bit    Registers := 3     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 6     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 5     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 5     
+	   2 Input      1 Bit        Muxes := 5     
+	   4 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1920 (col length:120)
+BRAMs: 1200 (col length: RAMB18 120 RAMB36 60)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element send_bitcnt_reg was removed.  [/home/trainee/bjoudat/iob-soc/submodules/UART/hardware/src/iob_uart.v:148]
+WARNING: [Synth 8-3917] design iob_uart has port rdata[31] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[30] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[29] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[28] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[27] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[26] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[25] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[24] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[23] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[22] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[21] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[20] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[19] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[18] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[17] driven by constant 0
+WARNING: [Synth 8-3917] design iob_uart has port rdata[16] driven by constant 0
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\send_pattern_reg[9] )
+WARNING: [Synth 8-3332] Sequential element (send_pattern_reg[9]) is unused and will be removed from module iob_uart.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102117 ; free virtual = 126446
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102119 ; free virtual = 126448
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102119 ; free virtual = 126448
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102119 ; free virtual = 126448
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102119 ; free virtual = 126448
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102119 ; free virtual = 126448
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT2 |    10|
+|2     |LUT3 |    24|
+|3     |LUT4 |    15|
+|4     |LUT5 |    26|
+|5     |LUT6 |    48|
+|6     |FDCE |    61|
+|7     |FDPE |     9|
+|8     |FDRE |    21|
+|9     |FDSE |     1|
++------+-----+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |   215|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102119 ; free virtual = 126448
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 19 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102121 ; free virtual = 126450
+Synthesis Optimization Complete : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1843.301 ; gain = 485.988 ; free physical = 102121 ; free virtual = 126450
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+11 Infos, 19 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:14 ; elapsed = 00:00:24 . Memory (MB): peak = 1923.324 ; gain = 593.109 ; free physical = 102124 ; free virtual = 126453
+# read_xdc ../uart.xdc
+Parsing XDC File [/home/trainee/bjoudat/iob-soc/submodules/UART/hardware/fpga/vivado/uart.xdc]
+Finished Parsing XDC File [/home/trainee/bjoudat/iob-soc/submodules/UART/hardware/fpga/vivado/uart.xdc]
+# opt_design
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-1540] The version limit for your license is '2018.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:04 . Memory (MB): peak = 1987.359 ; gain = 64.031 ; free physical = 102109 ; free virtual = 126438
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 186daa14a
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2234.000 ; gain = 0.000 ; free physical = 101916 ; free virtual = 126244
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 186daa14a
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2234.000 ; gain = 0.000 ; free physical = 101916 ; free virtual = 126244
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 186daa14a
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2234.000 ; gain = 0.000 ; free physical = 101916 ; free virtual = 126244
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 186daa14a
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2234.000 ; gain = 0.000 ; free physical = 101916 ; free virtual = 126244
+INFO: [Opt 31-389] Phase BUFG optimization created 0 cells and removed 0 cells
+
+Phase 5 Shift Register Optimization
+Phase 5 Shift Register Optimization | Checksum: 186daa14a
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2234.000 ; gain = 0.000 ; free physical = 101916 ; free virtual = 126244
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2234.000 ; gain = 0.000 ; free physical = 101916 ; free virtual = 126244
+Ending Logic Optimization Task | Checksum: 186daa14a
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2234.000 ; gain = 0.000 ; free physical = 101916 ; free virtual = 126244
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 186daa14a
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2234.004 ; gain = 0.004 ; free physical = 101916 ; free virtual = 126244
+INFO: [Common 17-83] Releasing license: Implementation
+16 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 2234.004 ; gain = 310.680 ; free physical = 101916 ; free virtual = 126244
+# place_design
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-1540] The version limit for your license is '2018.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2298.039 ; gain = 0.000 ; free physical = 101908 ; free virtual = 126237
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: add51920
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2298.039 ; gain = 0.000 ; free physical = 101908 ; free virtual = 126237
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2298.039 ; gain = 0.000 ; free physical = 101908 ; free virtual = 126237
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: f200aef4
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:40 . Memory (MB): peak = 3140.918 ; gain = 842.879 ; free physical = 101411 ; free virtual = 125740
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 165b7f2db
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:44 . Memory (MB): peak = 3172.930 ; gain = 874.891 ; free physical = 101401 ; free virtual = 125730
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 165b7f2db
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:44 . Memory (MB): peak = 3172.930 ; gain = 874.891 ; free physical = 101401 ; free virtual = 125730
+Phase 1 Placer Initialization | Checksum: 165b7f2db
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:44 . Memory (MB): peak = 3172.930 ; gain = 874.891 ; free physical = 101401 ; free virtual = 125730
+
+Phase 2 Global Placement
+Phase 2 Global Placement | Checksum: 1afafee15
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101346 ; free virtual = 125675
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 1afafee15
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101346 ; free virtual = 125675
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 174debb35
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101344 ; free virtual = 125673
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 17fe55ad0
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101344 ; free virtual = 125673
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 17fe55ad0
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101344 ; free virtual = 125673
+
+Phase 3.5 Small Shape Clustering
+Phase 3.5 Small Shape Clustering | Checksum: 19883abab
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101336 ; free virtual = 125665
+
+Phase 3.6 DP Optimization
+Phase 3.6 DP Optimization | Checksum: ff0bbcc1
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101335 ; free virtual = 125664
+
+Phase 3.7 Flow Legalize Slice Clusters
+Phase 3.7 Flow Legalize Slice Clusters | Checksum: 1563f31b5
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:45 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101335 ; free virtual = 125664
+
+Phase 3.8 Slice Area Swap
+Phase 3.8 Slice Area Swap | Checksum: 1ea5919fb
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101321 ; free virtual = 125649
+
+Phase 3.9 Commit Slice Clusters
+Phase 3.9 Commit Slice Clusters | Checksum: 107113601
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101335 ; free virtual = 125663
+
+Phase 3.10 Re-assign LUT pins
+Phase 3.10 Re-assign LUT pins | Checksum: 194ac9eb6
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101335 ; free virtual = 125664
+
+Phase 3.11 Pipeline Register Optimization
+Phase 3.11 Pipeline Register Optimization | Checksum: 194ac9eb6
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101335 ; free virtual = 125664
+Phase 3 Detail Placement | Checksum: 194ac9eb6
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101335 ; free virtual = 125664
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: ee412ca7
+
+Phase 4.1.1.1 BUFG Insertion
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 8 CPUs
+INFO: [Place 46-31] BUFG insertion identified 0 candidate nets, 0 success, 0 skipped for placement/routing, 0 skipped for timing, 0 skipped for netlist change reason.
+Phase 4.1.1.1 BUFG Insertion | Checksum: ee412ca7
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101335 ; free virtual = 125664
+INFO: [Place 30-746] Post Placement Timing Summary WNS=7.477. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: e4bb3fb4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101336 ; free virtual = 125665
+Phase 4.1 Post Commit Optimization | Checksum: e4bb3fb4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101336 ; free virtual = 125665
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: e4bb3fb4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101344 ; free virtual = 125673
+
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: e4bb3fb4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101344 ; free virtual = 125673
+
+Phase 4.4 Final Placement Cleanup
+Phase 4.4 Final Placement Cleanup | Checksum: 10ffd63f8
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101344 ; free virtual = 125673
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 10ffd63f8
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101344 ; free virtual = 125673
+Ending Placer Task | Checksum: 100501884
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 3232.973 ; gain = 934.934 ; free physical = 101400 ; free virtual = 125729
+INFO: [Common 17-83] Releasing license: Implementation
+15 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:50 . Memory (MB): peak = 3232.973 ; gain = 998.969 ; free physical = 101400 ; free virtual = 125729
+# route_design
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcku040'
+INFO: [Common 17-1540] The version limit for your license is '2018.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
+Checksum: PlaceDB: 9e06b82b ConstDB: 0 ShapeSum: 62496059 RouteDB: 0
+
+Phase 1 Build RT Design
+WARNING: [Route 35-197] Clock port "clk" does not have an associated HD.CLK_SRC. Without this constraint, timing analysis may not be accurate and upstream checks cannot be done to ensure correct clock placement.
+WARNING: [Route 35-198] Port "wdata[14]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[14]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[15]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[15]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "valid" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "valid". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wstrb" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wstrb". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "address[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "address[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "address[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "address[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "address[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "address[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "rst" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "rst". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[4]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[4]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[12]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[12]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[13]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[13]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[10]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[10]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[11]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[11]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[5]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[5]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[6]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[6]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[7]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[7]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[8]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[8]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[3]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[3]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "wdata[9]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "wdata[9]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cts" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cts". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "rxd" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "rxd". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+Phase 1 Build RT Design | Checksum: 167fe7735
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:22 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101140 ; free virtual = 125469
+Post Restoration Checksum: NetGraph: 8e5d843b NumContArr: d9a0f2fa Constraints: 0 Timing: 0
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 167fe7735
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:22 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101140 ; free virtual = 125469
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: 167fe7735
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:22 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101092 ; free virtual = 125421
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: 167fe7735
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:22 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101092 ; free virtual = 125421
+
+Phase 2.4 Global Clock Net Routing
+Phase 2.4 Global Clock Net Routing | Checksum: 167fe7735
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:23 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101005 ; free virtual = 125334
+
+Phase 2.5 Update Timing
+Phase 2.5 Update Timing | Checksum: 1fd8b2c27
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:23 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101005 ; free virtual = 125334
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=7.531  | TNS=0.000  | WHS=0.049  | THS=0.000  |
+
+Phase 2 Router Initialization | Checksum: 1e3d55b09
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:24 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101004 ; free virtual = 125333
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 1f93d3074
+
+Time (s): cpu = 00:00:37 ; elapsed = 00:00:24 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100993 ; free virtual = 125322
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 27
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=6.767  | TNS=0.000  | WHS=0.056  | THS=0.000  |
+
+Phase 4.1 Global Iteration 0 | Checksum: 224f7150a
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+
+Phase 4.2 Additional Iteration for Hold
+Phase 4.2 Additional Iteration for Hold | Checksum: 1aa310209
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+Phase 4 Rip-up And Reroute | Checksum: 1aa310209
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: 1aa310209
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 1aa310209
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+Phase 5 Delay and Skew Optimization | Checksum: 1aa310209
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 28aa453bb
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=6.767  | TNS=0.000  | WHS=0.056  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 28aa453bb
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+Phase 6 Post Hold Fix | Checksum: 28aa453bb
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.00251476 %
+  Global Horizontal Routing Utilization  = 0.0021029 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 2071e32d8
+
+Time (s): cpu = 00:00:40 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100990 ; free virtual = 125319
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 2071e32d8
+
+Time (s): cpu = 00:00:40 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100990 ; free virtual = 125319
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 2071e32d8
+
+Time (s): cpu = 00:00:40 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100990 ; free virtual = 125319
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=6.767  | TNS=0.000  | WHS=0.056  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: 2071e32d8
+
+Time (s): cpu = 00:00:40 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 100992 ; free virtual = 125321
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:00:40 ; elapsed = 00:00:25 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101050 ; free virtual = 125379
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+13 Infos, 25 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:29 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101050 ; free virtual = 125379
+# report_utilization
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+| Date         : Mon Dec 28 12:23:31 2020
+| Host         : pudim-flan running 64-bit CentOS Linux release 7.9.2009 (Core)
+| Command      : report_utilization
+| Design       : iob_uart
+| Device       : xcku040fbva676-1
+| Design State : Fully Placed
+------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. CLB Logic
+1.1 Summary of Registers by Type
+2. CLB Logic Distribution
+3. BLOCKRAM
+4. ARITHMETIC
+5. I/O
+6. CLOCK
+7. ADVANCED
+8. CONFIGURATION
+9. Primitives
+10. Black Boxes
+11. Instantiated Netlists
+
+1. CLB Logic
+------------
+
++-------------------------+------+-------+-----------+-------+
+|        Site Type        | Used | Fixed | Available | Util% |
++-------------------------+------+-------+-----------+-------+
+| CLB LUTs                |   97 |     0 |    242400 |  0.04 |
+|   LUT as Logic          |   97 |     0 |    242400 |  0.04 |
+|   LUT as Memory         |    0 |     0 |    112800 |  0.00 |
+| CLB Registers           |   92 |     0 |    484800 |  0.02 |
+|   Register as Flip Flop |   92 |     0 |    484800 |  0.02 |
+|   Register as Latch     |    0 |     0 |    484800 |  0.00 |
+| CARRY8                  |    0 |     0 |     30300 |  0.00 |
+| F7 Muxes                |    0 |     0 |    121200 |  0.00 |
+| F8 Muxes                |    0 |     0 |     60600 |  0.00 |
+| F9 Muxes                |    0 |     0 |     30300 |  0.00 |
++-------------------------+------+-------+-----------+-------+
+
+
+1.1 Summary of Registers by Type
+--------------------------------
+
++-------+--------------+-------------+--------------+
+| Total | Clock Enable | Synchronous | Asynchronous |
++-------+--------------+-------------+--------------+
+| 0     |            _ |           - |            - |
+| 0     |            _ |           - |          Set |
+| 0     |            _ |           - |        Reset |
+| 0     |            _ |         Set |            - |
+| 0     |            _ |       Reset |            - |
+| 0     |          Yes |           - |            - |
+| 9     |          Yes |           - |          Set |
+| 61    |          Yes |           - |        Reset |
+| 1     |          Yes |         Set |            - |
+| 21    |          Yes |       Reset |            - |
++-------+--------------+-------------+--------------+
+
+
+2. CLB Logic Distribution
+-------------------------
+
++-------------------------------------------+------+-------+-----------+-------+
+|                 Site Type                 | Used | Fixed | Available | Util% |
++-------------------------------------------+------+-------+-----------+-------+
+| CLB                                       |   21 |     0 |     30300 |  0.07 |
+|   CLBL                                    |   11 |     0 |           |       |
+|   CLBM                                    |   10 |     0 |           |       |
+| LUT as Logic                              |   97 |     0 |    242400 |  0.04 |
+|   using O5 output only                    |    3 |       |           |       |
+|   using O6 output only                    |   68 |       |           |       |
+|   using O5 and O6                         |   26 |       |           |       |
+| LUT as Memory                             |    0 |     0 |    112800 |  0.00 |
+|   LUT as Distributed RAM                  |    0 |     0 |           |       |
+|   LUT as Shift Register                   |    0 |     0 |           |       |
+| LUT Flip Flop Pairs                       |   39 |     0 |    242400 |  0.02 |
+|   fully used LUT-FF pairs                 |   16 |       |           |       |
+|   LUT-FF pairs with one unused LUT output |   22 |       |           |       |
+|   LUT-FF pairs with one unused Flip Flop  |   17 |       |           |       |
+| Unique Control Sets                       |    9 |       |           |       |
++-------------------------------------------+------+-------+-----------+-------+
+* Note: Review the Control Sets Report for more information regarding control sets.
+
+
+3. BLOCKRAM
+-----------
+
++----------------+------+-------+-----------+-------+
+|    Site Type   | Used | Fixed | Available | Util% |
++----------------+------+-------+-----------+-------+
+| Block RAM Tile |    0 |     0 |       600 |  0.00 |
+|   RAMB36/FIFO* |    0 |     0 |       600 |  0.00 |
+|   RAMB18       |    0 |     0 |      1200 |  0.00 |
++----------------+------+-------+-----------+-------+
+* Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E2 or one FIFO18E2. However, if a FIFO18E2 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E2
+
+
+4. ARITHMETIC
+-------------
+
++-----------+------+-------+-----------+-------+
+| Site Type | Used | Fixed | Available | Util% |
++-----------+------+-------+-----------+-------+
+| DSPs      |    0 |     0 |      1920 |  0.00 |
++-----------+------+-------+-----------+-------+
+
+
+5. I/O
+------
+
++------------------+------+-------+-----------+-------+
+|     Site Type    | Used | Fixed | Available | Util% |
++------------------+------+-------+-----------+-------+
+| Bonded IOB       |    0 |     0 |       312 |  0.00 |
+| HPIOB            |    0 |     0 |       208 |  0.00 |
+| HRIO             |    0 |     0 |       104 |  0.00 |
+| HPIOBDIFFINBUF   |    0 |     0 |       192 |  0.00 |
+| HPIOBDIFFOUTBUF  |    0 |     0 |       192 |  0.00 |
+| HRIODIFFINBUF    |    0 |     0 |        48 |  0.00 |
+| HRIODIFFOUTBUF   |    0 |     0 |        48 |  0.00 |
+| BITSLICE_CONTROL |    0 |     0 |        80 |  0.00 |
+| BITSLICE_RX_TX   |    0 |     0 |       520 |  0.00 |
+| BITSLICE_TX      |    0 |     0 |        80 |  0.00 |
+| RIU_OR           |    0 |     0 |        40 |  0.00 |
++------------------+------+-------+-----------+-------+
+
+
+6. CLOCK
+--------
+
++----------------------+------+-------+-----------+-------+
+|       Site Type      | Used | Fixed | Available | Util% |
++----------------------+------+-------+-----------+-------+
+| GLOBAL CLOCK BUFFERs |    0 |     0 |       480 |  0.00 |
+|   BUFGCE             |    0 |     0 |       240 |  0.00 |
+|   BUFGCE_DIV         |    0 |     0 |        40 |  0.00 |
+|   BUFG_GT            |    0 |     0 |       120 |  0.00 |
+|   BUFGCTRL*          |    0 |     0 |        80 |  0.00 |
+| PLLE3_ADV            |    0 |     0 |        20 |  0.00 |
+| MMCME3_ADV           |    0 |     0 |        10 |  0.00 |
++----------------------+------+-------+-----------+-------+
+* Note: Each used BUFGCTRL counts as two global buffer resources. This table does not include global clocking resources, only buffer cell usage. See the Clock Utilization Report (report_clock_utilization) for detailed accounting of global clocking resource availability.
+
+
+7. ADVANCED
+-----------
+
++-----------------+------+-------+-----------+-------+
+|    Site Type    | Used | Fixed | Available | Util% |
++-----------------+------+-------+-----------+-------+
+| GTHE3_CHANNEL   |    0 |     0 |        16 |  0.00 |
+| GTHE3_COMMON    |    0 |     0 |         4 |  0.00 |
+| IBUFDS_GTE3     |    0 |     0 |         8 |  0.00 |
+| OBUFDS_GTE3     |    0 |     0 |         8 |  0.00 |
+| OBUFDS_GTE3_ADV |    0 |     0 |         8 |  0.00 |
+| PCIE_3_1        |    0 |     0 |         3 |  0.00 |
+| SYSMONE1        |    0 |     0 |         1 |  0.00 |
++-----------------+------+-------+-----------+-------+
+
+
+8. CONFIGURATION
+----------------
+
++-------------+------+-------+-----------+-------+
+|  Site Type  | Used | Fixed | Available | Util% |
++-------------+------+-------+-----------+-------+
+| BSCANE2     |    0 |     0 |         4 |  0.00 |
+| DNA_PORTE2  |    0 |     0 |         1 |  0.00 |
+| EFUSE_USR   |    0 |     0 |         1 |  0.00 |
+| FRAME_ECCE3 |    0 |     0 |         1 |  0.00 |
+| ICAPE3      |    0 |     0 |         2 |  0.00 |
+| MASTER_JTAG |    0 |     0 |         1 |  0.00 |
+| STARTUPE3   |    0 |     0 |         1 |  0.00 |
++-------------+------+-------+-----------+-------+
+
+
+9. Primitives
+-------------
+
++----------+------+---------------------+
+| Ref Name | Used | Functional Category |
++----------+------+---------------------+
+| FDCE     |   61 |            Register |
+| LUT6     |   48 |                 CLB |
+| LUT5     |   26 |                 CLB |
+| LUT3     |   24 |                 CLB |
+| FDRE     |   21 |            Register |
+| LUT4     |   15 |                 CLB |
+| LUT2     |   10 |                 CLB |
+| FDPE     |    9 |            Register |
+| FDSE     |    1 |            Register |
++----------+------+---------------------+
+
+
+10. Black Boxes
+---------------
+
++----------+------+
+| Ref Name | Used |
++----------+------+
+
+
+11. Instantiated Netlists
+-------------------------
+
++----------+------+
+| Ref Name | Used |
++----------+------+
+
+
+report_utilization: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.15 . Memory (MB): peak = 3232.973 ; gain = 0.000 ; free physical = 101049 ; free virtual = 125378
+# report_timing
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Temperature grade: C, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 1 -nworst 1 -delay_type max -sort_by slack.
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+| Date              : Mon Dec 28 12:23:31 2020
+| Host              : pudim-flan running 64-bit CentOS Linux release 7.9.2009 (Core)
+| Command           : report_timing
+| Design            : iob_uart
+| Device            : xcku040-fbva676
+| Speed File        : -1  PRODUCTION 1.24 11-02-2017
+| Temperature Grade : C
+-----------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             6.772ns  (required time - arrival time)
+  Source:                 recv_counter_reg[10]/C
+                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            recv_state_reg[1]/CE
+                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.138ns  (logic 0.896ns (28.553%)  route 2.242ns (71.447%))
+  Logic Levels:           4  (LUT4=1 LUT5=1 LUT6=2)
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=91, unset)           0.000     0.000    clk
+    SLICE_X26Y131        FDCE                                         r  recv_counter_reg[10]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X26Y131        FDCE (Prop_DFF_SLICEM_C_Q)
+                                                      0.139     0.139 r  recv_counter_reg[10]/Q
+                         net (fo=4, routed)           0.327     0.466    recv_counter_reg_n_0_[10]
+    SLICE_X26Y130        LUT6 (Prop_C6LUT_SLICEM_I3_O)
+                                                      0.224     0.690 f  recv_pattern[7]_i_4/O
+                         net (fo=1, routed)           0.480     1.170    recv_pattern[7]_i_4_n_0
+    SLICE_X26Y129        LUT6 (Prop_C6LUT_SLICEM_I1_O)
+                                                      0.224     1.394 r  recv_pattern[7]_i_2/O
+                         net (fo=4, routed)           0.318     1.712    recv_pattern[7]_i_2_n_0
+    SLICE_X27Y128        LUT4 (Prop_C6LUT_SLICEL_I0_O)
+                                                      0.088     1.800 r  recv_state[3]_i_3/O
+                         net (fo=1, routed)           0.426     2.226    recv_state[3]_i_3_n_0
+    SLICE_X27Y128        LUT5 (Prop_F6LUT_SLICEL_I0_O)
+                                                      0.221     2.447 r  recv_state[3]_i_1/O
+                         net (fo=4, routed)           0.691     3.138    recv_state
+    SLICE_X27Y128        FDCE                                         r  recv_state_reg[1]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=91, unset)           0.000    10.000    clk
+    SLICE_X27Y128        FDCE                                         r  recv_state_reg[1]/C
+                         clock pessimism              0.000    10.000    
+                         clock uncertainty           -0.035     9.965    
+    SLICE_X27Y128        FDCE (Setup_EFF_SLICEL_C_CE)
+                                                     -0.055     9.910    recv_state_reg[1]
+  -------------------------------------------------------------------
+                         required time                          9.910    
+                         arrival time                          -3.138    
+  -------------------------------------------------------------------
+                         slack                                  6.772    
+
+
+
+
+# report_clocks
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+| Date              : Mon Dec 28 12:23:31 2020
+| Host              : pudim-flan running 64-bit CentOS Linux release 7.9.2009 (Core)
+| Command           : report_clocks
+| Design            : iob_uart
+| Device            : xcku040-fbva676
+| Speed File        : -1  PRODUCTION 1.24 11-02-2017
+| Temperature Grade : C
+-----------------------------------------------------------------------------------------
+
+Clock Report
+
+
+Attributes
+  P: Propagated
+  G: Generated
+  A: Auto-derived
+  R: Renamed
+  V: Virtual
+  I: Inverted
+  S: Pin phase-shifted with Latency mode
+
+Clock  Period(ns)  Waveform(ns)   Attributes  Sources
+clk    10.000      {0.000 5.000}  P           {clk}
+
+
+====================================================
+Generated Clocks
+====================================================
+
+
+
+====================================================
+User Uncertainty
+====================================================
+
+
+
+====================================================
+User Jitter
+====================================================
+
+
+# write_edif -force $TOP.edif
+# set TOP_STUB $TOP
+# append TOP_STUB "_stub"
+# write_verilog -force -mode synth_stub $TOP_STUB.v
+INFO: [Common 17-206] Exiting Vivado at Mon Dec 28 12:23:31 2020...

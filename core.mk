@@ -17,7 +17,7 @@ UART_SUBMODULES_DIR:=$(UART_DIR)/submodules
 UART_SUBMODULES:=INTERCON LIB TEX
 $(foreach p, $(UART_SUBMODULES), $(eval $p_DIR:=$(UART_DIR)/submodules/$p))
 
-REMOTE_ROOT_DIR ?= ~/repo1/iob-soc/submodules/UART
+REMOTE_ROOT_DIR ?= bjoudat/iob-soc/submodules/UART
 
 #
 #SIMULATION
@@ -35,11 +35,11 @@ SIM_DIR ?=hardware/simulation/$(SIMULATOR)
 #
 #FPGA
 #
-FPGA_FAMILY :=CYCLONEV-GT
-#FPGA_FAMILY ?=XCKU
-FPGA_SERVER :=localhost
-#FPGA_SERVER ?=pudim-flan.iobundle.com
-FPGA_USER ?= $(USER)
+#FPGA_FAMILY :=CYCLONEV-GT
+FPGA_FAMILY ?=XCKU
+#FPGA_SERVER :=localhost
+FPGA_SERVER ?=pudim-flan.iobundle.com
+FPGA_USER ?= trainee
 
 ifeq ($(FPGA_FAMILY),XCKU)
 	FPGA_COMP:=vivado
@@ -61,8 +61,8 @@ endif
 #
 DOC_TYPE:=pb
 #DOC_TYPE:=ug
-INTEL ?=1
-XILINX ?=0
+INTEL ?=0
+XILINX ?=1
 VERSION= 0.1
 VLINE:="V$(VERSION)"
 $(CORE_NAME)_version.txt:
