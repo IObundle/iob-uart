@@ -60,13 +60,20 @@ unsigned int uart_getfile(char *mem);
 
 void uart_connect();
 
+void uart_finish();
+
 #define uart_disconnect() uart_putc(EOT)
 
 #define uart_starttext() uart_putc(STX)
 
 #define uart_endtext() uart_putc (ETX)
 
+#define uart_startsendfile() uart_putc (FTX)
+
+#define uart_startrecvfile() uart_putc (FRX)
+
 #define uart_getcmd() uart_getc()
+
 
 void uart_sleep (int n);
 
