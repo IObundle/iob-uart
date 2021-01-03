@@ -285,6 +285,11 @@ unsigned int uart_getfile(char *mem) {
 
   uart_printf ("%s: Receiving file...\n", PROGNAME);
   uart_endtext(); //free host from text mode
+  
+  uart_startrecvfile();
+  
+	//Wait for PC ACK
+  while (uart_getc() != ACK);
 
   // Get file size
   unsigned int file_size = (unsigned int) uart_getc();
@@ -299,8 +304,6 @@ unsigned int uart_getfile(char *mem) {
 
   uart_starttext();
   uart_printf("%s: File received (%d bytes)\n", PROGNAME, file_size);
-  uart_endtext(); //free host from text mode
-  uart_starttext(); //renable host text mode for next mesg 
   return file_size;
 }
 
@@ -327,8 +330,6 @@ void uart_sendfile(unsigned int file_size, char *mem) {
 
   uart_starttext();
   uart_printf("%s: File sent (%d bytes)\n",  PROGNAME, file_size);
-  uart_endtext(); //free host from text mode
-  uart_starttext(); //renable host text mode for next mesg 
 }
 
 
