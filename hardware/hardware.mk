@@ -29,10 +29,9 @@ VSRC+=$(UART_HW_DIR)/src/uart_core.v $(UART_HW_DIR)/src/iob_uart.v
 $(UART_HW_DIR)/include/UARTsw_reg_gen.v: $(UART_HW_DIR)/include/UARTsw_reg.v
 	$(LIB_DIR)/software/mkregs.py $< HW
 	mv UARTsw_reg_gen.v $(UART_HW_DIR)/include
-	mv UARTsw_reg.vh $(UART_HW_DIR)/include
 
 uart_clean_hw:
-	@rm -rf $(UART_HW_DIR)/include/UARTsw_reg_gen.v $(UART_HW_DIR)/include/UARTsw_reg.vh tmp $(UART_HW_DIR)/fpga/vivado/XCKU $(UART_HW_DIR)/fpga/quartus/CYCLONEV-GT
+	@rm -rf $(UART_HW_DIR)/include/UARTsw_reg_gen.v tmp $(UART_HW_DIR)/fpga/vivado/XCKU $(UART_HW_DIR)/fpga/quartus/CYCLONEV-GT
 
 .PHONY: uart_clean_hw
 
