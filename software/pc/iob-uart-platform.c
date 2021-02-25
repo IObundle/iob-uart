@@ -6,10 +6,15 @@ static int base;
 static int div_value;
 
 //UART functions
-void uart_init(int base_address, int div) {
-  //capture base address for good
-  base = base_address;
-  div_value = div;
+
+void uart_setbaseaddr(int v)
+{
+  return;
+}
+
+void uart_softrst(int v)
+{
+  return;
 }
 
 int uart_getdiv()
@@ -17,16 +22,33 @@ int uart_getdiv()
   return div_value;
 }
 
+void uart_setdiv(int div)
+{
+  div_value = div;
+  return;
+}
+
+//tx functions
+void uart_txen(int v) {
+  return;
+}
+
 void uart_txwait() {
   return;
 }
 
-int uart_txstatus(){
+int uart_istxready(){
   return 1;
 }
 
 void uart_putc(char c) {
-  putc(c, stdout);
+  if(c > 6) //6 = ACK ascii char
+    putc(c, stdout);
+}
+
+//rx functions
+void uart_rxen(int v) {
+  return;
 }
 
 void uart_rxwait(){
