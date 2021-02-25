@@ -2,7 +2,6 @@
 `include "iob_lib.vh"
 `include "interconnect.vh"
 `include "iob_uart.vh"
-`include "UARTsw_reg.vh"
 
 module iob_uart 
   # (
