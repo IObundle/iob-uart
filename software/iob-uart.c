@@ -42,14 +42,6 @@ void uart_finish() {
   uart_txwait();
 }
 
-//Sends the name of the file to use
-void uart_sendstr (char* name) {
-  int i=0;
-  do
-    uart_putc(name[i]);
-  while (name[i++]);
-}
-
 //Receives file into mem
 int uart_recvfile(char* file_name, char **mem) {
 
@@ -60,7 +52,7 @@ int uart_recvfile(char* file_name, char **mem) {
   uart_putc (FRX);
 
   //send file name
-  uart_sendstr(file_name);
+  uart_puts(file_name);
 
   //receive file size
   int file_size = (unsigned int) uart_getc();
@@ -93,7 +85,7 @@ void uart_sendfile(char *file_name, int file_size, char *mem) {
   uart_putc(FTX);
 	
   //send file name
-  uart_sendstr(file_name);
+  uart_puts(file_name);
 	
   // send file size
   uart_putc((char)(file_size & 0x0ff));
