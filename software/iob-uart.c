@@ -51,7 +51,7 @@ void uart_sendstr (char* name) {
 }
 
 //Receives file into mem
-int uart_recvfile(char* file_name, char **mem) {
+int uart_recvfile(char* file_name, char **mem, int nbytes, int offset) {
 
   uart_puts(UART_PROGNAME);
   uart_puts (": requesting to receive file\n");
@@ -61,26 +61,31 @@ int uart_recvfile(char* file_name, char **mem) {
 
   //send file name
   uart_sendstr(file_name);
+  int file_size = nbytes;
 
-  //receive file size
-  int file_size = (unsigned int) uart_getc();
-  file_size |= ((unsigned int) uart_getc()) << 8;
-  file_size |= ((unsigned int) uart_getc()) << 16;
-  file_size |= ((unsigned int) uart_getc()) << 24;
+  if(nbytes==0){
+
+    //receive file size
+    file_size = (unsigned int) uart_getc();
+    file_size |= ((unsigned int) uart_getc()) << 8;
+    file_size |= ((unsigned int) uart_getc()) << 16;
+    file_size |= ((unsigned int) uart_getc()) << 24;
+  }
 
   //allocate space for file if pointer not given
   if( mem[0] == (char *)(-1) )
     mem[0] = (char *)malloc(file_size);
   
-  //write file to memory
-  for (int i = 0; i < file_size; i++) {
-    mem[0][i] = uart_getc();
-  }
+    //write file to memory
+    for (int i = 0; i < file_size; i++) {
+      mem[0][i + offset] = uart_getc();
+    }
 
   uart_puts(UART_PROGNAME);
   uart_puts(": file received\n");
 
   return file_size;
+
 }
 
 //Sends mem contents to a file
@@ -109,5 +114,14 @@ void uart_sendfile(char *file_name, int file_size, char *mem) {
   uart_puts(": file sent\n");
 }
 
+int iob_fread(unsigned char *buffer, int nbrBytes){
 
+  int i = 0;
 
+  while(nbrBytes-- && !feof(stdin)){
+    buffer[i] = uart_getc(stdin);
+    i++;
+  }
+  return i;
+
+}
