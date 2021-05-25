@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "iob-uart.h"
 
+#define uart_recvfile(file_name, mem) uart_recvfile_chunk(file_name, mem, 0, 0)
+
 //UART printing functions
 void uart_puts(const char *s) {
   while (*s) uart_putc(*s++);
@@ -51,7 +53,7 @@ void uart_sendstr (char* name) {
 }
 
 //Receives file into mem
-int uart_recvfile(char* file_name, char **mem, int nbytes, int offset) {
+int uart_recvfile_chunk(char* file_name, char **mem, int nbytes, int offset) {
 
   uart_puts(UART_PROGNAME);
   uart_puts (": requesting to receive file\n");
