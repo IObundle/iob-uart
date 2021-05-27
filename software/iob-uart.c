@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "iob-uart.h"
 
-#define uart_recvfile(file_name, mem) uart_recvfile_chunk(file_name, mem, 0, 0)
-
 //UART printing functions
 void uart_puts(const char *s) {
   while (*s) uart_putc(*s++);
@@ -67,21 +65,35 @@ int uart_recvfile_chunk(char* file_name, char **mem, int nbytes, int offset) {
 
   if(nbytes==0){
 
+    uart_putc(0);
     //receive file size
     file_size = (unsigned int) uart_getc();
     file_size |= ((unsigned int) uart_getc()) << 8;
     file_size |= ((unsigned int) uart_getc()) << 16;
     file_size |= ((unsigned int) uart_getc()) << 24;
   }
+  else{
+
+    uart_putc(1);
+    uart_putc((char)(offset & 0x0ff));
+    uart_putc((char)((offset & 0x0ff00) >> 8));
+    uart_putc((char)((offset & 0x0ff0000) >> 16));
+    uart_putc((char)((offset & 0x0ff000000) >> 24));
+
+    uart_putc((char)(file_size & 0x0ff));
+    uart_putc((char)((file_size & 0x0ff00) >> 8));
+    uart_putc((char)((file_size & 0x0ff0000) >> 16));
+    uart_putc((char)((file_size & 0x0ff000000) >> 24));
+  }
 
   //allocate space for file if pointer not given
   if( mem[0] == (char *)(-1) )
     mem[0] = (char *)malloc(file_size);
   
-    //write file to memory
-    for (int i = 0; i < file_size; i++) {
-      mem[0][i + offset] = uart_getc();
-    }
+  //write file to memory
+  for (int i = 0; i < file_size; i++) {
+    mem[0][i + offset] = uart_getc();
+  }
 
   uart_puts(UART_PROGNAME);
   uart_puts(": file received\n");
@@ -116,12 +128,13 @@ void uart_sendfile(char *file_name, int file_size, char *mem) {
   uart_puts(": file sent\n");
 }
 
-int iob_fread(unsigned char *buffer, int nbrBytes){
+int iob_fread(unsigned char *buffer, int nbrBytes, char *mem, int offset){
 
   int i = 0;
 
-  while(nbrBytes-- && !feof(stdin)){
-    buffer[i] = uart_getc(stdin);
+  while(nbrBytes-- /*&& !feof(stdin)*/){
+    //buffer[i] = uart_getc(stdin);
+    buffer[i] = mem[i + offset]; 
     i++;
   }
   return i;

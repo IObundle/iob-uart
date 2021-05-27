@@ -23,7 +23,7 @@
 #define FTX 7 //transmit file
 #define FRX 8 //receive file
 
-#define uart_rcvfile(file_name, mem) uart_recvfile(file_name, mem, 0, 0)	
+#define uart_recvfile(file_name, mem) (uart_recvfile_chunk(file_name, mem, 0, 0))	
 
 //UART functions
 
@@ -79,7 +79,7 @@ void uart_loadfw(char *mem);
 void uart_sendfile(char* file_name, int file_size, char *mem);
 
 //Receive file 
-int uart_recvfile(char* file_name, char **mem, int nbytes, int offset);
+int uart_recvfile_chunk(char* file_name, char **mem, int nbytes, int offset);
 
 //
-int iob_fread(unsigned char *buffer, int nbrBytes);
+int iob_fread(unsigned char *buffer, int nbrBytes, char *mem, int offset);
