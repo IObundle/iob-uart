@@ -79,7 +79,7 @@ void uart_loadfw(char *mem);
 void uart_sendfile(char* file_name, int file_size, char *mem);
 
 //Receive file 
-int uart_recvfile_chunk(char* file_name, char **mem, int nbytes, int offset);
+int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset);
 
 //
 int iob_fread(unsigned char *buffer, int nbrBytes, char *mem, int offset);

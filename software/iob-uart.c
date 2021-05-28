@@ -51,7 +51,7 @@ void uart_sendstr (char* name) {
 }
 
 //Receives file into mem
-int uart_recvfile_chunk(char* file_name, char **mem, int nbytes, int offset) {
+int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset) {
 
   uart_puts(UART_PROGNAME);
   uart_puts (": requesting to receive file\n");
@@ -87,12 +87,12 @@ int uart_recvfile_chunk(char* file_name, char **mem, int nbytes, int offset) {
   }
 
   //allocate space for file if pointer not given
-  if( mem[0] == (char *)(-1) )
-    mem[0] = (char *)malloc(file_size);
+  if( mem == (char *)(-1) )
+    mem = (char *)malloc(file_size);
   
   //write file to memory
   for (int i = 0; i < file_size; i++) {
-    mem[0][i + offset] = uart_getc();
+    mem[i + offset] = uart_getc();
   }
 
   uart_puts(UART_PROGNAME);
