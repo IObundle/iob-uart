@@ -132,8 +132,8 @@ int iob_fread(unsigned char *buffer, int nbrBytes, char *mem, int offset){
 
   int i = 0;
 
-  while(nbrBytes-- /*&& !feof(stdin)*/){
-    //buffer[i] = uart_getc(stdin);
+  while(nbrBytes--){
+    
     buffer[i] = mem[i + offset]; 
     i++;
   }
