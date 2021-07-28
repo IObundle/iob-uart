@@ -24,6 +24,7 @@
 #define FRX 8 //receive file
 
 #define uart_recvfile(file_name, mem) (uart_recvfile_chunk(file_name, mem, 0, 0))	
+#define uart_sendfile(file_name, file_size, mem) (uart_sendfile_chunk(file_name, mem, file_size, 0)) 
 
 //UART functions
 
@@ -76,7 +77,7 @@ int uart_isrxready();
 void uart_loadfw(char *mem);
 
 //Send file
-void uart_sendfile(char* file_name, int file_size, char *mem);
+void uart_sendfile_chunk(char *file_name, char *mem, int nbytes, int offset);
 
 //Receive file 
 int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset);

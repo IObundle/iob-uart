@@ -103,7 +103,7 @@ int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset) {
 }
 
 //Sends mem contents to a file
-void uart_sendfile(char *file_name, int file_size, char *mem) {
+void uart_sendfile_chunk(char *file_name, char *mem, int nbytes, int offset) {
 
   uart_puts(UART_PROGNAME);
   uart_puts(": requesting to send file\n");
@@ -113,16 +113,24 @@ void uart_sendfile(char *file_name, int file_size, char *mem) {
 	
   //send file name
   uart_sendstr(file_name);
-	
+
+  int file_size = nbytes;
+
   // send file size
   uart_putc((char)(file_size & 0x0ff));
   uart_putc((char)((file_size & 0x0ff00) >> 8));
   uart_putc((char)((file_size & 0x0ff0000) >> 16));
   uart_putc((char)((file_size & 0x0ff000000) >> 24));
-  
+
+  // send offset
+  uart_putc((char)(offset & 0x0ff));
+  uart_putc((char)((offset & 0x0ff00) >> 8));
+  uart_putc((char)((offset & 0x0ff0000) >> 16));
+  uart_putc((char)((offset & 0x0ff000000) >> 24));
+
   // send file contents
   for (int i = 0; i < file_size; i++)
-    uart_putc(mem[i]);
+    uart_putc(mem[i + offset]);
 
   uart_puts(UART_PROGNAME);
   uart_puts(": file sent\n");
