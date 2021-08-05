@@ -90,9 +90,10 @@ int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset) {
   if( mem == (char *)(-1) )
     mem = (char *)malloc(file_size);
   
-  //write file to memory
+  //write file to memory 
   for (int i = 0; i < file_size; i++) {
-    mem[i + offset] = uart_getc();
+      mem[i + offset] = uart_getc();
+      file_size = uart_getc();
   }
 
   uart_puts(UART_PROGNAME);
@@ -130,7 +131,7 @@ void uart_sendfile_chunk(char *file_name, char *mem, int nbytes, int offset) {
 
   // send file contents
   for (int i = 0; i < file_size; i++)
-    uart_putc(mem[i + offset]);
+    uart_putc(mem[i]);
 
   uart_puts(UART_PROGNAME);
   uart_puts(": file sent\n");
@@ -141,10 +142,12 @@ int iob_fread(unsigned char *buffer, int nbrBytes, char *mem, int offset){
   int i = 0;
 
   while(nbrBytes--){
-    
-    buffer[i] = mem[i + offset]; 
-    i++;
+
+     buffer[i] = mem[i + offset]; 
+     i++;
+      
   }
+  
   return i;
 
 }
