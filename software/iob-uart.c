@@ -86,13 +86,12 @@ int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset) {
     uart_putc((char)((file_size & 0x0ff000000) >> 24));
   }
 
-  //allocate space for file if pointer not given
-  if( mem == (char *)(-1) )
-    mem = (char *)malloc(file_size);
+  //allocate space for file
+  *mem = (char *)malloc(file_size);
   
   //write file to memory 
   for (int i = 0; i < file_size; i++) {
-      mem[i + offset] = uart_getc();
+      *mem[i + offset] = uart_getc();
       file_size = uart_getc();
   }
 
