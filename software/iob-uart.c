@@ -51,7 +51,7 @@ void uart_sendstr (char* name) {
 }
 
 //Receives file into mem
-int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset) {
+int uart_recvfile_chunk(char* file_name, char **mem, int nbytes, int offset) {
 
   uart_puts(UART_PROGNAME);
   uart_puts (": requesting to receive file\n");
@@ -62,6 +62,7 @@ int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset) {
   //send file name
   uart_sendstr(file_name);
   int file_size = nbytes;
+
 
   if(nbytes==0){
 
@@ -86,13 +87,19 @@ int uart_recvfile_chunk(char* file_name, char *mem, int nbytes, int offset) {
     uart_putc((char)((file_size & 0x0ff000000) >> 24));
   }
 
-  //allocate space for file
-  *mem = (char *)malloc(file_size);
-  
-  //write file to memory 
+  //allocate space for file if file pointer not initialized
+  if((*mem) == NULL) {
+    (*mem) = (char *) malloc(file_size);
+    if ((*mem) == NULL) {
+      uart_puts(UART_PROGNAME);
+      uart_puts("Error: malloc failed");
+    }
+  }
+
+  //write file to memory
   for (int i = 0; i < file_size; i++) {
-      *mem[i + offset] = uart_getc();
-      file_size = uart_getc();
+    (*mem)[i + offset] = uart_getc();
+    file_size = uart_getc();
   }
 
   uart_puts(UART_PROGNAME);
@@ -136,13 +143,13 @@ void uart_sendfile_chunk(char *file_name, char *mem, int nbytes, int offset) {
   uart_puts(": file sent\n");
 }
 
-int iob_fread(unsigned char *buffer, int nbrBytes, char *mem, int offset){
+int iob_fread(unsigned char *buffer, int nbrBytes, char **mem, int offset){
 
   int i = 0;
 
   while(nbrBytes--){
 
-     buffer[i] = mem[i + offset]; 
+     buffer[i] = (*mem)[i + offset]; 
      i++;
       
   }
