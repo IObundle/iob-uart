@@ -12,4 +12,4 @@ HDR+=$(UART_SW_DIR)/*.h UARTsw_reg.h
 SRC+=$(UART_SW_DIR)/iob-uart.c
 
 UARTsw_reg.h: $(UART_HW_DIR)/include/UARTsw_reg.v
-	$(LIB_DIR)/software/mkregs.py $< SW
+	$(LIB_DIR)/software/python/mkregs.py $< SW
