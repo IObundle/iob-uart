@@ -1,22 +1,10 @@
 UART_DIR:=.
 include config.mk
 
-.PHONY: corename \
-	sim sim-test sim-clean \
-	fpga-build fpga-build-all fpga-test fpga-clean fpga-clean-all \
-	doc-build doc-build-all doc-test doc-clean doc-clean-all \
-	test-sim test-sim-clean \
-	test-fpga test-fpga-clean \
-	test-doc test-doc-clean \
-	test test-clean \
-	clean-all
-
-corename:
-	@echo "UART"
-
 #
 # SIMULATE
 #
+VCD ?=0
 
 sim:
 	make -C $(SIM_DIR) run
@@ -51,8 +39,8 @@ fpga-clean-all:
 # DOCUMENT
 #
 
-doc-build: fpga-build-all
-	make -C $(DOC_DIR) all
+doc-build:
+	make -C $(DOC_DIR) $(DOC).pdf
 
 doc-build-all:
 	$(foreach s, $(DOC_LIST), make doc-build DOC=$s;)
@@ -101,4 +89,22 @@ test-clean: test-sim-clean test-fpga-clean test-doc-clean
 # CLEAN ALL
 # 
 
-clean-all: sim-clean fpga-clean-all doc-clean-all
+clean-all: uart-gen-clean sim-clean fpga-clean-all doc-clean-all
+
+
+debug:
+	@echo $(SIM_DIR)
+	@echo $(FPGA_DIR)
+	@echo $(DOC_DIR)
+
+
+.PHONY: sim sim-test sim-clean \
+	fpga-build fpga-build-all fpga-test fpga-clean fpga-clean-all \
+	doc-build doc-build-all doc-test doc-clean doc-clean-all \
+	test-sim test-sim-clean \
+	test-fpga test-fpga-clean \
+	test-doc test-doc-clean \
+	test test-clean \
+	clean-all debug
+
+

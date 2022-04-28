@@ -1,9 +1,13 @@
+ifeq ($(filter UART, $(SW_MODULES)),)
+
+SW_MODULES+=UART
+
 include $(UART_DIR)/software/software.mk
 
-#submodule
-ifneq (INTERCON,$(filter INTERCON, $(MODULES)))
-include $(INTERCON_DIR)/software/software.mk
-endif
+# add embeded sources
+SRC+=iob_uart_swreg_emb.c
 
-#embeded sources
-SRC+=$(UART_SW_DIR)/embedded/iob-uart-platform.c
+iob_uart_swreg_emb.c: iob_uart_swreg.h
+	
+
+endif

@@ -1,22 +1,33 @@
 include $(UART_DIR)/config.mk
+TOP_MODULE:=iob_uart
 
-#block diagram verilog source
-BD_VSRC=uart_core.v
-CORENAME=$(shell make -C $(UART_DIR) corename | grep -v make)
+RESULTS=1
 
-INTEL ?=1
+#results for intel fpga
 INT_FAMILY ?=CYCLONEV-GT
-XILINX ?=1
+#results for xilinx fpga
 XIL_FAMILY ?=XCKU
 
-NOCLEAN+=-o -name "test.expected" -o -name "Makefile"
 
-#include tex submodule makefile segment
+#PREPARE TO INCLUDE TEX SUBMODULE MAKEFILE SEGMENT
+#root directory
 CORE_DIR:=$(UART_DIR)
-TEX_DOC_DIR ?=$(TEX_DIR)/document
-include $(TEX_DOC_DIR)/document.mk
 
-test: clean all
+#export definitions
+export DEFINE
+
+VHDR+=$(LIB_DIR)/hardware/include/gen_if.vh
+VHDR+=$(LIB_DIR)/hardware/include/iob_s_if.vh
+VHDR+=$(UART_DIR)/hardware/include/iob_uart_swreg.vh
+
+#INCLUDE TEX SUBMODULE MAKEFILE SEGMENT
+include $(LIB_DIR)/document/document.mk
+
+test: clean $(DOC).pdf
 	diff -q $(DOC).aux test.expected
 
-.PHONY: test
+debug:
+	echo $(TOP_MODULE) $(VHDR)
+
+NOCLEAN+=-o -name "test.expected" -o -name "Makefile"
+.PHONY: test debug
