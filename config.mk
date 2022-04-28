@@ -20,6 +20,10 @@ FPGA_FAMILY_LIST ?=CYCLONEV-GT XCKU
 DOC ?=pb
 DOC_LIST ?=pb ug
 
+
+# default target
+default: sim
+
 # VERSION
 VERSION ?=V0.1
 $(TOP_MODULE)_version.txt:
@@ -32,4 +36,4 @@ iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_HW_DIR)/include/iob_uart_swr
 uart-gen-clean:
 	@rm -rf *# *~ version.txt
 
-.PHONY: uart-gen-clean
+.PHONY: default uart-gen-clean

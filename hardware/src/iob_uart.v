@@ -4,8 +4,8 @@
 
 module iob_uart 
   # (
-     parameter DATA_W = 32, //PARAM CPU data width
-     parameter ADDR_W = `iob_uart_swreg_ADDR_W //MACRO CPU address section width
+     parameter DATA_W = 32, //PARAM & 32 & 64 & CPU data width
+     parameter ADDR_W = `iob_uart_swreg_ADDR_W //CPU address section width
      )
 
   (
