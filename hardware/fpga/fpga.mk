@@ -5,15 +5,9 @@ DEFINE+=$(defmacro)DUMMY
 
 TOOL=$(shell find $(UART_HW_DIR)/fpga -name $(FPGA_FAMILY) | cut -d"/" -f7)
 
-build: $(FPGA_OBJ)
-ifneq ($(TEST_LOG),)
-	echo "PASSED!" $(TEST_LOG)
-endif
-
-$(FPGA_OBJ): $(CONSTRAINTS) $(VSRC) $(VHDR)
+build: 
 ifeq ($(FPGA_SERVER),)
-	../build.sh "$(TOP_MODULE)" "$(VSRC)" "$(INCLUDE)" "$(DEFINE)" "$(FPGA_PART)"
-	make post-build
+	make $(FPGA_OBJ)
 else 
 	ssh $(FPGA_USER)@$(FPGA_SERVER) "if [ ! -d $(REMOTE_ROOT_DIR) ]; then mkdir -p $(REMOTE_ROOT_DIR); fi"
 	rsync -avz --delete --exclude .git $(UART_DIR) $(FPGA_USER)@$(FPGA_SERVER):$(REMOTE_ROOT_DIR)
@@ -22,10 +16,7 @@ else
 	scp $(FPGA_USER)@$(FPGA_SERVER):$(REMOTE_ROOT_DIR)/hardware/fpga/$(TOOL)/$(FPGA_FAMILY)/$(FPGA_LOG) .
 endif
 
-test: clean-testlog test1
-	diff -q test.log test.expected
-
-test1: clean
+test: clean-all
 	make build TEST_LOG=">> test.log"
 
 #clean test log only when board testing begins
@@ -41,6 +32,4 @@ endif
 
 clean-all: clean-testlog clean
 
-.PHONY: build \
-	test test1 \
-	clean-testlog clean clean-all
+.PHONY: build test clean-testlog clean clean-all

@@ -1,3 +1,5 @@
+SHELL:=/bin/bash
+
 TOP_MODULE=iob_uart
 
 #PATHS
