@@ -12,4 +12,4 @@ include ../../fpga.mk
 ENV:= $(VIVADOPATH)/settings64.sh
 
 $(FPGA_OBJ): $(VSRC) $(VHDR)
-	$(ENV); vivado -nojournal -log vivado.log -mode batch -source ../uart.tcl -tclargs $(TOP_MODULE) "$(VSRC)" "$(INCLUDE)" "$(DEFINE)" $(FPGA_PART)
+	$(ENV); $(VIVADOPATH)/bin/vivado -nojournal -log vivado.log -mode batch -source ../uart.tcl -tclargs $(TOP_MODULE) "$(VSRC)" "$(INCLUDE)" "$(DEFINE)" $(FPGA_PART)
