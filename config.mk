@@ -20,7 +20,7 @@ FPGA_FAMILY_LIST ?=CYCLONEV-GT XCKU
 
 #DEFAULT DOC AND doc LIST
 DOC ?=pb
-DOC_LIST ?=pb ug
+DOC_LIST ?=pb ug sw
 
 
 # default target
