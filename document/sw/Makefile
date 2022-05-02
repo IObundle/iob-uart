@@ -1,16 +1,18 @@
 UART_DIR:=../..
-include $(UART_DIR)/config.mk
+CORE_DIR:=$(UART_DIR)
 
-SW_PDF=IOb_UART_SW_Drivers.pdf
 DOXYGEN_CFG=Doxyfile
 LATEX_DIR=latex
 LATEX_MAKE=$(LATEX_DIR)/Makefile
 
-all: clean $(SW_PDF)
-
-$(SW_PDF): $(LATEX_MAKE)
+sw.pdf: clean-sw $(LATEX_MAKE)
 	make -C  $(LATEX_DIR) all
-	cp $(LATEX_DIR)/refman.pdf $(SW_PDF)
+	cp $(LATEX_DIR)/refman.pdf $@
+	cp $(LATEX_DIR)/refman.aux sw.aux
+	make test.expected
+
+test.expected: $(LATEX_DIR)/refman.aux
+	cp $< $@
 
 $(LATEX_MAKE): $(DOXYGEN_CFG)
 	doxygen $(DOXYGEN_CFG)
@@ -24,7 +26,10 @@ $(DOXYGEN_CFG):
 error:
 	@$(error Edit $(DOXYGEN_CFG) and rerun make.)
 
-clean:
+clean-sw:
 	@rm -rf $(LATEX_DIR)
 
-.PHONY: clean
+NOCLEAN+=-name "Makefile" -o -name "test.expected" -o -name "sw.pdf" \
+		 -o -name "Doxyfile"
+
+include $(UART_DIR)/document/document.mk
