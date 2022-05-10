@@ -12,6 +12,7 @@ XIL_FAMILY ?=XCKU
 #PREPARE TO INCLUDE TEX SUBMODULE MAKEFILE SEGMENT
 #root directory
 CORE_DIR:=$(UART_DIR)
+MKREGS_CONF:=$(UART_DIR)/mkregs.conf
 
 #export definitions
 export DEFINE
