@@ -32,8 +32,8 @@ $(TOP_MODULE)_version.txt:
 	echo $(VERSION) > version.txt
 
 #cpu accessible registers
-iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_HW_DIR)/include/iob_uart_swreg.vh
-	$(MKREGS) $< HW
+iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
+	$(MKREGS) iob_uart $(UART_DIR) HW
 
 uart-gen-clean:
 	@rm -rf *# *~ version.txt

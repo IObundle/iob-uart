@@ -12,13 +12,13 @@ XIL_FAMILY ?=XCKU
 #PREPARE TO INCLUDE TEX SUBMODULE MAKEFILE SEGMENT
 #root directory
 CORE_DIR:=$(UART_DIR)
+MKREGS_CONF:=$(UART_DIR)/mkregs.conf
 
 #export definitions
 export DEFINE
 
 VHDR+=$(LIB_DIR)/hardware/include/gen_if.vh
 VHDR+=$(LIB_DIR)/hardware/include/iob_s_if.vh
-VHDR+=$(UART_DIR)/hardware/include/iob_uart_swreg.vh
 
 #INCLUDE TEX SUBMODULE MAKEFILE SEGMENT
 include $(LIB_DIR)/document/document.mk

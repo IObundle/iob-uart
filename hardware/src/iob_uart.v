@@ -25,7 +25,6 @@ module iob_uart
    );
 
 //BLOCK Register File & Configuration control and status register file.
-`include "iob_uart_swreg.vh"
 `include "iob_uart_swreg_gen.vh"
    
    uart_core uart_core0 
