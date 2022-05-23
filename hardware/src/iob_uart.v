@@ -21,7 +21,7 @@ module iob_uart
    `IOB_INPUT(rxd, 1), //Serial receive line
    `IOB_INPUT(cts, 1), //Clear to send; the destination is ready to receive a transmission sent by the UART
    `IOB_OUTPUT(rts, 1), //Ready to send; the UART is ready to receive a transmission from the sender.
-`include "gen_if.vh"
+`include "iob_gen_if.vh"
    );
 
 //BLOCK Register File & Configuration control and status register file.
