@@ -18,60 +18,57 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \providecommand \oddpage@label [2]{}
 \@writefile{toc}{\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {1}Module Documentation}{1}{chapter.1}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1.1}I\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}Ob-\/\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}U\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}A\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}RT Software Drivers}{1}{section.1.1}\protected@file@percent }
-\newlabel{group__sw-drivers}{{1.1}{1}{I\+Ob-\/\+U\+A\+RT Software Drivers}{section.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}Introduction}{1}{subsection.1.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.2}I\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}Ob-\/\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}U\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}A\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}RT Macro Values}{2}{subsection.1.1.2}\protected@file@percent }
-\newlabel{group__sw-drivers_ga6f6489887e08bff4887d0bc5dcf214d8}{{1.1.2}{2}{I\+Ob-\/\+U\+A\+RT Macro Values}{subsection.1.1.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.1}ACK}{2}{subsubsection.1.1.2.1}\protected@file@percent }
-\newlabel{group__sw-drivers_ga4b4f88510ea966777e25224010c0a994}{{1.1.2.1}{2}{\texorpdfstring {ACK}{ACK}}{subsubsection.1.1.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.2}ENQ}{2}{subsubsection.1.1.2.2}\protected@file@percent }
-\newlabel{group__sw-drivers_gaa3210a5256085e136fed7897ae93a756}{{1.1.2.2}{2}{\texorpdfstring {ENQ}{ENQ}}{subsubsection.1.1.2.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.3}EOT}{2}{subsubsection.1.1.2.3}\protected@file@percent }
-\newlabel{group__sw-drivers_gaf02558e983dd26832a852bf186ed6726}{{1.1.2.3}{2}{\texorpdfstring {EOT}{EOT}}{subsubsection.1.1.2.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.4}ETX}{3}{subsubsection.1.1.2.4}\protected@file@percent }
-\newlabel{group__sw-drivers_ga31fd6110b81276513ed5b06b2d452294}{{1.1.2.4}{3}{\texorpdfstring {ETX}{ETX}}{subsubsection.1.1.2.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.5}FRX}{3}{subsubsection.1.1.2.5}\protected@file@percent }
-\newlabel{group__sw-drivers_ga30f6367dee80d0b614dd0da1060c6863}{{1.1.2.5}{3}{\texorpdfstring {FRX}{FRX}}{subsubsection.1.1.2.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.6}FTX}{3}{subsubsection.1.1.2.6}\protected@file@percent }
-\newlabel{group__sw-drivers_gaacd744a917e61146ec8b7175b4761683}{{1.1.2.6}{3}{\texorpdfstring {FTX}{FTX}}{subsubsection.1.1.2.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.7}STX}{3}{subsubsection.1.1.2.7}\protected@file@percent }
-\newlabel{group__sw-drivers_gaf967aa4cc55b799512e5f746648d92e1}{{1.1.2.7}{3}{\texorpdfstring {STX}{STX}}{subsubsection.1.1.2.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2.8}UART\_PROGNAME}{3}{subsubsection.1.1.2.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.3}I\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}Ob-\/\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}U\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}A\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}RT Functions}{3}{subsection.1.1.3}\protected@file@percent }
-\newlabel{group__sw-drivers_ga5c0c6408abb566fa5229dfa2ad0cd6c9}{{1.1.3}{3}{I\+Ob-\/\+U\+A\+RT Functions}{subsection.1.1.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.1}uart\_finish()}{3}{subsubsection.1.1.3.1}\protected@file@percent }
-\newlabel{group__sw-drivers_ga11508a3c55df6779452e795b23f2af40}{{1.1.3.1}{3}{\texorpdfstring {uart\_finish()}{uart\_finish()}}{subsubsection.1.1.3.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}I\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}Ob-\/\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}U\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}A\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}RT Software Drivers}{1}{section.0.1}\protected@file@percent }
+\newlabel{group__sw-drivers}{{1}{1}{I\+Ob-\/\+U\+A\+RT Software Drivers}{section.0.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Introduction}{1}{subsection.0.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}I\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}Ob-\/\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}U\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}A\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}RT Macro Values}{2}{subsection.0.1.2}\protected@file@percent }
+\newlabel{group__sw-drivers_ga6f6489887e08bff4887d0bc5dcf214d8}{{1.2}{2}{I\+Ob-\/\+U\+A\+RT Macro Values}{subsection.0.1.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}ACK}{2}{subsubsection.0.1.2.1}\protected@file@percent }
+\newlabel{group__sw-drivers_ga4b4f88510ea966777e25224010c0a994}{{1.2.1}{2}{\texorpdfstring {ACK}{ACK}}{subsubsection.0.1.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}ENQ}{2}{subsubsection.0.1.2.2}\protected@file@percent }
+\newlabel{group__sw-drivers_gaa3210a5256085e136fed7897ae93a756}{{1.2.2}{2}{\texorpdfstring {ENQ}{ENQ}}{subsubsection.0.1.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.3}EOT}{2}{subsubsection.0.1.2.3}\protected@file@percent }
+\newlabel{group__sw-drivers_gaf02558e983dd26832a852bf186ed6726}{{1.2.3}{2}{\texorpdfstring {EOT}{EOT}}{subsubsection.0.1.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.4}ETX}{2}{subsubsection.0.1.2.4}\protected@file@percent }
+\newlabel{group__sw-drivers_ga31fd6110b81276513ed5b06b2d452294}{{1.2.4}{2}{\texorpdfstring {ETX}{ETX}}{subsubsection.0.1.2.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.5}FRX}{2}{subsubsection.0.1.2.5}\protected@file@percent }
+\newlabel{group__sw-drivers_ga30f6367dee80d0b614dd0da1060c6863}{{1.2.5}{2}{\texorpdfstring {FRX}{FRX}}{subsubsection.0.1.2.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.6}FTX}{2}{subsubsection.0.1.2.6}\protected@file@percent }
+\newlabel{group__sw-drivers_gaacd744a917e61146ec8b7175b4761683}{{1.2.6}{2}{\texorpdfstring {FTX}{FTX}}{subsubsection.0.1.2.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.7}STX}{3}{subsubsection.0.1.2.7}\protected@file@percent }
+\newlabel{group__sw-drivers_gaf967aa4cc55b799512e5f746648d92e1}{{1.2.7}{3}{\texorpdfstring {STX}{STX}}{subsubsection.0.1.2.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.8}UART\_PROGNAME}{3}{subsubsection.0.1.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}I\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}Ob-\/\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}U\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}A\discretionary {\mbox  {\scriptsize  $\hookleftarrow  $}}{}{}RT Functions}{3}{subsection.0.1.3}\protected@file@percent }
+\newlabel{group__sw-drivers_ga5c0c6408abb566fa5229dfa2ad0cd6c9}{{1.3}{3}{I\+Ob-\/\+U\+A\+RT Functions}{subsection.0.1.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.1}uart\_finish()}{3}{subsubsection.0.1.3.1}\protected@file@percent }
+\newlabel{group__sw-drivers_ga11508a3c55df6779452e795b23f2af40}{{1.3.1}{3}{\texorpdfstring {uart\_finish()}{uart\_finish()}}{subsubsection.0.1.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}uart\_getc()}{3}{subsubsection.0.1.3.2}\protected@file@percent }
+\newlabel{group__sw-drivers_gae4b599ec041e9992dc1e2e89f853247a}{{1.3.2}{3}{\texorpdfstring {uart\_getc()}{uart\_getc()}}{subsubsection.0.1.3.2}{}}
 \gdef \LT@i {\LT@entry 
     {3}{69.32808pt}\LT@entry 
     {3}{197.83217pt}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.2}uart\_getc()}{4}{subsubsection.1.1.3.2}\protected@file@percent }
-\newlabel{group__sw-drivers_gae4b599ec041e9992dc1e2e89f853247a}{{1.1.3.2}{4}{\texorpdfstring {uart\_getc()}{uart\_getc()}}{subsubsection.1.1.3.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.3}uart\_init()}{4}{subsubsection.1.1.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.3}uart\_init()}{4}{subsubsection.0.1.3.3}\protected@file@percent }
+\newlabel{group__sw-drivers_gaa599232c1438c5addd971e05e1dd46a2}{{1.3.3}{4}{\texorpdfstring {uart\_init()}{uart\_init()}}{table.0.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4}uart\_putc()}{4}{subsubsection.0.1.3.4}\protected@file@percent }
 \gdef \LT@ii {\LT@entry 
     {3}{17.29996pt}\LT@entry 
     {3}{84.47025pt}}
 \gdef \LT@iii {\LT@entry 
     {3}{17.29996pt}\LT@entry 
     {3}{148.28775pt}}
-\newlabel{group__sw-drivers_gaa599232c1438c5addd971e05e1dd46a2}{{1.1.3.3}{5}{\texorpdfstring {uart\_init()}{uart\_init()}}{table.1.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.4}uart\_putc()}{5}{subsubsection.1.1.3.4}\protected@file@percent }
-\newlabel{group__sw-drivers_gae52facc0a56086a365bb0018160d8d71}{{1.1.3.4}{5}{\texorpdfstring {uart\_putc()}{uart\_putc()}}{table.1.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.5}uart\_puts()}{5}{subsubsection.1.1.3.5}\protected@file@percent }
-\newlabel{group__sw-drivers_ga9b5be9ed29248cdc7f24e9d0bc3ab584}{{1.1.3.5}{5}{\texorpdfstring {uart\_puts()}{uart\_puts()}}{table.1.3}{}}
+\newlabel{group__sw-drivers_gae52facc0a56086a365bb0018160d8d71}{{1.3.4}{5}{\texorpdfstring {uart\_putc()}{uart\_putc()}}{table.0.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.5}uart\_puts()}{5}{subsubsection.0.1.3.5}\protected@file@percent }
+\newlabel{group__sw-drivers_ga9b5be9ed29248cdc7f24e9d0bc3ab584}{{1.3.5}{5}{\texorpdfstring {uart\_puts()}{uart\_puts()}}{table.0.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.6}uart\_recvfile()}{5}{subsubsection.0.1.3.6}\protected@file@percent }
 \gdef \LT@iv {\LT@entry 
     {3}{51.81435pt}\LT@entry 
     {3}{180.12955pt}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.6}uart\_recvfile()}{6}{subsubsection.1.1.3.6}\protected@file@percent }
-\newlabel{group__sw-drivers_ga6f81b4607825d3e85856515de4e9f5ac}{{1.1.3.6}{6}{\texorpdfstring {uart\_recvfile()}{uart\_recvfile()}}{table.1.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.7}uart\_rxwait()}{6}{subsubsection.1.1.3.7}\protected@file@percent }
-\newlabel{group__sw-drivers_ga26968d890d68d5605ffa017b62d2320d}{{1.1.3.7}{6}{\texorpdfstring {uart\_rxwait()}{uart\_rxwait()}}{subsubsection.1.1.3.7}{}}
+\newlabel{group__sw-drivers_ga6f81b4607825d3e85856515de4e9f5ac}{{1.3.6}{6}{\texorpdfstring {uart\_recvfile()}{uart\_recvfile()}}{table.0.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.7}uart\_rxwait()}{6}{subsubsection.0.1.3.7}\protected@file@percent }
+\newlabel{group__sw-drivers_ga26968d890d68d5605ffa017b62d2320d}{{1.3.7}{6}{\texorpdfstring {uart\_rxwait()}{uart\_rxwait()}}{subsubsection.0.1.3.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.8}uart\_sendfile()}{6}{subsubsection.0.1.3.8}\protected@file@percent }
 \gdef \LT@v {\LT@entry 
     {3}{51.81435pt}\LT@entry 
     {3}{116.62654pt}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.8}uart\_sendfile()}{7}{subsubsection.1.1.3.8}\protected@file@percent }
-\newlabel{group__sw-drivers_ga9f9e6d0d4ff6d5084d2091eff089e557}{{1.1.3.8}{7}{\texorpdfstring {uart\_sendfile()}{uart\_sendfile()}}{table.1.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3.9}uart\_txwait()}{7}{subsubsection.1.1.3.9}\protected@file@percent }
+\newlabel{group__sw-drivers_ga9f9e6d0d4ff6d5084d2091eff089e557}{{1.3.8}{7}{\texorpdfstring {uart\_sendfile()}{uart\_sendfile()}}{table.0.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.9}uart\_txwait()}{7}{subsubsection.0.1.3.9}\protected@file@percent }

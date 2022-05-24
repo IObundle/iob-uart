@@ -41,6 +41,13 @@
 }
 \newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
 
+% Custom IOb
+% Remove Chapter Numbering
+\usepackage{chngcntr}
+\counterwithout{section}{chapter}
+% No chapters
+\renewcommand{\chapter}[1]{}
+
 % Arguments of doxygenemoji:
 % 1) ':<text>:' form of the emoji, already "LaTeX"-escaped
 % 2) file with the name of the emoji without the .png extension
