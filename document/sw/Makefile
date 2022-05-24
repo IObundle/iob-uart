@@ -5,7 +5,9 @@ DOXYGEN_CFG=Doxyfile
 LATEX_DIR=latex
 LATEX_MAKE=$(LATEX_DIR)/Makefile
 
-sw.pdf: clean-sw $(LATEX_MAKE)
+LATEX_SRC=version.tex shortHash.tex
+
+sw.pdf: clean-sw $(LATEX_MAKE) $(LATEX_SRC) figures
 	make -C  $(LATEX_DIR) all
 	cp $(LATEX_DIR)/refman.pdf $@
 	cp $(LATEX_DIR)/refman.aux sw.aux
@@ -30,6 +32,18 @@ clean-sw:
 	@rm -rf $(LATEX_DIR)
 
 NOCLEAN+=-name "Makefile" -o -name "test.expected" -o -name "sw.pdf" \
-		 -o -name "Doxyfile"
+		 -o -name "Doxyfile" -o -name "iob_uart_footer.tex" \
+		 -o -name "iob_uart_header.tex" -o -name "iob_uart_doxygen.sty" \
+		 -o -name "sw.cls"
+
+figures:
+	@cp $(LIB_DIR)/document/figures/Logo.png .
 
 include $(UART_DIR)/document/document.mk
+
+version.tex:
+	echo $(VERSION) > $@
+
+shortHash.tex:
+	git rev-parse --short HEAD > $@
+
