@@ -18,7 +18,6 @@ export DEFINE
 
 VHDR+=$(LIB_DIR)/hardware/include/gen_if.vh
 VHDR+=$(LIB_DIR)/hardware/include/iob_s_if.vh
-VHDR+=$(UART_DIR)/hardware/include/iob_uart_swreg.vh
 
 #INCLUDE TEX SUBMODULE MAKEFILE SEGMENT
 include $(LIB_DIR)/document/document.mk

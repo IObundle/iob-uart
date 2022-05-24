@@ -5,11 +5,14 @@ include $(UART_DIR)/config.mk
 #add itself to HW_MODULES list
 HW_MODULES+=UART
 
-
 UART_INC_DIR:=$(UART_HW_DIR)/include
 UART_SRC_DIR:=$(UART_HW_DIR)/src
 
 USE_NETLIST ?=0
+
+
+#import module
+include $(LIB_DIR)/hardware/iob_reg/hardware.mk
 
 #include files
 VHDR+=$(wildcard $(UART_INC_DIR)/*.vh)

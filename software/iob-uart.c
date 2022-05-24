@@ -3,41 +3,41 @@
 
 //TX FUNCTIONS
 void uart_txwait() {
-    while(!UART_GET_TXREADY());
+    while(!IOB_UART_GET_TXREADY());
 }
 
 void uart_putc(char c) {
-    while(!UART_GET_TXREADY());
-    UART_SET_TXDATA(c);
+    while(!IOB_UART_GET_TXREADY());
+    IOB_UART_SET_TXDATA(c);
 }
 
 //RX FUNCTIONS
 void uart_rxwait() {
-    while(!UART_GET_RXREADY());
+    while(!IOB_UART_GET_RXREADY());
 }
 
 char uart_getc() {
-    while(!UART_GET_RXREADY());
-    return UART_GET_RXDATA();
+    while(!IOB_UART_GET_RXREADY());
+    return IOB_UART_GET_RXDATA();
 }
 
 //UART basic functions
 void uart_init(int base_address, uint16_t div) {
   //capture base address for good
-  UART_INIT_BASEADDR(base_address);
+  IOB_UART_INIT_BASEADDR(base_address);
   
   //pulse soft reset
-  UART_SET_SOFTRESET(1);
-  UART_SET_SOFTRESET(0);
+  IOB_UART_SET_SOFTRESET(1);
+  IOB_UART_SET_SOFTRESET(0);
 
   //Set the division factor div
   //div should be equal to round (fclk/baudrate)
-  //E.g for fclk = 100 Mhz for a baudrate of 115200 we should UART_SET_DIV(868)
-  UART_SET_DIV(div);
+  //E.g for fclk = 100 Mhz for a baudrate of 115200 we should IOB_UART_SET_DIV(868)
+  IOB_UART_SET_DIV(div);
 
   //enable TX and RX
-  UART_SET_TXEN(1);
-  UART_SET_RXEN(1);
+  IOB_UART_SET_TXEN(1);
+  IOB_UART_SET_RXEN(1);
 }
 
 void uart_finish() {
