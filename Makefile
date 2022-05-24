@@ -97,7 +97,6 @@ debug:
 	@echo $(FPGA_DIR)
 	@echo $(DOC_DIR)
 
-
 .PHONY: sim sim-test sim-clean \
 	fpga-build fpga-build-all fpga-test fpga-clean fpga-clean-all \
 	doc-build doc-build-all doc-test doc-clean doc-clean-all \

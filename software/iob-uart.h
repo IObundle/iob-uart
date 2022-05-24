@@ -1,9 +1,19 @@
+/** @defgroup sw-drivers IOb-UART Software Drivers
+ * IOb-UART Software Drivers.
+ *
+ * The present IOb-UART software drivers implement a way to interface with the 
+ * IOb-UART peripheral for serial communication.
+ *
+ * The present drivers provide base functionalities such as: 
+ *      - initialization and setup
+ *      - basic control functions
+ *      - single character send and receive functions
+ *      - simple protocol for multi byte transfers
+ * @{
+ */
 /**
- * @file iob-uart.h
+ * @page iob-uart.h
  *
- * @brief IOb-Uart software drivers.
- *
- * Public driver functions for the IOb-Uart peripheral.
  */
 #include <stdlib.h>
 #include <stdarg.h>
@@ -75,6 +85,13 @@
  *
  * For example, for a case with fclk = 100 Mhz for a baudrate of 115200 we
  * should have `div=(100*10^6/115200) = (868)`.
+ *
+ * The following code is a simple usage example: 
+ * 
+ * @include uart_init.c
+ *
+ * The IOb-UART is inicialized with `UART_BASE` as the memory address and
+ * `div=(FREQ/BAUD)`.
  *
  * @param base_address IOb-Uart instance base address in the system.
  * @param div Equal to round (fclk/baudrate). 
@@ -168,3 +185,5 @@ char uart_getc();
  * @return Size of received file.
  */ 
 int uart_recvfile(char* file_name, char **mem);
+
+/** @} */ //end of sw-driver group
