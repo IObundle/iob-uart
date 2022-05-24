@@ -34,7 +34,8 @@ clean-sw:
 NOCLEAN+=-name "Makefile" -o -name "test.expected" -o -name "sw.pdf" \
 		 -o -name "Doxyfile" -o -name "iob_uart_footer.tex" \
 		 -o -name "iob_uart_header.tex" -o -name "iob_uart_doxygen.sty" \
-		 -o -name "sw.cls"
+		 -o -name "sw.cls" -o -name "iob_uart_Layout.xml" \
+		 -o -path "*examples/*"
 
 figures:
 	@cp $(LIB_DIR)/document/figures/Logo.png .
