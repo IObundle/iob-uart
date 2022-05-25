@@ -16,7 +16,7 @@ CORE_DIR:=$(UART_DIR)
 #export definitions
 export DEFINE
 
-VHDR+=$(LIB_DIR)/hardware/include/gen_if.vh
+VHDR+=$(LIB_DIR)/hardware/include/iob_gen_if.vh
 VHDR+=$(LIB_DIR)/hardware/include/iob_s_if.vh
 
 #INCLUDE TEX SUBMODULE MAKEFILE SEGMENT
