@@ -1,0 +1,13 @@
+% Change doxygen section commands
+% sections -> do nothing
+\renewcommand{\doxysection}[1]{}
+% subsections -> sections
+\renewcommand\doxysubsection{\@startsection{section}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\raggedright\normalfont\Large\bfseries}}
+% subsubsections -> subsections
+\renewcommand\doxysubsubsection{\@startsection{subsection}{3}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\raggedright\normalfont\large\bfseries}}
