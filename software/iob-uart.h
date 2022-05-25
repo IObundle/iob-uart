@@ -1,5 +1,5 @@
-/** @defgroup sw-drivers IOb-UART Software Drivers
- * IOb-UART Software Drivers.
+/** @defgroup sw-drivers IOb-UART Software Driver
+ * Software user guide for the IOb-UART software driver.
  *
  * The present IOb-UART software drivers implement a way to interface with the 
  * IOb-UART peripheral for serial communication.
