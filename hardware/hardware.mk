@@ -17,7 +17,7 @@ include $(LIB_DIR)/hardware/iob_reg/hardware.mk
 #include files
 VHDR+=$(wildcard $(UART_INC_DIR)/*.vh)
 VHDR+=iob_uart_swreg_gen.vh iob_uart_swreg_def.vh
-VHDR+=$(LIB_DIR)/hardware/include/iob_lib.vh
+VHDR+=$(LIB_DIR)/hardware/include/iob_lib.vh $(LIB_DIR)/hardware/include/iob_s_if.vh $(LIB_DIR)/hardware/include/gen_if.vh
 
 #hardware include dirs
 INCLUDE+=$(incdir). $(incdir)$(UART_INC_DIR) $(incdir)$(LIB_DIR)/hardware/include
