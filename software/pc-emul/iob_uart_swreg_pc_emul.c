@@ -7,6 +7,7 @@
 
 static uint16_t div_value;
 
+static int base;
 void IOB_UART_INIT_BASEADDR(uint32_t addr) {
     base = addr;
     return;
