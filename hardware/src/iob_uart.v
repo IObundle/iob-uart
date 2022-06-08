@@ -109,7 +109,7 @@ module iob_uart
       .tx_data(UART_TXDATA),
       .rx_data(UART_RXDATA_rdata),
       .data_write_en(UART_TXDATA_en),
-      .data_read_en(valid & !wstrb & (address == `UART_RXDATA_ADDR)),
+      .data_read_en(valid & !wstrb & (address == (`UART_RXDATA_ADDR >> 2))),
       .bit_duration(UART_DIV),
       .rxd(rxd),
       .txd(txd),
