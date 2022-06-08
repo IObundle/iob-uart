@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  # Don't forget to require approval for all outside collaborators
+  pull_request:
+    branches: '*'
+  # Allow manual workflow runs
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: test
+        run: make test
