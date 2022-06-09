@@ -10,12 +10,45 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  sim:
     runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3
         with:
-                submodules: 'recursive'
-      - name: test
-        run: make test
+          submodules: 'recursive'
+      - name: test-clean
+        run: make test-clean
+      - name: test-sim
+        run: make test-sim
+
+  fpga:
+    runs-on: self-hosted
+    # run even if previous job failed
+    if: ${{ always() }}
+    # run after indicated job
+    needs: sim
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: test-clean
+        run: make test-clean
+      - name: test-fpga
+        run: make test-fpga
+  doc:
+    runs-on: self-hosted
+    # run even if previous job failed
+    if: ${{ always() }}
+    # run after indicated job
+    needs: fpga
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: test-clean
+        run: make test-clean
+      - name: test-doc
+        run: make test-doc
