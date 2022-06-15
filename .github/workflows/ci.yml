@@ -37,7 +37,7 @@ jobs:
   fpga:
     runs-on: self-hosted
     timeout-minutes: 30
-    # run even if previous job failed
+    # always run, except when previous job was cancelled
     if: ${{ !cancelled() }}
     # run after indicated job
     needs: sim
@@ -53,7 +53,7 @@ jobs:
   doc:
     runs-on: self-hosted
     timeout-minutes: 30
-    # run even if previous job failed
+    # always run, except when previous job was cancelled
     if: ${{ !cancelled() }}
     # run after indicated job
     needs: fpga
