@@ -7,83 +7,85 @@
 
 static uint16_t div_value;
 
+static FILE *cnsl2soc_fd;
+static FILE *soc2cnsl_fd;
+
 static int base;
 void IOB_UART_INIT_BASEADDR(uint32_t addr) {
-    base = addr;
-    return;
+
+  //wait for console to create communication files 
+  while ((cnsl2soc_fd = fopen("./cnsl2soc", "rb")) == NULL);
+  fclose(cnsl2soc_fd);
+  while ((soc2cnsl_fd = fopen("./soc2cnsl", "wb"))==NULL);;
+  fclose(soc2cnsl_fd);
+
+  base = addr;
+  return;
 }
 
 void IOB_UART_SET_SOFTRESET(uint8_t value) {
-    //manage files to communicate with console here
-    FILE *cnsl2soc_fd;
-
-    while ((cnsl2soc_fd = fopen("./cnsl2soc", "rb")) == NULL);
-    fclose(cnsl2soc_fd);
-
-    div_value=0;
-    return;
+  div_value=0;
+  return;
 }
 
 void IOB_UART_SET_DIV(uint16_t value) {
-    div_value = value;
-    return;
+  div_value = value;
+  return;
 }
 
 void IOB_UART_SET_TXDATA(uint8_t value) {
-    // send byte to console
-    char aux_char;
-    int able2read;
-    FILE *soc2cnsl_fd;
+  // send byte to console
+  char aux_char;
+  int able2read;
 
-    while(1){
-        if((soc2cnsl_fd = fopen("./soc2cnsl", "rb")) != NULL){
-            able2read = fread(&aux_char, sizeof(char), 1, soc2cnsl_fd);
-            if(able2read == 0){
-                fclose(soc2cnsl_fd);
-                soc2cnsl_fd = fopen("./soc2cnsl", "wb");
-                fwrite(&value, sizeof(char), 1, soc2cnsl_fd);
-                fclose(soc2cnsl_fd);
-                break;
-            }
-            fclose(soc2cnsl_fd);
-        }
+  while(1){
+    if((soc2cnsl_fd = fopen("./soc2cnsl", "rb")) != NULL){
+      able2read = fread(&aux_char, sizeof(char), 1, soc2cnsl_fd);
+      if(able2read == 0){
+	fclose(soc2cnsl_fd);
+	soc2cnsl_fd = fopen("./soc2cnsl", "wb");
+	fwrite(&value, sizeof(char), 1, soc2cnsl_fd);
+	fclose(soc2cnsl_fd);
+	break;
+      }
+      fclose(soc2cnsl_fd);
     }
+  }
 }
 
 void IOB_UART_SET_TXEN(uint8_t value) {
-    return;
+  return;
 }
 
 void IOB_UART_SET_RXEN(uint8_t value) {
-    return;
+  return;
 }
 
 uint8_t IOB_UART_GET_TXREADY() {
-    return 1;
+  return 1;
 }
 
 uint8_t IOB_UART_GET_RXDATA() {
-    //get byte from console
-    char c;
-    int able2write;
-    FILE *cnsl2soc_fd;
+  //get byte from console
+  char c;
+  int able2write;
 
-    while(1){
-        if ((cnsl2soc_fd = fopen("./cnsl2soc", "rb")) == NULL){
-            break;
-        }
-        able2write = fread(&c, sizeof(char), 1, cnsl2soc_fd);
-        if (able2write > 0){
-            fclose(cnsl2soc_fd);
-            cnsl2soc_fd = fopen("./cnsl2soc", "w");
-            fclose(cnsl2soc_fd);
-            break;
-        }
-        fclose(cnsl2soc_fd);
+  while(1){
+    if ((cnsl2soc_fd = fopen("./cnsl2soc", "rb")) == NULL){
+      break;
     }
-    return (int64_t) c;
+    able2write = fread(&c, sizeof(char), 1, cnsl2soc_fd);
+    if (able2write > 0){
+      fclose(cnsl2soc_fd);
+      cnsl2soc_fd = fopen("./cnsl2soc", "w");
+      fclose(cnsl2soc_fd);
+      break;
+    }
+    fclose(cnsl2soc_fd);
+  }
+  return (int64_t) c;
 }
 
 uint8_t IOB_UART_GET_RXREADY() {
-    return 1;
+  return 1;
 }
