@@ -50,4 +50,4 @@ void uart_rxwait();
 uint8_t uart_getc();
 
 //Receive file 
-uint32_t uart_recvfile(char* file_name, char **mem);
+uint32_t uart_recvfile(char* file_name, char *mem);
