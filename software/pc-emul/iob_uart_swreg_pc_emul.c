@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "iob_uart_swreg.h"
 
@@ -9,6 +10,12 @@ static uint16_t div_value;
 
 static FILE *cnsl2soc_fd;
 static FILE *soc2cnsl_fd;
+
+
+void pc_emul_error(char * s) {
+  printf ("ERROR in iob-uart PC emulation: %s", s);
+  exit(1);
+}
 
 static int base;
 void IOB_UART_INIT_BASEADDR(uint32_t addr) {
@@ -36,12 +43,12 @@ void IOB_UART_SET_DIV(uint16_t value) {
 void IOB_UART_SET_TXDATA(uint8_t value) {
   // send byte to console
   char aux_char;
-  int able2read;
+  int nbytes;
 
   while(1){
     if((soc2cnsl_fd = fopen("./soc2cnsl", "rb")) != NULL){
-      able2read = fread(&aux_char, sizeof(char), 1, soc2cnsl_fd);
-      if(able2read == 0){
+      nbytes = fread(&aux_char, sizeof(char), 1, soc2cnsl_fd);
+      if(nbytes == 0){
 	fclose(soc2cnsl_fd);
 	soc2cnsl_fd = fopen("./soc2cnsl", "wb");
 	fwrite(&value, sizeof(char), 1, soc2cnsl_fd);
@@ -65,26 +72,33 @@ uint8_t IOB_UART_GET_TXREADY() {
   return 1;
 }
 
+
 uint8_t IOB_UART_GET_RXDATA() {
   //get byte from console
-  char c;
-  int able2write;
+  uint8_t c;
+  int nbytes;
 
   while(1){
-    if ((cnsl2soc_fd = fopen("./cnsl2soc", "rb")) == NULL){
-      break;
-    }
-    able2write = fread(&c, sizeof(char), 1, cnsl2soc_fd);
-    if (able2write > 0){
+    cnsl2soc_fd = fopen("./cnsl2soc", "rb");
+    nbytes = fread(&c, sizeof(char), 1, cnsl2soc_fd);
+    if (nbytes == 1){
       fclose(cnsl2soc_fd);
-      cnsl2soc_fd = fopen("./cnsl2soc", "w");
+
+      //the following removes file contents
+      cnsl2soc_fd = fopen("./cnsl2soc", "wb");
       fclose(cnsl2soc_fd);
+      
       break;
     }
     fclose(cnsl2soc_fd);
   }
-  return (int64_t) c;
+  return c;
 }
+
+
+
+
+
 
 uint8_t IOB_UART_GET_RXREADY() {
   return 1;

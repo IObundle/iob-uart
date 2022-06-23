@@ -16,7 +16,7 @@ void uart_rxwait() {
     while(!IOB_UART_GET_RXREADY());
 }
 
-char uart_getc() {
+uint8_t uart_getc() {
     while(!IOB_UART_GET_RXREADY());
     return IOB_UART_GET_RXDATA();
 }
@@ -59,7 +59,7 @@ void uart_sendstr (char* name) {
 }
 
 //Receives file into mem
-int uart_recvfile(char* file_name, char **mem) {
+uint32_t uart_recvfile(char* file_name, char **mem) {
 
   uart_puts(UART_PROGNAME);
   uart_puts (": requesting to receive file\n");
@@ -72,10 +72,10 @@ int uart_recvfile(char* file_name, char **mem) {
 
 
   //receive file size
-  int file_size = (unsigned int) uart_getc();
-  file_size |= ((unsigned int) uart_getc()) << 8;
-  file_size |= ((unsigned int) uart_getc()) << 16;
-  file_size |= ((unsigned int) uart_getc()) << 24;
+  uint32_t file_size = uart_getc();
+  file_size |= ((uint32_t) uart_getc()) << 8;
+  file_size |= ((uint32_t) uart_getc()) << 16;
+  file_size |= ((uint32_t) uart_getc()) << 24;
 
   //allocate space for file if file pointer not initialized
   if((*mem) == NULL) {
