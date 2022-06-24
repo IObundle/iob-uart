@@ -47,7 +47,7 @@ void uart_sendfile(char* file_name, int file_size, char *mem);
 void uart_rxwait();
 
 //Get char
-char uart_getc();
+uint8_t uart_getc();
 
 //Receive file 
-int uart_recvfile(char* file_name, char **mem);
+uint32_t uart_recvfile(char* file_name, char *mem);
