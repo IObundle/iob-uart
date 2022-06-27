@@ -23,7 +23,7 @@ void IOB_UART_INIT_BASEADDR(uint32_t addr) {
   //wait for console to create communication files 
   while ((cnsl2soc_fd = fopen("./cnsl2soc", "rb")) == NULL);
   fclose(cnsl2soc_fd);
-  while ((soc2cnsl_fd = fopen("./soc2cnsl", "wb"))==NULL);;
+  while ((soc2cnsl_fd = fopen("./soc2cnsl", "rb"))==NULL);
   fclose(soc2cnsl_fd);
 
   base = addr;
