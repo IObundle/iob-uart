@@ -2,9 +2,6 @@
 
    iob_uart uart_tb
      (
-      .clk       (clk),
-      .rst       (reset),
-      
       .valid     (uart_valid),
       .address   (uart_addr),
       .wdata     (uart_wdata),
@@ -15,6 +12,9 @@
       .txd       (uart_rxd),
       .rxd       (uart_txd),
       .rts       (uart_cts),
-      .cts       (uart_rts)
+      .cts       (uart_rts),
+
+      .clk       (clk),
+      .rst       (rst)
       );
 
