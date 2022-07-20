@@ -19,5 +19,5 @@
       .cts (uart_cts),
       
       .clk (clk),
-      .rst (rst)
+      .rst (cpu_rst)
       );
