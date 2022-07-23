@@ -19,5 +19,5 @@
       .cts (uart_cts),
       
       .clk (clk),
-      .rst (cpu_rst)
+      .rst (cpu_reset)
       );

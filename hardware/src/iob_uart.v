@@ -30,65 +30,55 @@ module iob_uart
 // SWRegs
 
     `IOB_WIRE(UART_SOFTRESET, 1)
-    iob_reg #(.DATA_W(1))
+    iob_reg #(.DATA_W(1), .RST_VAL(0))
     uart_softreset (
         .clk        (clk),
         .arst       (rst),
-        .arst_val   (1'b0),
         .rst        (rst),
-        .rst_val    (1'b0),
         .en         (UART_SOFTRESET_en),
         .data_in    (UART_SOFTRESET_wdata[0]),
         .data_out   (UART_SOFTRESET)
     );
 
     `IOB_WIRE(UART_DIV, 16)
-    iob_reg #(.DATA_W(16))
+    iob_reg #(.DATA_W(16), .RST_VAL(0))
     uart_div (
         .clk        (clk),
         .arst       (rst),
-        .arst_val   (16'b0),
         .rst        (rst),
-        .rst_val    (16'b0),
         .en         (UART_DIV_en),
         .data_in    (UART_DIV_wdata),
         .data_out   (UART_DIV)
     );
    
     `IOB_WIRE(UART_TXDATA, 8)
-    iob_reg #(.DATA_W(8))
+    iob_reg #(.DATA_W(8), .RST_VAL(0))
     uart_txdata (
         .clk        (clk),
         .arst       (rst),
-        .arst_val   (8'b0),
         .rst        (rst),
-        .rst_val    (8'b0),
         .en         (UART_TXDATA_en),
         .data_in    (UART_TXDATA_wdata),
         .data_out   (UART_TXDATA)
     );
    
     `IOB_WIRE(UART_TXEN, 1)
-    iob_reg #(.DATA_W(1))
+    iob_reg #(.DATA_W(1), .RST_VAL(0))
     uart_txen (
         .clk        (clk),
         .arst       (rst),
-        .arst_val   (1'b0),
         .rst        (rst),
-        .rst_val    (1'b0),
         .en         (UART_TXEN_en),
         .data_in    (UART_TXEN_wdata[0]),
         .data_out   (UART_TXEN)
     );
    
     `IOB_WIRE(UART_RXEN, 1)
-    iob_reg #(.DATA_W(1))
+    iob_reg #(.DATA_W(1), .RST_VAL(0))
     uart_rxen (
         .clk        (clk),
         .arst       (rst),
-        .arst_val   (1'b0),
         .rst        (rst),
-        .rst_val    (1'b0),
         .en         (UART_RXEN_en),
         .data_in    (UART_RXEN_wdata[0]),
         .data_out   (UART_RXEN)
