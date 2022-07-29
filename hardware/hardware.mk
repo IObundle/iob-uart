@@ -1,33 +1,38 @@
-ifeq ($(filter UART, $(HW_MODULES)),)
-
 include $(UART_DIR)/config.mk
 
-#add itself to HW_MODULES list
-HW_MODULES+=UART
+#import lib hardware
+include hardware/iob_reg/hardware.mk
 
-UART_INC_DIR:=$(UART_HW_DIR)/include
-UART_SRC_DIR:=$(UART_HW_DIR)/src
+#
+# Headers
+#
 
-USE_NETLIST ?=0
+#clk/rst interface
+VHDR+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
+$(BUILD_VSRC_DIR)/iob_gen_if.vh: hardware/include/iob_gen_if.vh
+	cp $< $@
 
+#IObundle native slave interface
+VHDR+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
+$(BUILD_VSRC_DIR)/iob_s_if.vh: hardware/include/iob_s_if.vh
+	cp $< $@
 
-#import module
-include $(LIB_DIR)/hardware/iob_reg/hardware.mk
+VHDR+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh
+$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh: iob_uart_swreg_gen.vh
+	cp $< $@
 
-#include files
-VHDR+=$(wildcard $(UART_INC_DIR)/*.vh)
-VHDR+=iob_uart_swreg_gen.vh iob_uart_swreg_def.vh
-VHDR+=$(LIB_DIR)/hardware/include/iob_lib.vh $(LIB_DIR)/hardware/include/iob_s_if.vh $(LIB_DIR)/hardware/include/iob_gen_if.vh
+VHDR+=$(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
+$(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh: iob_uart_swreg_def.vh
+	cp $< $@
 
-#hardware include dirs
-INCLUDE+=$(incdir). $(incdir)$(UART_INC_DIR) $(incdir)$(LIB_DIR)/hardware/include
+#
+# Sources
+#
 
-#sources
-VSRC+=$(UART_SRC_DIR)/uart_core.v $(UART_SRC_DIR)/iob_uart.v
+VSRC+=$(BUILD_VSRC_DIR)/uart_core.v
+$(BUILD_VSRC_DIR)/uart_core.v: $(UART_DIR)/hardware/src/uart_core.v
+	cp $< $@
 
-uart-hw-clean: uart-gen-clean
-	@rm -f *.v *.vh
-
-.PHONY: uart-hw-clean
-
-endif
+VSRC+=$(BUILD_VSRC_DIR)/iob_uart.v
+$(BUILD_VSRC_DIR)/iob_uart.v: $(UART_DIR)/hardware/src/iob_uart.v
+	cp $< $@
