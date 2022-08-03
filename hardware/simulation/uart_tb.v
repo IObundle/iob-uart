@@ -1,5 +1,7 @@
 `timescale 1ns/1ps
 
+`include "iob_uart_swreg_def.vh"
+
 //ASCII codes used
 `define STX 2 //start of text 
 `define ETX 3 //end of text

@@ -1,38 +1,45 @@
-include $(UART_DIR)/config.mk
+# (c) 2022-Present IObundle, Lda, all rights reserved
+#
+# This makefile segment lists all hardware header and source files 
+#
+# It is always included in submodules/LIB/Makefile for populating the
+# build directory
+#
+ifeq ($(filter UART, $(HW_MODULES)),)
+
+#add itself to HW_MODULES list
+HW_MODULES+=UART
 
 #import lib hardware
 include hardware/iob_reg/hardware.mk
 
-#
-# Headers
-#
+UART_INC_DIR:=$(UART_DIR)/hardware/include
+UART_SRC_DIR:=$(UART_DIR)/hardware/src
 
-#clk/rst interface
-VHDR+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
-$(BUILD_VSRC_DIR)/iob_gen_if.vh: hardware/include/iob_gen_if.vh
-	cp $< $@
+#HEADERS
+VHDR+=$(subst $(UART_INC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_INC_DIR)/*.vh))
+$(BUILD_VSRC_DIR)/%.vh: $(UART_INC_DIR)/%.vh
+	cp $< $(BUILD_VSRC_DIR)
 
-#IObundle native slave interface
-VHDR+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
-$(BUILD_VSRC_DIR)/iob_s_if.vh: hardware/include/iob_s_if.vh
-	cp $< $@
+VHDR+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
+$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh: iob_uart_swreg_gen.vh 
+	cp $< $(BUILD_VSRC_DIR)
 
-VHDR+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh
-$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh: iob_uart_swreg_gen.vh
-	cp $< $@
-
-VHDR+=$(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
 $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh: iob_uart_swreg_def.vh
-	cp $< $@
+	cp $< $(BUILD_VSRC_DIR)
 
-#
-# Sources
-#
+iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
+	$(MKREGS) iob_uart $(UART_DIR) HW
 
-VSRC+=$(BUILD_VSRC_DIR)/uart_core.v
-$(BUILD_VSRC_DIR)/uart_core.v: $(UART_DIR)/hardware/src/uart_core.v
-	cp $< $@
+VHDR+=$(BUILD_VSRC_DIR)/iob_lib.vh
+VHDR+=$(BUILD_VSRC_DIR)/iob_s_if.vh
+VHDR+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
+$(BUILD_VSRC_DIR)/%.vh: hardware/include/%.vh
+	cp $< $(BUILD_VSRC_DIR)
 
-VSRC+=$(BUILD_VSRC_DIR)/iob_uart.v
-$(BUILD_VSRC_DIR)/iob_uart.v: $(UART_DIR)/hardware/src/iob_uart.v
-	cp $< $@
+#SOURCES
+VSRC+=$(subst $(UART_SRC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_SRC_DIR)/*.v))
+$(BUILD_VSRC_DIR)/%.v: $(UART_SRC_DIR)/%.v
+	cp $< $(BUILD_VSRC_DIR)
+
+endif

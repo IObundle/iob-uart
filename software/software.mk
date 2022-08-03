@@ -1,5 +1,3 @@
-include $(UART_DIR)/config.mk
-
 UART_SW_DIR:=$(UART_DIR)/software
 
 #include

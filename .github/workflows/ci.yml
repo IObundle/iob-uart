@@ -30,39 +30,6 @@ jobs:
         with:
           submodules: 'recursive'
       - name: test-clean
-        run: make test-clean
+        run: make setup
       - name: test-sim
-        run: make test-sim
-
-  fpga:
-    runs-on: self-hosted
-    timeout-minutes: 30
-    # always run, except when previous job was cancelled
-    if: ${{ !cancelled() }}
-    # run after indicated job
-    needs: sim
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
-      - name: test-clean
-        run: make test-clean
-      - name: test-fpga
-        run: make test-fpga
-  doc:
-    runs-on: self-hosted
-    timeout-minutes: 30
-    # always run, except when previous job was cancelled
-    if: ${{ !cancelled() }}
-    # run after indicated job
-    needs: fpga
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
-      - name: test-clean
-        run: make test-clean
-      - name: test-doc
-        run: make test-doc
+        run: make -C iob_uart_V0.10/ sim-test
