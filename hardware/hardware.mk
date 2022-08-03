@@ -1,33 +1,45 @@
+# (c) 2022-Present IObundle, Lda, all rights reserved
+#
+# This makefile segment lists all hardware header and source files 
+#
+# It is always included in submodules/LIB/Makefile for populating the
+# build directory
+#
 ifeq ($(filter UART, $(HW_MODULES)),)
-
-include $(UART_DIR)/config.mk
 
 #add itself to HW_MODULES list
 HW_MODULES+=UART
 
-UART_INC_DIR:=$(UART_HW_DIR)/include
-UART_SRC_DIR:=$(UART_HW_DIR)/src
+#import lib hardware
+include hardware/iob_reg/hardware.mk
 
-USE_NETLIST ?=0
+UART_INC_DIR:=$(UART_DIR)/hardware/include
+UART_SRC_DIR:=$(UART_DIR)/hardware/src
 
+#HEADERS
+VHDR+=$(subst $(UART_INC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_INC_DIR)/*.vh))
+$(BUILD_VSRC_DIR)/%.vh: $(UART_INC_DIR)/%.vh
+	cp $< $(BUILD_VSRC_DIR)
 
-#import module
-include $(LIB_DIR)/hardware/iob_reg/hardware.mk
+VHDR+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
+$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh: iob_uart_swreg_gen.vh 
+	cp $< $(BUILD_VSRC_DIR)
 
-#include files
-VHDR+=$(wildcard $(UART_INC_DIR)/*.vh)
-VHDR+=iob_uart_swreg_gen.vh iob_uart_swreg_def.vh
-VHDR+=$(LIB_DIR)/hardware/include/iob_lib.vh $(LIB_DIR)/hardware/include/iob_s_if.vh $(LIB_DIR)/hardware/include/iob_gen_if.vh
+$(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh: iob_uart_swreg_def.vh
+	cp $< $(BUILD_VSRC_DIR)
 
-#hardware include dirs
-INCLUDE+=$(incdir). $(incdir)$(UART_INC_DIR) $(incdir)$(LIB_DIR)/hardware/include
+iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
+	$(MKREGS) iob_uart $(UART_DIR) HW
 
-#sources
-VSRC+=$(UART_SRC_DIR)/uart_core.v $(UART_SRC_DIR)/iob_uart.v
+VHDR+=$(BUILD_VSRC_DIR)/iob_lib.vh
+VHDR+=$(BUILD_VSRC_DIR)/iob_s_if.vh
+VHDR+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
+$(BUILD_VSRC_DIR)/%.vh: hardware/include/%.vh
+	cp $< $(BUILD_VSRC_DIR)
 
-uart-hw-clean: uart-gen-clean
-	@rm -f *.v *.vh
-
-.PHONY: uart-hw-clean
+#SOURCES
+VSRC+=$(subst $(UART_SRC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_SRC_DIR)/*.v))
+$(BUILD_VSRC_DIR)/%.v: $(UART_SRC_DIR)/%.v
+	cp $< $(BUILD_VSRC_DIR)
 
 endif

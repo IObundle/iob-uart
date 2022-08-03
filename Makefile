@@ -1,48 +1,13 @@
-UART_DIR:=.
-include config.mk
+LIB_DIR=submodules/LIB
 
-#
-# SIMULATE
-#
-VCD ?=0
+setup:
+	make -C $(LIB_DIR) $@
 
-sim:
-	make -C $(SIM_DIR) run
-
-sim-test:
-	make -C $(SIM_DIR) test
-
-sim-clean:
-	make -C $(SIM_DIR) clean-all
-
-
-#
-# TEST ON SIMULATORS AND BOARDS
-#
-
-test-sim:
-	make sim-test
-
-test-sim-clean:
-	make sim-clean
-
-test: test-clean test-sim
-
-test-clean: test-sim-clean
-
-#
-# CLEAN ALL
-# 
-
-clean-all: uart-gen-clean sim-clean
-
+clean:
+	make -C $(LIB_DIR) $@
 
 debug:
-	@echo $(SIM_DIR)
-
-.PHONY: sim sim-test sim-clean \
-	test-sim test-sim-clean \
-	test test-clean \
-	clean-all debug
+	make -C $(LIB_DIR) $@
 
 
+.PHONY: setup clean debug
