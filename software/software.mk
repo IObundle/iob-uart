@@ -1,13 +1,56 @@
+# (c) 2022-Present IObundle, Lda, all rights reserved
+#
+# This makefile segment lists all software header and source files 
+#
+# It is included in submodules/LIB/Makefile for populating the
+# build directory
+#
+
 UART_SW_DIR:=$(UART_DIR)/software
-
-#include
-INCLUDE+=-I$(UART_SW_DIR)
-
-#headers
-HDR+=$(UART_SW_DIR)/*.h iob_uart_swreg.h
 
 #sources
 SRC+=$(UART_SW_DIR)/iob-uart.c
 
-iob_uart_swreg.h: 
-	$(MKREGS) iob_uart $(UART_DIR) SW 
+HDR1=$(wildcard $(UART_DIR)/software/*.h)
+HDR+=$(patsubst $(UART_DIR)/software/%,$(BUILD_SW_SRC_DIR)/%,$(HDR1))
+$(BUILD_SW_SRC_DIR)/%.h: $(UART_DIR)/software/%.h
+	cp $< $@
+#
+# Common Headers and Sources
+#
+#HEADERS
+HDR+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg.h
+$(BUILD_SW_SRC_DIR)/iob_uart_swreg.h: iob_uart_swreg.h
+	cp $< $@
+
+#SOURCES
+
+SRC1=$(wildcard $(UART_DIR)/software/*.c)
+SRC+=$(patsubst $(UART_DIR)/software/%,$(BUILD_SW_SRC_DIR)/%,$(SRC1))
+$(BUILD_SW_SRC_DIR)/%.c: $(UART_DIR)/software/%.c
+	cp $< $@
+
+SW_EMB_HDR:=$(HDR)
+SW_EMB_SRC:=$(SRC)
+SW_PC_HDR:=$(HDR)
+SW_PC_SRC:=$(SRC)
+
+#
+# Embedded Sources
+#
+SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg_emb.c
+SW_EMB_SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg_emb.c
+$(BUILD_SW_SRC_DIR)/iob_uart_swreg_emb.c: iob_uart_swreg_emb.c
+	cp $< $@
+
+#
+# PC Emul Sources
+#
+SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg_pc_emul.c
+SW_PC_SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg_pc_emul.c
+$(BUILD_SW_SRC_DIR)/iob_uart_swreg_pc_emul.c: $(UART_DIR)/software/pc-emul/iob_uart_swreg_pc_emul.c
+	cp $< $@
+
+#MKREGS
+iob_uart_swreg.h iob_uart_swreg_emb.c: $(UART_DIR)/mkregs.conf
+	$(MKREGS) $(NAME) $(UART_DIR) SW
