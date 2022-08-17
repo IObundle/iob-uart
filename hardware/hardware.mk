@@ -42,4 +42,7 @@ VSRC+=$(subst $(UART_SRC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_SRC_DIR)/*.v
 $(BUILD_VSRC_DIR)/%.v: $(UART_SRC_DIR)/%.v
 	cp $< $(BUILD_VSRC_DIR)
 
+#HW SOURCES AND HEADERS
+HW_VHDR=$(VHDR)
+HW_VSRC=$(VSRC)
 endif
