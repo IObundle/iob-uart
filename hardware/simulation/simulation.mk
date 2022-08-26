@@ -9,3 +9,5 @@ include ../../info.mk
 TEST_LIST+=test1
 test1:
 	make run SIMULATOR=icarus 
+
+NOCLEAN+=-o -name "uart_tb.v"

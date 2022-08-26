@@ -17,11 +17,11 @@ UART_INC_DIR:=$(UART_DIR)/hardware/include
 UART_SRC_DIR:=$(UART_DIR)/hardware/src
 
 #HEADERS
-VHDR+=$(subst $(UART_INC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_INC_DIR)/*.vh))
+SRC+=$(subst $(UART_INC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_INC_DIR)/*.vh))
 $(BUILD_VSRC_DIR)/%.vh: $(UART_INC_DIR)/%.vh
 	cp $< $(BUILD_VSRC_DIR)
 
-VHDR+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
+SRC+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
 $(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh: iob_uart_swreg_gen.vh 
 	cp $< $(BUILD_VSRC_DIR)
 
@@ -29,20 +29,17 @@ $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh: iob_uart_swreg_def.vh
 	cp $< $(BUILD_VSRC_DIR)
 
 iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
-	$(MKREGS) iob_uart $(UART_DIR) HW
+	./software/python/mkregs.py iob_uart $(UART_DIR) HW
 
-VHDR+=$(BUILD_VSRC_DIR)/iob_lib.vh
-VHDR+=$(BUILD_VSRC_DIR)/iob_s_if.vh
-VHDR+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
+SRC+=$(BUILD_VSRC_DIR)/iob_lib.vh
+SRC+=$(BUILD_VSRC_DIR)/iob_s_if.vh
+SRC+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
 $(BUILD_VSRC_DIR)/%.vh: hardware/include/%.vh
 	cp $< $(BUILD_VSRC_DIR)
 
 #SOURCES
-VSRC+=$(subst $(UART_SRC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_SRC_DIR)/*.v))
+SRC+=$(subst $(UART_SRC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_SRC_DIR)/*.v))
 $(BUILD_VSRC_DIR)/%.v: $(UART_SRC_DIR)/%.v
 	cp $< $(BUILD_VSRC_DIR)
 
-#HW SOURCES AND HEADERS
-HW_VHDR=$(VHDR)
-HW_VSRC=$(VSRC)
 endif

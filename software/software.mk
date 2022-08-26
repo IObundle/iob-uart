@@ -12,14 +12,14 @@ UART_SW_DIR:=$(UART_DIR)/software
 SRC+=$(UART_SW_DIR)/iob-uart.c
 
 HDR1=$(wildcard $(UART_DIR)/software/*.h)
-HDR+=$(patsubst $(UART_DIR)/software/%,$(BUILD_SW_SRC_DIR)/%,$(HDR1))
+SRC+=$(patsubst $(UART_DIR)/software/%,$(BUILD_SW_SRC_DIR)/%,$(HDR1))
 $(BUILD_SW_SRC_DIR)/%.h: $(UART_DIR)/software/%.h
 	cp $< $@
 #
 # Common Headers and Sources
 #
 #HEADERS
-HDR+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg.h
+SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg.h
 $(BUILD_SW_SRC_DIR)/iob_uart_swreg.h: iob_uart_swreg.h
 	cp $< $@
 
@@ -29,11 +29,6 @@ SRC1=$(wildcard $(UART_DIR)/software/*.c)
 SRC+=$(patsubst $(UART_DIR)/software/%,$(BUILD_SW_SRC_DIR)/%,$(SRC1))
 $(BUILD_SW_SRC_DIR)/%.c: $(UART_DIR)/software/%.c
 	cp $< $@
-
-SW_EMB_HDR:=$(HDR)
-SW_EMB_SRC:=$(SRC)
-SW_PC_HDR:=$(HDR)
-SW_PC_SRC:=$(SRC)
 
 #
 # Embedded Sources
@@ -53,4 +48,4 @@ $(BUILD_SW_SRC_DIR)/iob_uart_swreg_pc_emul.c: $(UART_DIR)/software/pc-emul/iob_u
 
 #MKREGS
 iob_uart_swreg.h iob_uart_swreg_emb.c: $(UART_DIR)/mkregs.conf
-	$(MKREGS) $(NAME) $(UART_DIR) SW
+	./software/python/mkregs.py $(NAME) $(UART_DIR) SW
