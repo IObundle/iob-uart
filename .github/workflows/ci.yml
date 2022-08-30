@@ -7,7 +7,9 @@ defaults:
 
 on:
   push:
-    branches: [ master build-lib ]
+    branches:
+        - master
+        - build-lib
   # Don't forget to require approval for all outside collaborators
   pull_request:
     branches: '*'
@@ -15,7 +17,7 @@ on:
   workflow_dispatch:
 
 # Run only one instance of this workflow at a time
-# cancel-in-progress: stop running workflow and run latest instead
+# cancel-in-progress: stop running workflow and run the latest instead
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -50,19 +52,3 @@ jobs:
         run: make test-clean
       - name: test-fpga
         run: make test-fpga
-  doc:
-    runs-on: self-hosted
-    timeout-minutes: 30
-    # always run, except when previous job was cancelled
-    if: ${{ !cancelled() }}
-    # run after indicated job
-    needs: fpga
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
-      - name: test-clean
-        run: make test-clean
-      - name: test-doc
-        run: make test-doc
