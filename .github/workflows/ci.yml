@@ -7,7 +7,7 @@ defaults:
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master build-lib ]
   # Don't forget to require approval for all outside collaborators
   pull_request:
     branches: '*'
@@ -30,6 +30,23 @@ jobs:
         with:
           submodules: 'recursive'
       - name: test-clean
-        run: make setup
+        run: make test-clean
       - name: test-sim
-        run: make -C iob_uart_V0.10/ sim-test
+        run: make test-sim
+
+  fpga:
+    runs-on: self-hosted
+    timeout-minutes: 30
+    # always run, except when previous job was cancelled
+    if: ${{ !cancelled() }}
+    # run after indicated job
+    needs: sim
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: test-clean
+        run: make test-clean
+      - name: test-fpga
+        run: make test-fpga
