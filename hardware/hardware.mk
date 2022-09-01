@@ -11,7 +11,7 @@ ifeq ($(filter UART, $(HW_MODULES)),)
 HW_MODULES+=UART
 
 #import lib hardware
-include hardware/iob_reg/hardware.mk
+include $(LIB_DIR)/hardware/iob_reg/hardware.mk
 
 UART_INC_DIR:=$(UART_DIR)/hardware/include
 UART_SRC_DIR:=$(UART_DIR)/hardware/src
@@ -29,12 +29,12 @@ $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh: iob_uart_swreg_def.vh
 	cp $< $(BUILD_VSRC_DIR)
 
 iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
-	./software/python/mkregs.py iob_uart $(UART_DIR) HW
+	$(LIB_DIR)/software/python/mkregs.py iob_uart $(UART_DIR) HW
 
 SRC+=$(BUILD_VSRC_DIR)/iob_lib.vh
 SRC+=$(BUILD_VSRC_DIR)/iob_s_if.vh
 SRC+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
-$(BUILD_VSRC_DIR)/%.vh: hardware/include/%.vh
+$(BUILD_VSRC_DIR)/%.vh: $(UART_DIR)/hardware/include/%.vh
 	cp $< $(BUILD_VSRC_DIR)
 
 #SOURCES
