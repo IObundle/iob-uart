@@ -27,7 +27,6 @@ iob_uart_swreg.h iob_uart_swreg_emb.c: $(UART_DIR)/mkregs.conf
 	$(LIB_DIR)/software/python/mkregs.py iob_uart $(UART_DIR) SW
 
 # PC emul sources
-SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg_pc_emul.c
-SW_PC_SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg_pc_emul.c
-$(BUILD_SW_SRC_DIR)/iob_uart_swreg_pc_emul.c: $(UART_DIR)/software/pc-emul/iob_uart_swreg_pc_emul.c
+SRC+=$(BUILD_SW_PCSRC_DIR)/iob_uart_swreg_pc_emul.c
+$(BUILD_SW_PCSRC_DIR)/iob_uart_swreg_pc_emul.c: $(UART_DIR)/software/pc-emul/iob_uart_swreg_pc_emul.c
 	cp $< $@
