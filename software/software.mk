@@ -18,10 +18,10 @@ $(BUILD_SW_SRC_DIR)/%.h: $(UART_DIR)/software/%.h
 #sw accessible register headers
 SRC+=$(BUILD_SW_SRC_DIR)/iob_uart_swreg.h $(BUILD_SW_SRC_DIR)/iob_uart_swreg_emb.c
 $(BUILD_SW_SRC_DIR)/iob_uart_swreg.h: iob_uart_swreg.h
-	cp $< $@
+	mv $< $@
 
 $(BUILD_SW_SRC_DIR)/iob_uart_swreg_emb.c: iob_uart_swreg_emb.c
-	cp $< $@
+	mv $< $@
 
 iob_uart_swreg.h iob_uart_swreg_emb.c: $(UART_DIR)/mkregs.conf
 	$(LIB_DIR)/software/python/mkregs.py $(NAME) $(UART_DIR) SW
