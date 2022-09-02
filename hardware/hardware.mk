@@ -12,6 +12,7 @@ HW_MODULES+=UART
 
 #import lib hardware
 include $(LIB_DIR)/hardware/iob_reg/hardware.mk
+include $(LIB_DIR)/hardware/include/hardware.mk
 
 UART_INC_DIR:=$(UART_DIR)/hardware/include
 UART_SRC_DIR:=$(UART_DIR)/hardware/src
@@ -32,10 +33,6 @@ iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
 	$(LIB_DIR)/software/python/mkregs.py iob_uart $(UART_DIR) HW
 
 SRC+=$(BUILD_VSRC_DIR)/iob_lib.vh
-SRC+=$(BUILD_VSRC_DIR)/iob_s_if.vh
-SRC+=$(BUILD_VSRC_DIR)/iob_gen_if.vh
-$(BUILD_VSRC_DIR)/%.vh: $(UART_DIR)/hardware/include/%.vh
-	cp $< $(BUILD_VSRC_DIR)
 
 #SOURCES
 SRC+=$(subst $(UART_SRC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_SRC_DIR)/*.v))

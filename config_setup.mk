@@ -4,4 +4,4 @@ SETUP_FPGA=0
 SETUP_DOC=0
 
 # path to core from LIB
-UART_DIR=../..
+UART_DIR=.
