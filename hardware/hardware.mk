@@ -18,6 +18,12 @@ UART_INC_DIR:=$(UART_DIR)/hardware/include
 UART_SRC_DIR:=$(UART_DIR)/hardware/src
 
 #HEADERS
+
+SRC+=$(BUILD_VSRC_DIR)/$(NAME)_version.vh
+$(BUILD_VSRC_DIR)/$(NAME)_version.vh:
+	$(LIB_DIR)/software/python/version.py -v $(CORE_DIR)
+	mv $(NAME)_version.vh $(BUILD_VSRC_DIR)
+
 SRC+=$(subst $(UART_INC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_INC_DIR)/*.vh))
 $(BUILD_VSRC_DIR)/%.vh: $(UART_INC_DIR)/%.vh
 	cp $< $(BUILD_VSRC_DIR)
