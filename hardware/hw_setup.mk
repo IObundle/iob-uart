@@ -21,7 +21,7 @@ UART_SRC_DIR:=$(UART_DIR)/hardware/src
 
 SRC+=$(BUILD_VSRC_DIR)/iob_uart_version.vh
 $(BUILD_VSRC_DIR)/iob_uart_version.vh:
-	$(LIB_DIR)/software/python/version.py -v $(UART_DIR)
+	$(LIB_DIR)/scripts/version.py -v $(UART_DIR)
 	mv iob_uart_version.vh $(BUILD_VSRC_DIR)
 
 SRC+=$(subst $(UART_INC_DIR), $(BUILD_VSRC_DIR), $(wildcard $(UART_INC_DIR)/*.vh))
@@ -36,7 +36,7 @@ $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh: iob_uart_swreg_def.vh
 	mv $< $(BUILD_VSRC_DIR)
 
 iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
-	$(LIB_DIR)/software/python/mkregs.py iob_uart $(UART_DIR) HW
+	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) HW
 
 SRC+=$(BUILD_VSRC_DIR)/iob_lib.vh
 
