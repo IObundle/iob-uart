@@ -11,8 +11,8 @@ ifeq ($(filter UART, $(HW_MODULES)),)
 HW_MODULES+=UART
 
 #import lib hardware
-include $(LIB_DIR)/hardware/include/hardware.mk
-include $(LIB_DIR)/hardware/iob_reg/hardware.mk
+include $(LIB_DIR)/hardware/include/hw_setup.mk
+include $(LIB_DIR)/hardware/iob_reg/hw_setup.mk
 
 UART_INC_DIR:=$(UART_DIR)/hardware/include
 UART_SRC_DIR:=$(UART_DIR)/hardware/src
