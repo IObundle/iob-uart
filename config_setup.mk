@@ -10,15 +10,11 @@ NAME=iob_uart
 # core version 
 VERSION=0010
 
-# top-level module for IOB backend interface
-TOP_MODULE?=iob_uart
+# include implementation in document (disabled by default)
+DOC_RESULTS=
 
 # root directory
 UART_DIR ?= .
 
-# supported simulator 
-SIMULATOR ?= icarus
-
-# supported FPGA board (compiles for the device therein)
-# this component needs to be integrated in a system to actually run
-BOARD ?= CYCLONEV-GT-DK
+# default configuration
+CONFIG ?= base
