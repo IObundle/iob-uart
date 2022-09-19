@@ -34,7 +34,7 @@ jobs:
       - name: setup
         run: make setup
       - name: test-sim
-        run: make -C iob_uart_* sim-test
+        run: make -C ../iob_uart_* sim-test
 
   fpga:
     runs-on: self-hosted
@@ -51,7 +51,7 @@ jobs:
       - name: setup
         run: make setup
       - name: test-fpga
-        run: make -C iob_uart_* fpga-test
+        run: make -C ../iob_uart_* fpga-test
 
   doc:
     runs-on: self-hosted
@@ -68,4 +68,4 @@ jobs:
       - name: setup
         run: make setup
       - name: test-doc
-        run: make -C iob_uart_* doc-test
+        run: make -C ../iob_uart_* doc-test
