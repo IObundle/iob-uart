@@ -14,11 +14,10 @@ HW_MODULES+=UART
 include $(LIB_DIR)/hardware/include/hw_setup.mk
 include $(LIB_DIR)/hardware/iob_reg/hw_setup.mk
 
-UART_INC_DIR:=$(UART_DIR)/hardware/include
-UART_SRC_DIR:=$(UART_DIR)/hardware/src
+# copy verilog sources
+$(call copy_verilog_sources, $(CACHE_DIR))
 
-#HEADERS
-
+#generate software accessible register defines
 SRC+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
 
 $(BUILD_VSRC_DIR)/iob_uart_swreg_%.vh: iob_uart_swreg_%.vh 
