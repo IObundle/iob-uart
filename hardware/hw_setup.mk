@@ -21,7 +21,7 @@ $(call copy_verilog_sources, $(CACHE_DIR))
 SRC+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
 
 $(BUILD_VSRC_DIR)/iob_uart_swreg_%.vh: iob_uart_swreg_%.vh 
-	mv $< $@
+	cp $< $@
 
 iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
 	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) HW
