@@ -32,7 +32,8 @@ jobs:
         with:
           submodules: 'recursive'
       - name: setup
-        run: make setup
-      - name: test
-        run: make -C ../iob_uart_* test
-
+        run: make clean && make setup
+      - name: sim-test
+        run: make -C ../iob_uart_* sim-test
+      - name: sim-clean
+        run: make -C ../iob_uart_* sim-clean
