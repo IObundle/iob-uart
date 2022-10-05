@@ -15,14 +15,14 @@ include $(LIB_DIR)/hardware/include/hw_setup.mk
 include $(LIB_DIR)/hardware/iob_reg/hw_setup.mk
 
 # copy verilog sources
-$(call copy_verilog_sources, $(CACHE_DIR))
+SRC+=$(patsubst $(UART_DIR)/hardware/src, $(BUILD_VSRC_DIR), $(wildcard $(UART_DIR)/hardware/src/*))
+$(BUILD_VSRC_DIR)/%: $(UART_DIR)/hardware/src/%
+	cp $< $@
 
 #generate software accessible register defines
 SRC+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
-
 $(BUILD_VSRC_DIR)/iob_uart_swreg_%.vh: iob_uart_swreg_%.vh 
 	cp $< $@
-
 iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
 	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) HW
 
