@@ -10,11 +10,11 @@ NAME=iob_uart
 # core version 
 VERSION=0010
 
-# include implementation in document (disabled by default)
-DOC_RESULTS=
-
 # root directory
 UART_DIR ?= .
 
 # default configuration
 CONFIG ?= base
+
+# supported flows
+FLOWS := sim
