@@ -7,6 +7,13 @@
 #
 
 #sw accessible register headers
+# pc-emul sources
+SRC+=$(BUILD_PSRC_DIR)/iob_uart_swreg.h
+
+$(BUILD_PSRC_DIR)/iob_uart_swreg.h: iob_uart_swreg.h
+	cp $< $@
+
+# embedded sources
 SRC+=$(BUILD_ESRC_DIR)/iob_uart_swreg.h $(BUILD_ESRC_DIR)/iob_uart_swreg_emb.c
 
 $(BUILD_ESRC_DIR)/iob_uart_swreg%: iob_uart_swreg%
