@@ -1,4 +1,4 @@
-SHELL:=/bin/bash
+SHELL:=/usr/bin/env bash
 
 TOP_MODULE=iob_uart
 
