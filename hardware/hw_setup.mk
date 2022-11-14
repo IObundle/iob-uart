@@ -13,6 +13,7 @@ HW_MODULES+=UART
 #import lib hardware
 include $(LIB_DIR)/hardware/include/hw_setup.mk
 include $(LIB_DIR)/hardware/iob_reg/hw_setup.mk
+include $(LIB_DIR)/hardware/iob2axil/hw_setup.mk
 
 # copy verilog sources
 SRC+=$(patsubst $(UART_DIR)/hardware/src/%, $(BUILD_VSRC_DIR)/%, $(wildcard $(UART_DIR)/hardware/src/*))
@@ -25,5 +26,10 @@ $(BUILD_VSRC_DIR)/iob_uart_swreg_%.vh: iob_uart_swreg_%.vh
 	cp $< $@
 iob_uart_swreg_def.vh iob_uart_swreg_inst.vh: $(UART_DIR)/mkregs.toml
 	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) HW
+
+SRC+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.v
+$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.v: iob_uart_swreg_gen.v 
+	cp $< $@
+	
 
 endif

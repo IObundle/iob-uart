@@ -5,7 +5,7 @@
 module iob_uart 
   # (
      parameter DATA_W = 32, //PARAM & 32 & 64 & CPU data width
-     parameter ADDR_W = `iob_uart_swreg_ADDR_W //CPU address section width
+     parameter ADDR_W = `IOB_UART_SWREG_ADDR_W //CPU address section width
      )
 
   (
@@ -25,67 +25,7 @@ module iob_uart
    );
 
 //BLOCK Register File & Configuration control and status register file.
-`include "iob_uart_swreg_gen.vh"
-
-// SWRegs
-
-    `IOB_WIRE(UART_SOFTRESET, 1)
-    iob_reg #(.DATA_W(1), .RST_VAL(0))
-    uart_softreset (
-        .clk        (clk_i),
-        .arst       (rst_i),
-        .rst        (rst_i),
-        .en         (UART_SOFTRESET_en),
-        .data_in    (UART_SOFTRESET_wdata[0]),
-        .data_out   (UART_SOFTRESET)
-    );
-
-    `IOB_WIRE(UART_DIV, 16)
-    iob_reg #(.DATA_W(16), .RST_VAL(0))
-    uart_div (
-        .clk        (clk_i),
-        .arst       (rst_i),
-        .rst        (rst_i),
-        .en         (UART_DIV_en),
-        .data_in    (UART_DIV_wdata),
-        .data_out   (UART_DIV)
-    );
-   
-    `IOB_WIRE(UART_TXDATA, 8)
-    iob_reg #(.DATA_W(8), .RST_VAL(0))
-    uart_txdata (
-        .clk        (clk_i),
-        .arst       (rst_i),
-        .rst        (rst_i),
-        .en         (UART_TXDATA_en),
-        .data_in    (UART_TXDATA_wdata),
-        .data_out   (UART_TXDATA)
-    );
-   
-    `IOB_WIRE(UART_TXEN, 1)
-    iob_reg #(.DATA_W(1), .RST_VAL(0))
-    uart_txen (
-        .clk        (clk_i),
-        .arst       (rst_i),
-        .rst        (rst_i),
-        .en         (UART_TXEN_en),
-        .data_in    (UART_TXEN_wdata[0]),
-        .data_out   (UART_TXEN)
-    );
-   
-    `IOB_WIRE(UART_RXEN, 1)
-    iob_reg #(.DATA_W(1), .RST_VAL(0))
-    uart_rxen (
-        .clk        (clk_i),
-        .arst       (rst_i),
-        .rst        (rst_i),
-        .en         (UART_RXEN_en),
-        .data_in    (UART_RXEN_wdata[0]),
-        .data_out   (UART_RXEN)
-    );
-
-    assign UART_TXREADY_rdata[`UART_TXREADY_W-1:1] = {(`UART_TXREADY_W-1){1'b0}};
-    assign UART_RXREADY_rdata[`UART_RXREADY_W-1:1] = {(`UART_RXREADY_W-1){1'b0}};
+`include "iob_uart_swreg_inst.vh"
 
    uart_core uart_core0 
      (
@@ -94,12 +34,12 @@ module iob_uart
       .rst_soft(UART_SOFTRESET),
       .tx_en(UART_TXEN),
       .rx_en(UART_RXEN),
-      .tx_ready(UART_TXREADY_rdata[0]),
-      .rx_ready(UART_RXREADY_rdata[0]),
+      .tx_ready(UART_TXREADY),
+      .rx_ready(UART_RXREADY),
       .tx_data(UART_TXDATA),
-      .rx_data(UART_RXDATA_rdata),
-      .data_write_en(UART_TXDATA_en),
-      .data_read_en(valid & !wstrb & (addr == (`UART_RXDATA_ADDR >> 2))),
+      .rx_data(UART_RXDATA),
+      .data_write_en(iob_valid & (| iob_wstrb) & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
+      .data_read_en(iob_valid & !iob_wstrb & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
       .bit_duration(UART_DIV),
       .rxd(rxd),
       .txd(txd),
