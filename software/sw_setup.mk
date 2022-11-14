@@ -10,14 +10,11 @@
 # pc-emul sources
 SRC+=$(BUILD_PSRC_DIR)/iob_uart_swreg.h
 
-$(BUILD_PSRC_DIR)/iob_uart_swreg.h: iob_uart_swreg.h
+$(BUILD_PSRC_DIR)/iob_uart_swreg.h: $(BUILD_ESRC_DIR)/iob_uart_swreg.h
 	cp $< $@
 
 # embedded sources
 SRC+=$(BUILD_ESRC_DIR)/iob_uart_swreg.h $(BUILD_ESRC_DIR)/iob_uart_swreg_emb.c
 
-$(BUILD_ESRC_DIR)/iob_uart_swreg%: iob_uart_swreg%
-	mv $< $@
-
-iob_uart_swreg.h iob_uart_swreg_emb.c: $(UART_DIR)/mkregs.toml
-	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) SW
+$(BUILD_ESRC_DIR)/iob_uart_swreg%: $(UART_DIR)/mkregs.toml
+	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) SW --out_dir $(BUILD_ESRC_DIR)
