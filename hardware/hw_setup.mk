@@ -20,10 +20,10 @@ $(BUILD_VSRC_DIR)/%: $(UART_DIR)/hardware/src/%
 	cp $< $@
 
 #generate software accessible register defines
-SRC+=$(BUILD_VSRC_DIR)/iob_uart_swreg_gen.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
+SRC+=$(BUILD_VSRC_DIR)/iob_uart_swreg_inst.vh $(BUILD_VSRC_DIR)/iob_uart_swreg_def.vh
 $(BUILD_VSRC_DIR)/iob_uart_swreg_%.vh: iob_uart_swreg_%.vh 
 	cp $< $@
-iob_uart_swreg_def.vh iob_uart_swreg_gen.vh: $(UART_DIR)/mkregs.conf
+iob_uart_swreg_def.vh iob_uart_swreg_inst.vh: $(UART_DIR)/mkregs.toml
 	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) HW
 
 endif

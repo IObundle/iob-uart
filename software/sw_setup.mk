@@ -19,5 +19,5 @@ SRC+=$(BUILD_ESRC_DIR)/iob_uart_swreg.h $(BUILD_ESRC_DIR)/iob_uart_swreg_emb.c
 $(BUILD_ESRC_DIR)/iob_uart_swreg%: iob_uart_swreg%
 	mv $< $@
 
-iob_uart_swreg.h iob_uart_swreg_emb.c: $(UART_DIR)/mkregs.conf
+iob_uart_swreg.h iob_uart_swreg_emb.c: $(UART_DIR)/mkregs.toml
 	$(LIB_DIR)/scripts/mkregs.py iob_uart $(UART_DIR) SW

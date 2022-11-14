@@ -1,0 +1,9 @@
+[[UART_REGS]]
+UART_SOFTRESET = {rw_type="W", nbits=1, rst_val=0, addr=-1, addr_w=0, autologic=true, description="Soft reset."}
+UART_DIV = {rw_type="RW", nbits=16, rst_val=0, addr=0, addr_w=0, autologic=true, description="Bit duration in system clock cycles."}
+UART_TXDATA = {rw_type="W", nbits=8, rst_val=0, addr=-1, addr_w=0, autologic=true, description="TX data."}
+UART_TXEN = {rw_type="RW", nbits=1, rst_val=0, addr=-1, addr_w=0, autologic=true, description="TX enable."}
+UART_TXREADY = {rw_type="R", nbits=1, rst_val=0, addr=-1, addr_w=0, autologic=true, description="TX ready to receive data."}
+UART_RXDATA = {rw_type="R", nbits=8, rst_val=0, addr=-1, addr_w=0, autologic=true, description="RX data."}
+UART_RXEN = {rw_type="RW", nbits=1, rst_val=0, addr=-1, addr_w=0, autologic=true, description="RX enable."}
+UART_RXREADY = {rw_type="R", nbits=1, rst_val=0, addr=-1, addr_w=0, autologic=true, description="RX data is ready to be read."}
