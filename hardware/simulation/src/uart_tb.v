@@ -138,22 +138,22 @@ module uart_tb;
   // Instantiate the Unit Under Test (UUT)
    uart_core uut
      (
-      .clk(clk),
-      .rst(rst),
-      .rst_soft(rst_soft),
-      .tx_en(tx_en),
-      .rx_en(rx_en),
-      .tx_ready(tx_ready),
-      .rx_ready(rx_ready),
-      .tx_data(tx_data),
-      .rx_data(rx_data),
-      .data_write_en(wr_en),
-      .data_read_en(rd_en),
-      .bit_duration(div),
-      .rxd(tx2rx),
-      .txd(tx2rx),
-      .cts(rts2cts),
-      .rts(rts2cts)
+      .clk_i(clk),
+      .rst_i(rst),
+      .rst_soft_i(rst_soft),
+      .tx_en_i(tx_en),
+      .rx_en_i(rx_en),
+      .tx_ready_o(tx_ready),
+      .rx_ready_o(rx_ready),
+      .tx_data_i(tx_data),
+      .rx_data_o(rx_data),
+      .data_write_en_i(wr_en),
+      .data_read_en_i(rd_en),
+      .bit_duration_i(div),
+      .rxd_i(tx2rx),
+      .txd_o(tx2rx),
+      .cts_i(rts2cts),
+      .rts_o(rts2cts)
       );
 
 endmodule

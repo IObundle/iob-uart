@@ -36,22 +36,22 @@ module iob_uart
 
    uart_core uart_core0 
      (
-      .clk(clk_i),
-      .rst(rst_i),
-      .rst_soft(UART_SOFTRESET),
-      .tx_en(UART_TXEN),
-      .rx_en(UART_RXEN),
-      .tx_ready(UART_TXREADY),
-      .rx_ready(UART_RXREADY),
-      .tx_data(UART_TXDATA),
-      .rx_data(UART_RXDATA),
-      .data_write_en(iob_valid & (| iob_wstrb) & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
-      .data_read_en(iob_valid & !iob_wstrb & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
-      .bit_duration(UART_DIV),
-      .rxd(rxd),
-      .txd(txd),
-      .cts(cts),
-      .rts(rts)
+      .clk_i(clk_i),
+      .rst_i(rst_i),
+      .rst_soft_i(UART_SOFTRESET),
+      .tx_en_i(UART_TXEN),
+      .rx_en_i(UART_RXEN),
+      .tx_ready_o(UART_TXREADY),
+      .rx_ready_o(UART_RXREADY),
+      .tx_data_i(UART_TXDATA),
+      .rx_data_o(UART_RXDATA),
+      .data_write_en_i(iob_valid & (| iob_wstrb) & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
+      .data_read_en_i(iob_valid & !iob_wstrb & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
+      .bit_duration_i(UART_DIV),
+      .rxd_i(rxd),
+      .txd_o(txd),
+      .cts_i(cts),
+      .rts_o(rts)
       );
    
 endmodule
