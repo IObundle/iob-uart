@@ -3,38 +3,37 @@
 
 module uart_core 
   (
-   input                   clk,
-   input                   rst,
-   input                   rst_soft,
-   input                   tx_en,
-   input                   rx_en,
-   input [7:0]             tx_data,
-   output reg [7:0]        rx_data,
-   output reg              tx_ready,
-   output reg              rx_ready,
-   input                   rxd,
-   output                  txd,
-   input                   cts,
-   output reg              rts,
-   input                   data_write_en,
-   input                   data_read_en,
-   input [`UART_DIV_W-1:0] bit_duration
+   input                            clk_i,
+   input                            rst_i,
+   input                            rst_soft_i,
+   input                            tx_en_i,
+   input                            rx_en_i,
+   input [7:0]                      tx_data_i,
+   output reg [7:0]                 rx_data_o,
+   output reg                       tx_ready_o,
+   output reg                       rx_ready_o,
+   input                            rxd_i,
+   output                           txd_o,
+   input                            cts_i,
+   output reg                       rts_o,
+   input                            data_write_en_i,
+   input                            data_read_en_i,
+   input [`IOB_UART_UART_DIV_W-1:0] bit_duration_i
    );
    
                   
    //COMBINED SOFT/HARD RESET
-   wire       rst_int = rst | rst_soft;
+   wire       rst_int = rst_i | rst_soft_i;
   
    ////////////////////////////////////////////////////////
-   // TX
-   ////////////////////////////////////////////////////////
+   // TXtxd
 
    //BLOCK Serial Transmit Controller & This block serializes the data written to the UART\_TXDATA by the CPU, and sends it to the {\tt txd} ouput.
    
    //clear to send (cts) synchronizer
    reg [1:0]  cts_int;
-   always @(posedge clk) 
-     cts_int <= {cts_int[0], cts};
+   always @(posedge clk_i) 
+     cts_int <= {cts_int[0], cts_i};
 
    
    // sender
@@ -43,45 +42,45 @@ module uart_core
    reg [15:0] tx_cyclecnt;
 
    //tx bit
-   assign txd = tx_pattern[0];
+   assign txd_o = tx_pattern[0];
    
    //tx program
    reg  [1:0] tx_pc;   
-   always @(posedge clk, posedge rst_int)
+   always @(posedge clk_i, posedge rst_int)
 
      if(rst_int) begin 
 
         tx_pc <= 1'b0;
-        tx_ready <= 1'b0;
+        tx_ready_o <= 1'b0;
         tx_pattern <= ~10'b0;
         tx_bitcnt <= 1'b0;
         tx_cyclecnt <= 1'b0;
 
-     end else if(tx_en && cts_int[1]) begin
+     end else if(tx_en_i && cts_int[1]) begin
 
         tx_pc <= tx_pc + 1'b1; //increment pc by default
 
         case (tx_pc)
 
           0: begin //wait for data to send
-             tx_ready <= 1'b1;
+             tx_ready_o <= 1'b1;
              tx_bitcnt <= 1'b0;
              tx_cyclecnt <= 1'b1;   
              tx_pattern <= ~9'b0;
-             if(!data_write_en)
+             if(!data_write_en_i)
                tx_pc <= tx_pc;
              else
-                tx_ready <= 1'b0;
+                tx_ready_o <= 1'b0;
           end
 
           1: begin //load tx pattern to send
-             tx_pattern <= {1'b1, tx_data[7:0], 1'b0}; //{stop, data, start}>>
+             tx_pattern <= {1'b1, tx_data_i[7:0], 1'b0}; //{stop, data, start}>>
           end
 
           2: begin //send pattern
              tx_pc <= tx_pc; //stay here util pattern sent
              tx_cyclecnt <= tx_cyclecnt + 1'b1; //increment cycle counter
-             if (tx_cyclecnt == bit_duration)
+             if (tx_cyclecnt == bit_duration_i)
                if (tx_bitcnt == 4'd9) begin //stop bit sent sent
                   tx_pc <= 1'b0; //restart program 
                end else begin//data bit sent
@@ -98,7 +97,7 @@ module uart_core
      end else begin              
         
         tx_pc <= 1'b0;
-        tx_ready <= 1'b0;
+        tx_ready_o <= 1'b0;
         tx_pattern <= ~10'b0;
         tx_bitcnt <= 1'b0;
         tx_cyclecnt <= 1'b0;
@@ -119,51 +118,51 @@ module uart_core
    reg [3:0]  rx_bitcnt;
    reg [7:0]  rx_pattern;
 
-   always @(posedge clk, posedge rst_int) begin
+   always @(posedge clk_i, posedge rst_int) begin
 
       if (rst_int) begin
 
          rx_pc <= 1'b0;
          rx_cyclecnt <= 1'b1;
          rx_bitcnt <= 1'b0;
-         rx_ready <= 1'b0;
-         rts <= 1'b0;
+         rx_ready_o <= 1'b0;
+         rts_o <= 1'b0;
          
          
-      end else if(rx_en) begin
+      end else if(rx_en_i) begin
 
          rx_pc <= rx_pc + 1'b1; //increment pc by default
 
          case (rx_pc)
            
            0: begin //sync up
-              rts <= 1'b1;
-              rx_ready <= 1'b0;
+              rts_o <= 1'b1;
+              rx_ready_o <= 1'b0;
               rx_cyclecnt <= 1'b1;
               rx_bitcnt <= 1'b0;
-              if (!rxd) //line is low, wait until it is high
+              if (!rxd_i) //line is low, wait until it is high
                  rx_pc <= rx_pc;
            end
 
            1: begin //line is high
               rx_cyclecnt <= rx_cyclecnt + 1'b1;
-              if(rx_cyclecnt != bit_duration)
+              if(rx_cyclecnt != bit_duration_i)
                  rx_pc <= rx_pc;
-              else if(!rxd) //error: line returned to low early
+              else if(!rxd_i) //error: line returned to low early
                  rx_pc <= 1'b0; //go back and resync
            end
            
            2: begin //wait for start bit
               rx_cyclecnt <= 1'b1;
-              if (rxd) //start bit (low) has not arrived, wait
+              if (rxd_i) //start bit (low) has not arrived, wait
                  rx_pc <= rx_pc;
            end
 
            3: begin //start bit is here
               rx_cyclecnt <= rx_cyclecnt + 1'b1;
-              if(rx_cyclecnt != bit_duration/2) // wait half bit period
+              if(rx_cyclecnt != bit_duration_i/2) // wait half bit period
                  rx_pc <= rx_pc;
-              else if(rxd) //error: line returned to high unexpectedly 
+              else if(rxd_i) //error: line returned to high unexpectedly 
                 rx_pc <= 1'b0; //go back and resync
               else
                 rx_cyclecnt <= 1'b1;
@@ -171,14 +170,14 @@ module uart_core
            
            4: begin // receive data
               rx_cyclecnt <= rx_cyclecnt + 1'b1;
-              if (rx_cyclecnt == bit_duration) begin
+              if (rx_cyclecnt == bit_duration_i) begin
                  rx_cyclecnt <= 1'b1;
                  rx_bitcnt <= rx_bitcnt + 1'b1;
-                 rx_pattern <= {rxd, rx_pattern[7:1]}; //sample rx line
+                 rx_pattern <= {rxd_i, rx_pattern[7:1]}; //sample rx line
                  if (rx_bitcnt == 4'd8) begin //stop bit is here
                     rx_pattern <= rx_pattern; //unsample rx line
-                    rx_data <= rx_pattern; //unsample rx line
-                    rx_ready <= 1'b1;
+                    rx_data_o <= rx_pattern; //unsample rx line
+                    rx_ready_o <= 1'b1;
                     rx_bitcnt <= 1'b0;
                     rx_pc <= 2'd2;
                  end else begin
@@ -193,8 +192,8 @@ module uart_core
 
          endcase
 
-         if (data_read_en) begin
-            rx_ready <= 1'b0;
+         if (data_read_en_i) begin
+            rx_ready_o <= 1'b0;
          end
          
       end else begin 
@@ -202,7 +201,7 @@ module uart_core
          rx_pc <= 1'b0;
          rx_cyclecnt <= 1'b1;
          rx_bitcnt <= 1'b0;
-         rx_ready <= 1'b0;
+         rx_ready_o <= 1'b0;
       
       end
 
