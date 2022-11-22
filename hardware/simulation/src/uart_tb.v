@@ -25,10 +25,10 @@ module uart_tb;
    reg 			clk;
    
    //control interface (backend)
-   reg                            rst_soft;
-   reg                            wr_en;
-   reg                            rd_en;   
-   reg [`IOB_UART_UART_DIV_W-1:0] div;
+   reg                       rst_soft;
+   reg                       wr_en;
+   reg                       rd_en;   
+   reg [`IOB_UART_DIV_W-1:0] div;
    
    reg                   tx_en;
    reg [7:0]             tx_data;

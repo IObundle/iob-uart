@@ -1,5 +1,6 @@
 `timescale 1ns/1ps
 `include "iob_lib.vh"
+`include "iob_uart_conf.vh"
 `include "iob_uart_swreg_def.vh"
 
 module iob_uart 
@@ -38,16 +39,16 @@ module iob_uart
      (
       .clk_i(clk_i),
       .rst_i(rst_i),
-      .rst_soft_i(UART_SOFTRESET),
-      .tx_en_i(UART_TXEN),
-      .rx_en_i(UART_RXEN),
-      .tx_ready_o(UART_TXREADY),
-      .rx_ready_o(UART_RXREADY),
-      .tx_data_i(UART_TXDATA),
-      .rx_data_o(UART_RXDATA),
-      .data_write_en_i(iob_valid & (| iob_wstrb) & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
-      .data_read_en_i(iob_valid & !iob_wstrb & (iob_addr == (`IOB_UART_UART_RXDATA_ADDR >> 2))),
-      .bit_duration_i(UART_DIV),
+      .rst_soft_i(SOFTRESET),
+      .tx_en_i(TXEN),
+      .rx_en_i(RXEN),
+      .tx_ready_o(TXREADY),
+      .rx_ready_o(RXREADY),
+      .tx_data_i(TXDATA),
+      .rx_data_o(RXDATA),
+      .data_write_en_i(iob_valid & (| iob_wstrb) & (iob_addr == (`IOB_UART_RXDATA_ADDR >> 2))),
+      .data_read_en_i(iob_valid & !iob_wstrb & (iob_addr == (`IOB_UART_RXDATA_ADDR >> 2))),
+      .bit_duration_i(DIV),
       .rxd_i(rxd),
       .txd_o(txd),
       .cts_i(cts),

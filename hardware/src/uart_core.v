@@ -3,22 +3,22 @@
 
 module uart_core 
   (
-   input                            clk_i,
-   input                            rst_i,
-   input                            rst_soft_i,
-   input                            tx_en_i,
-   input                            rx_en_i,
-   input [7:0]                      tx_data_i,
-   output reg [7:0]                 rx_data_o,
-   output reg                       tx_ready_o,
-   output reg                       rx_ready_o,
-   input                            rxd_i,
-   output                           txd_o,
-   input                            cts_i,
-   output reg                       rts_o,
-   input                            data_write_en_i,
-   input                            data_read_en_i,
-   input [`IOB_UART_UART_DIV_W-1:0] bit_duration_i
+   input                       clk_i,
+   input                       rst_i,
+   input                       rst_soft_i,
+   input                       tx_en_i,
+   input                       rx_en_i,
+   input [7:0]                 tx_data_i,
+   output reg [7:0]            rx_data_o,
+   output reg                  tx_ready_o,
+   output reg                  rx_ready_o,
+   input                       rxd_i,
+   output                      txd_o,
+   input                       cts_i,
+   output reg                  rts_o,
+   input                       data_write_en_i,
+   input                       data_read_en_i,
+   input [`IOB_UART_DIV_W-1:0] bit_duration_i
    );
    
                   
