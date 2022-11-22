@@ -5,3 +5,11 @@
 # It is included in submodules/LIB/Makefile for populating the
 # build directory
 #
+
+ifeq ($(filter UART, $(SW_MODULES)),)
+
+#add itself to SW_MODULES list
+SW_MODULES+=UART
+
+
+endif
