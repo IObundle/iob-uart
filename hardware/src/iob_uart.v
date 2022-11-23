@@ -5,8 +5,7 @@
 
 module iob_uart 
   # (
-     parameter DATA_W = 32, //PARAM & 32 & 64 & CPU data width
-     parameter ADDR_W = `IOB_UART_SWREG_ADDR_W //CPU address section width
+     `include "iob_uart_params.vh"
      )
 
   (
