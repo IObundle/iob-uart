@@ -18,10 +18,9 @@ MKREGS:=$(shell find $(LIB_DIR) -name mkregs.py)
 FPGA_FAMILY ?=CYCLONEV-GT
 FPGA_FAMILY_LIST ?=CYCLONEV-GT XCKU
 
-#DEFAULT DOC AND doc LIST
+#DEFAULT DOC AND DOC LIST
 DOC ?=pb
 DOC_LIST ?=pb ug
-
 
 # default target
 default: sim

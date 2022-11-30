@@ -8,6 +8,5 @@ include $(UART_DIR)/software/software.mk
 SRC+=iob_uart_swreg_emb.c
 
 iob_uart_swreg_emb.c: iob_uart_swreg.h
-	
 
 endif
