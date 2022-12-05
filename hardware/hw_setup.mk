@@ -15,6 +15,11 @@ include $(LIB_DIR)/hardware/include/hw_setup.mk
 include $(LIB_DIR)/hardware/iob_reg/hw_setup.mk
 include $(LIB_DIR)/hardware/iob2axil/hw_setup.mk
 include $(LIB_DIR)/hardware/axil2iob/hw_setup.mk
-include $(LIB_DIR)/hardware/iob_wstrb2byte_offset/hw_setup.mk	
+include $(LIB_DIR)/hardware/iob_wstrb2byte_offset/hw_setup.mk
+
+# copy verilog sources
+SRC+=$(patsubst $(UART_DIR)/hardware/src/%, $(BUILD_VSRC_DIR)/%, $(wildcard $(UART_DIR)/hardware/src/*))
+$(BUILD_VSRC_DIR)/%: $(UART_DIR)/hardware/src/%
+	cp $< $@
 
 endif
