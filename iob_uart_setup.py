@@ -10,13 +10,13 @@ version = 'V0.10'
 confs = \
 [
     # Macros
-    {'name':'DATA_W', 'type':'M', 'val':'32', 'min':'1', 'max':'NA'},
-    {'name':'ADDR_W', 'type':'M', 'val':'`IOB_UART_SWREG_ADDR_W', 'min':'1', 'max':'NA'},
-    {'name':'UART_DATA_W', 'type':'M', 'val':'8', 'min':'1', 'max':'NA'},
+    {'name':'DATA_W', 'type':'M', 'val':'32', 'min':'1', 'max':'NA', 'descr':"Data bus width"},
+    {'name':'ADDR_W', 'type':'M', 'val':'`IOB_UART_SWREG_ADDR_W', 'min':'1', 'max':'NA', 'descr':"Address bus width"},
+    {'name':'UART_DATA_W', 'type':'M', 'val':'8', 'min':'1', 'max':'NA', 'descr':""},
     # Parameters
-    {'name':'DATA_W', 'type':'P', 'val':'`IOB_UART_DATA_W', 'min':'1', 'max':'NA'},
-    {'name':'ADDR_W', 'type':'P', 'val':'`IOB_UART_ADDR_W', 'min':'1', 'max':'NA'},
-    {'name':'UART_DATA_W', 'type':'P', 'val':'`IOB_UART_UART_DATA_W', 'min':'1', 'max':'NA'}
+    {'name':'DATA_W', 'type':'P', 'descr':"Data bus width"},
+    {'name':'ADDR_W', 'type':'P', 'descr':"Address bus width"},
+    {'name':'UART_DATA_W', 'type':'P', 'descr':""}
 ]
 
 ios = \
@@ -38,7 +38,7 @@ ios = \
         {'name':'cts', 'type':'I', 'n_bits':'1', 'descr':'to send; the destination is ready to receive a transmission sent by the UART'},
         {'name':'rts', 'type':'O', 'n_bits':'1', 'descr':'to send; the UART is ready to receive a transmission from the sender.'},
 #        {'name':'clk_i', 'type':'I', 'n_bits':'1', 'descr':'System clock input.'},
-#        {'name':'arst_i', 'type':'I', 'n_bits':'1', 'descr':'System reset, asynchronous and active high.'}
+#        {'name':'rst_i', 'type':'I', 'n_bits':'1', 'descr':'System reset, asynchronous and active high.'}
     ]}
 ]
 

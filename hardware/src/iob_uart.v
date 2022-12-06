@@ -28,7 +28,8 @@ module iob_uart
    `IOB_INPUT(rxd, 1), //Serial receive line
    `IOB_INPUT(cts, 1), //Clear to send; the destination is ready to receive a transmission sent by the UART
    `IOB_OUTPUT(rts, 1), //Ready to send; the UART is ready to receive a transmission from the sender.
-`include "iob_clkrst_port.vh"
+   `IOB_INPUT(clk_i, 1), //V2TEX_IO System clock input.
+   `IOB_INPUT(rst_i, 1)  //V2TEX_IO System reset, asynchronous and active high.
    );
 
 //BLOCK Register File & Configuration control and status register file.
