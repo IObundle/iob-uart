@@ -12,7 +12,7 @@ module iob_uart
 
    //CPU native interface
    //START_IO_TABLE iob_s
-   `IOB_INPUT(iob_valid, 1),        //Native CPU interface valid signal.
+   `IOB_INPUT(iob_avalid, 1),        //Native CPU interface valid signal.
    `IOB_INPUT(iob_addr, ADDR_W),      //Native CPU interface address signal.
    `IOB_INPUT(iob_wdata, DATA_W),   //Native CPU interface data write signal.
    `IOB_INPUT(iob_wstrb, DATA_W/8), //Native CPU interface write strobe signal.
@@ -45,8 +45,8 @@ module iob_uart
       .rx_ready_o(RXREADY),
       .tx_data_i(TXDATA),
       .rx_data_o(RXDATA),
-      .data_write_en_i(iob_valid & (| iob_wstrb) & (iob_addr == (`IOB_UART_RXDATA_ADDR >> 2))),
-      .data_read_en_i(iob_valid & !iob_wstrb & (iob_addr == (`IOB_UART_RXDATA_ADDR >> 2))),
+      .data_write_en_i(iob_avalid & (| iob_wstrb) & (iob_addr == (`IOB_UART_RXDATA_ADDR >> 2))),
+      .data_read_en_i(iob_avalid & !iob_wstrb & (iob_addr == (`IOB_UART_RXDATA_ADDR >> 2))),
       .bit_duration_i(DIV),
       .rxd_i(rxd),
       .txd_o(txd),
