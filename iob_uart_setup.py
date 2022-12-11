@@ -14,7 +14,7 @@ confs = \
     # Parameters
     {'name':'DATA_W',      'type':'P', 'val':'32', 'min':'NA', 'max':'NA', 'descr':"Data bus width"},
     {'name':'ADDR_W',      'type':'P', 'val':'`IOB_UART_SWREG_ADDR_W', 'min':'NA', 'max':'NA', 'descr':"Address bus width"},
-    {'name':'UART_DATA_W', 'type':'P', 'val':'8', 'min':'NA', 'max':'NA', 'descr':""},
+    {'name':'UART_DATA_W', 'type':'P', 'val':'8', 'min':'NA', 'max':'NA', 'descr':""}
 ]
 
 ios = \
@@ -28,14 +28,16 @@ ios = \
         {'name':'iob_rdata', 'type':'O', 'n_bits':'DATA_W', 'descr':'CPU interface read data signal.'},
         {'name':'iob_ready', 'type':'O', 'n_bits':'1', 'descr':'CPU interface ready signal.'}
     ]},
+    {'name': 'general', 'descr':'GENERAL INTERFACE SIGNALS', 'ports': [
+        {'name':"clk_i", 'type':"I", 'n_bits':'1', 'descr':"System clock input"},
+        {'name':"arst_i", 'type':"I", 'n_bits':'1', 'descr':"System reset, asynchronous and active high"}
+    ]},
     {'name': 'rs232', 'descr':'Cache invalidate and write-trough buffer IO chain', 'ports': [
         #{'name':'interrupt', 'type':'O', 'n_bits':'1', 'descr':'be done'},
         {'name':'txd', 'type':'O', 'n_bits':'1', 'descr':'transmit line'},
         {'name':'rxd', 'type':'I', 'n_bits':'1', 'descr':'receive line'},
         {'name':'cts', 'type':'I', 'n_bits':'1', 'descr':'to send; the destination is ready to receive a transmission sent by the UART'},
-        {'name':'rts', 'type':'O', 'n_bits':'1', 'descr':'to send; the UART is ready to receive a transmission from the sender.'},
-        {'name':'clk_i', 'type':'I', 'n_bits':'1', 'descr':'System clock input.'},
-        {'name':'arst_i', 'type':'I', 'n_bits':'1', 'descr':'System reset, asynchronous and active high.'}
+        {'name':'rts', 'type':'O', 'n_bits':'1', 'descr':'to send; the UART is ready to receive a transmission from the sender.'}
     ]}
 ]
 
