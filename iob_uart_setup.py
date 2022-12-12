@@ -30,7 +30,8 @@ ios = \
     ]},
     {'name': 'general', 'descr':'GENERAL INTERFACE SIGNALS', 'ports': [
         {'name':"clk_i", 'type':"I", 'n_bits':'1', 'descr':"System clock input"},
-        {'name':"arst_i", 'type':"I", 'n_bits':'1', 'descr':"System reset, asynchronous and active high"}
+        {'name':"arst_i", 'type':"I", 'n_bits':'1', 'descr':"System reset, asynchronous and active high"},
+        {'name':"en_i", 'type':"I", 'n_bits':'1', 'descr':"System reset, asynchronous and active high"}
     ]},
     {'name': 'rs232', 'descr':'Cache invalidate and write-trough buffer IO chain', 'ports': [
         #{'name':'interrupt', 'type':'O', 'n_bits':'1', 'descr':'be done'},

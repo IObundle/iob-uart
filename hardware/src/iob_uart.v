@@ -8,9 +8,6 @@ module iob_uart # (
    ) (
      `include "iob_uart_io.vh"
    );
-
-   wire en_i;
-   assign en_i = 1'b1;
    
    //BLOCK Register File & Configuration control and status register file.
    `include "iob_uart_swreg_inst.vh"
