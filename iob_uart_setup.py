@@ -4,8 +4,12 @@ import os, sys
 sys.path.insert(0, os.getcwd()+'/submodules/LIB/scripts')
 from setup import setup
 
-top = 'iob_uart'
-version = 'V0.10'
+meta = \
+{
+'name':'iob_uart',
+'version':'V0.10',
+'flows':'sim'
+}
 
 confs = \
 [
@@ -59,4 +63,4 @@ regs = \
 blocks = []
 
 if __name__ == "__main__":
-    setup(top, version, confs, ios, regs, blocks)
+    setup(meta, confs, ios, regs, blocks)
