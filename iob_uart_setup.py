@@ -18,7 +18,7 @@ confs = \
     # Parameters
     {'name':'DATA_W',      'type':'P', 'val':'32', 'min':'NA', 'max':'NA', 'descr':"Data bus width"},
     {'name':'ADDR_W',      'type':'P', 'val':'`IOB_UART_SWREG_ADDR_W', 'min':'NA', 'max':'NA', 'descr':"Address bus width"},
-    {'name':'UART_DATA_W', 'type':'P', 'val':'8', 'min':'NA', 'max':'NA', 'descr':""}
+    {'name':'UART_DATA_W', 'type':'P', 'val':'8', 'min':'NA', 'max':'8', 'descr':""}
 ]
 
 ios = \
