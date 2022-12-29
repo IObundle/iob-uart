@@ -12,6 +12,20 @@ meta = \
 'core_dir':'.',
 }
 meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
+meta['submodules'] = {
+    'hw_setup': {
+        'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
+        'hw_modules': [ 'iob_reg_a.v', 'iob_reg_ae.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
+    },
+    'sim_setup': {
+        'v_headers' : [  ],
+        'hw_modules': [  ]
+    },
+    'sw_setup': {
+        'sw_headers': [  ],
+        'sw_modules': [  ]
+    },
+}
 
 confs = \
 [
@@ -64,25 +78,10 @@ regs = \
 
 blocks = []
 
-lib_srcs = {
-    'hw_setup': {
-        'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
-        'hw_modules': [ 'iob_reg_a.v', 'iob_reg_ae.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
-    },
-    'sim_setup': {
-        'v_headers' : [  ],
-        'hw_modules': [  ]
-    },
-    'sw_setup': {
-        'sw_headers': [  ],
-        'sw_modules': [  ]
-    },
-}
-
 # Main function to setup this core and its components
 # build_dir and gen_tex may be modified if this core is to be generated as a submodule of another
-def main(build_dir=None, gen_tex=True):
-    setup(meta, confs, ios, regs, blocks, lib_srcs, build_dir=build_dir, gen_tex=gen_tex)
+def main(gen_tex=True):
+    setup(meta, confs, ios, regs, blocks, gen_tex=gen_tex)
 
 if __name__ == "__main__":
     main()
