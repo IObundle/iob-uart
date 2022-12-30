@@ -16,6 +16,20 @@ dirs = {
 'build':f"../{meta['name']+'_'+meta['version']}",
 }
 
+meta['submodules'] = {
+    'hw_setup': {
+        'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
+        'hw_modules': [ 'iob_reg_a.v', 'iob_reg_ae.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
+    },
+    'sim_setup': {
+        'v_headers' : [  ],
+        'hw_modules': [  ]
+    },
+    'sw_setup': {
+        'sw_headers': [  ],
+        'sw_modules': [  ]
+    },
+}
 
 confs = \
 [
@@ -67,21 +81,6 @@ regs = \
 ]
 
 blocks = []
-
-lib_srcs = {
-    'hw_setup': {
-        'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
-        'hw_modules': [ 'iob_reg_a.v', 'iob_reg_ae.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
-    },
-    'sim_setup': {
-        'v_headers' : [  ],
-        'hw_modules': [  ]
-    },
-    'sw_setup': {
-        'sw_headers': [  ],
-        'sw_modules': [  ]
-    },
-}
 
 # Main function to setup this core and its components
 # Gen_tex and gen_makefile are created by default. However, when this system is a submodule of another, we don't want these files of this system.
