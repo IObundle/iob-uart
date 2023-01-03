@@ -10,6 +10,7 @@ meta = \
 'version':'V0.10',
 'flows':'sim',
 'setup_dir':os.path.dirname(__file__)}
+meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
 
 meta['submodules'] = {
     'hw_setup': {
