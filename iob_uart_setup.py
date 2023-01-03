@@ -8,7 +8,26 @@ meta = \
 {
 'name':'iob_uart',
 'version':'V0.10',
-'flows':'sim'
+'flows':'sim',
+'setup_dir':os.path.dirname(__file__)}
+meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
+
+meta['submodules'] = {
+    'hw_setup': {
+        'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
+        'hw_modules': [ 'iob_reg_a.v', 'iob_reg_ae.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
+    },
+    'sim_setup': {
+        'v_headers' : [  ],
+        'hw_modules': [  ]
+    },
+    'sw_setup': {
+        'sw_headers': [  ],
+        'sw_modules': [  ]
+    },
+    'dirs': {
+        'LIB':f"{meta['setup_dir']}/submodules/LIB",
+    }
 }
 
 confs = \
@@ -18,7 +37,7 @@ confs = \
     # Parameters
     {'name':'DATA_W',      'type':'P', 'val':'32', 'min':'NA', 'max':'NA', 'descr':"Data bus width"},
     {'name':'ADDR_W',      'type':'P', 'val':'`IOB_UART_SWREG_ADDR_W', 'min':'NA', 'max':'NA', 'descr':"Address bus width"},
-    {'name':'UART_DATA_W', 'type':'P', 'val':'8', 'min':'NA', 'max':'NA', 'descr':""}
+    {'name':'UART_DATA_W', 'type':'P', 'val':'8', 'min':'NA', 'max':'8', 'descr':""}
 ]
 
 ios = \
@@ -49,23 +68,22 @@ ios = \
 regs = \
 [
     {'name': 'uart', 'descr':'UART software accessible registers.', 'regs': [
-        {'name':"SOFTRESET", 'type':"W", 'n_bits':1, 'rst_val':0, 'addr':-1, 'n_items':1, 'autologic':True, 'descr':"Soft reset."},
-        {'name':"DIV", 'type':"W", 'n_bits':16, 'rst_val':0, 'addr':-1, 'n_items':1, 'autologic':True, 'descr':"Bit duration in system clock cycles."},
-        {'name':"TXDATA", 'type':"W", 'n_bits':'UART_DATA_W', 'rst_val':0, 'addr':-1, 'n_items':1, 'autologic':False, 'descr':"TX data."},
-        {'name':"TXEN", 'type':"W", 'n_bits':1, 'rst_val':0, 'addr':-1, 'n_items':1, 'autologic':True, 'descr':"TX enable."},
-        {'name':"RXEN", 'type':"W", 'n_bits':1, 'rst_val':0, 'addr':6, 'n_items':1, 'autologic':True, 'descr':"RX enable."},
-        {'name':"TXREADY", 'type':"R", 'n_bits':1, 'rst_val':0, 'addr':-1, 'n_items':1, 'autologic':True, 'descr':"TX ready to receive data."},
-        {'name':"RXREADY", 'type':"R", 'n_bits':1, 'rst_val':0, 'addr':-1, 'n_items':1, 'autologic':True, 'descr':"RX data is ready to be read."},
-        {'name':"RXDATA", 'type':"R", 'n_bits':'UART_DATA_W', 'rst_val':0, 'addr':4, 'n_items':1, 'autologic':False, 'descr':"RX data."},
+        {'name':"SOFTRESET", 'type':"W", 'n_bits':1, 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':True, 'descr':"Soft reset."},
+        {'name':"DIV", 'type':"W", 'n_bits':16, 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':True, 'descr':"Bit duration in system clock cycles."},
+        {'name':"TXDATA", 'type':"W", 'n_bits':'UART_DATA_W', 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':False, 'descr':"TX data."},
+        {'name':"TXEN", 'type':"W", 'n_bits':1, 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':True, 'descr':"TX enable."},
+        {'name':"RXEN", 'type':"W", 'n_bits':1, 'rst_val':0, 'addr':6, 'log2n_items':0, 'autologic':True, 'descr':"RX enable."},
+        {'name':"TXREADY", 'type':"R", 'n_bits':1, 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':True, 'descr':"TX ready to receive data."},
+        {'name':"RXREADY", 'type':"R", 'n_bits':1, 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':True, 'descr':"RX data is ready to be read."},
+        {'name':"RXDATA", 'type':"R", 'n_bits':'UART_DATA_W', 'rst_val':0, 'addr':4, 'log2n_items':0, 'autologic':False, 'descr':"RX data."},
     ]}
 ]
 
 blocks = []
 
 # Main function to setup this core and its components
-# build_dir and gen_tex may be modified if this core is to be generated as a submodule of another
-def main(build_dir=None, gen_tex=True):
-    setup(meta, confs, ios, regs, blocks, build_dir=build_dir, gen_tex=gen_tex)
+def main():
+    setup(meta, confs, ios, regs, blocks)
 
 if __name__ == "__main__":
     main()
