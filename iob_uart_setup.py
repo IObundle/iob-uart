@@ -11,23 +11,11 @@ meta = \
 'flows':'sim',
 'setup_dir':os.path.dirname(__file__)}
 meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
-
 meta['submodules'] = {
     'hw_setup': {
         'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
-        'hw_modules': [ 'iob_reg_a.v', 'iob_reg_ae.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
+        'hw_modules': [ 'iob_reg.v', 'iob_reg_e.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
     },
-    'sim_setup': {
-        'v_headers' : [  ],
-        'hw_modules': [  ]
-    },
-    'sw_setup': {
-        'sw_headers': [  ],
-        'sw_modules': [  ]
-    },
-    'dirs': {
-        'LIB':f"{meta['setup_dir']}/submodules/LIB",
-    }
 }
 
 confs = \
@@ -52,9 +40,9 @@ ios = \
         {'name':'iob_ready', 'type':'O', 'n_bits':'1', 'descr':'CPU interface ready signal.'}
     ]},
     {'name': 'general', 'descr':'GENERAL INTERFACE SIGNALS', 'ports': [
-        {'name':"clk_i", 'type':"I", 'n_bits':'1', 'descr':"System clock input"},
+        {'name':"clk_i" , 'type':"I", 'n_bits':'1', 'descr':"System clock input"},
         {'name':"arst_i", 'type':"I", 'n_bits':'1', 'descr':"System reset, asynchronous and active high"},
-        {'name':"en_i", 'type':"I", 'n_bits':'1', 'descr':"System reset, asynchronous and active high"}
+        {'name':"cke_i" , 'type':"I", 'n_bits':'1', 'descr':"System reset, asynchronous and active high"}
     ]},
     {'name': 'rs232', 'descr':'Cache invalidate and write-trough buffer IO chain', 'ports': [
         #{'name':'interrupt', 'type':'O', 'n_bits':'1', 'descr':'be done'},

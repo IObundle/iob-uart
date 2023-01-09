@@ -14,7 +14,7 @@ module iob_uart # (
 
    // TXDATA Manual logic
     wire [UART_DATA_W-1:0] TXDATA_o;
-   iob_reg_ae #(UART_DATA_W,0) TXDATA_datareg (clk_i, arst_i, TXDATA_wen, TXDATA, TXDATA_o);
+   iob_reg_e #(UART_DATA_W,0) TXDATA_datareg (clk_i, arst_i, cke_i, TXDATA_wen, TXDATA, TXDATA_o);
    assign TXDATA_ready = 1'b1;
    // RXDATA Manual logic
    assign RXDATA_ready = 1'b1;
