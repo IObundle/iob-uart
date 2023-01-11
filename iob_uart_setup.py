@@ -14,7 +14,7 @@ meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
 meta['submodules'] = {
     'hw_setup': {
         'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
-        'hw_modules': [ 'iob_reg.v', 'iob_reg_e.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
+        'modules': [ 'iob_reg.v', 'iob_reg_e.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
     },
 }
 
