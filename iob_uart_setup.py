@@ -2,7 +2,7 @@
 
 import os, sys
 sys.path.insert(0, os.getcwd()+'/submodules/LIB/scripts')
-from setup import setup
+import setup
 
 meta = \
 {
@@ -13,7 +13,7 @@ meta = \
 meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
 meta['submodules'] = {
     'hw_setup': {
-        'v_headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
+        'headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
         'modules': [ 'iob_reg.v', 'iob_reg_e.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
     },
 }
@@ -71,7 +71,7 @@ blocks = []
 
 # Main function to setup this core and its components
 def main():
-    setup(meta, confs, ios, regs, blocks)
+    setup.setup(meta, confs, ios, regs, blocks)
 
 if __name__ == "__main__":
     main()
