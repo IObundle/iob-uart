@@ -71,7 +71,7 @@ blocks = []
 
 # Main function to setup this core and its components
 def main():
-    setup.setup(meta, confs, ios, regs, blocks)
+    setup.setup(sys.modules[__name__])
 
 if __name__ == "__main__":
     main()
