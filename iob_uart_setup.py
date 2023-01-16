@@ -30,14 +30,7 @@ confs = \
 
 ios = \
 [
-    {'name': 'iob_s', 'descr':'CPU native interface', 'ports': [
-        {'name':'iob_avalid', 'type':'I', 'n_bits':'1', 'descr':'CPU interface valid signal.'},
-        {'name':'iob_addr', 'type':'I', 'n_bits':'ADDR_W', 'descr':'CPU interface address signal.'},
-        {'name':'iob_wdata', 'type':'I', 'n_bits':'DATA_W', 'descr':'CPU interface data write signal.'},
-        {'name':'iob_wstrb', 'type':'I', 'n_bits':'DATA_W/8', 'descr':'CPU interface write strobe signal.'},
-        {'name':'iob_rvalid', 'type':'O', 'n_bits':'1', 'descr':'CPU interface read data signal.'},
-        {'name':'iob_rdata', 'type':'O', 'n_bits':'DATA_W', 'descr':'CPU interface read data signal.'},
-        {'name':'iob_ready', 'type':'O', 'n_bits':'1', 'descr':'CPU interface ready signal.'}
+    {'name': 'iob_s_port', 'descr':'CPU native interface', 'ports': [
     ]},
     {'name': 'general', 'descr':'GENERAL INTERFACE SIGNALS', 'ports': [
         {'name':"clk_i" , 'type':"I", 'n_bits':'1', 'descr':"System clock input"},
