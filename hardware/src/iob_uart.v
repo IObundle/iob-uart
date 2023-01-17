@@ -12,6 +12,8 @@ module iob_uart # (
    //BLOCK Register File & Configuration control and status register file.
    `include "iob_uart_swreg_inst.vh"
 
+   wire [UART_DATA_W-1:0] TXDATA = iob_wdata[UART_DATA_W-1:0];
+   
    // TXDATA Manual logic
     wire [UART_DATA_W-1:0] TXDATA_o;
    iob_reg_e #(UART_DATA_W,0) TXDATA_datareg (clk_i, arst_i, cke_i, TXDATA_wen, TXDATA, TXDATA_o);
