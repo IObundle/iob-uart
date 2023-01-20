@@ -8,7 +8,7 @@ meta = \
 {
 'name':'iob_uart',
 'version':'V0.10',
-'flows':'sim',
+'flows':'sim emb',
 'setup_dir':os.path.dirname(__file__)}
 meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
 meta['submodules'] = {
