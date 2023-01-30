@@ -4,14 +4,12 @@ import os, sys
 sys.path.insert(0, os.getcwd()+'/submodules/LIB/scripts')
 import setup
 
-meta = \
-{
-'name':'iob_uart',
-'version':'V0.10',
-'flows':'sim emb',
-'setup_dir':os.path.dirname(__file__)}
-meta['build_dir']=f"../{meta['name']+'_'+meta['version']}"
-meta['submodules'] = {
+name='iob_uart'
+version='V0.10'
+flows='sim emb'
+setup_dir=os.path.dirname(__file__)
+build_dir=f"../{name}_{version}"
+submodules = {
     'hw_setup': {
         'headers' : [ 'axil_s_port', 'axil_m_port', 'iob_s_port', 'iob_m_port', 'iob_s_portmap' ],
         'modules': [ 'iob_reg.v', 'iob_reg_e.v', 'iob2axil.v', 'axil2iob.v', 'iob_wstrb2byte_offset.v' ]
