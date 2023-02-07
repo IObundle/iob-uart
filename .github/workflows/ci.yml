@@ -7,9 +7,9 @@ defaults:
 
 on:
   push:
-    branches: 
-      - master
-      - build-lib
+    branches:
+        - master
+        - python-setup
   # Don't forget to require approval for all outside collaborators
   pull_request:
     branches: '*'
@@ -17,13 +17,13 @@ on:
   workflow_dispatch:
 
 # Run only one instance of this workflow at a time
-# cancel-in-progress: stop running workflow and run latest instead
+# cancel-in-progress: stop running workflow and run the latest instead
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  test:
+  sim:
     runs-on: self-hosted
     timeout-minutes: 10
 
@@ -31,9 +31,24 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
-      - name: setup
-        run: make clean && make setup
-      - name: sim-test
-        run: make -C ../iob_uart_* sim-test
-      - name: sim-clean
-        run: make -C ../iob_uart_* sim-clean
+      - name: test-clean
+        run: make test-clean
+      - name: test-sim
+        run: make test-sim
+
+  fpga:
+    runs-on: self-hosted
+    timeout-minutes: 30
+    # always run, except when previous job was cancelled
+    if: ${{ !cancelled() }}
+    # run after indicated job
+    needs: sim
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: test-clean
+        run: make test-clean
+      - name: test-fpga
+        run: make test-fpga
