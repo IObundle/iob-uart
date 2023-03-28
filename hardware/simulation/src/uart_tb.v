@@ -113,6 +113,7 @@ module uart_tb;
 	 if ( rcvd_data != i ) begin
 	    $display("got %x, expected %x", rcvd_data, i);
             $display("Test failed");
+            i=$fopen("test.log","w"); $fwrite(i,"Test failed!");$fclose(i);
 	    $finish;
 	 end
 
@@ -123,6 +124,7 @@ module uart_tb;
       end // for (i=0; i < 256; i= i+1)
 
       $display("Test PASSED");
+      i=$fopen("test.log","w"); $fwrite(i,"Test passed!");$fclose(i);
       $finish;
 
    end 
