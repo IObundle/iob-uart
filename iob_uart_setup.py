@@ -6,7 +6,7 @@ import setup
 
 name='iob_uart'
 version='V0.10'
-flows='sim emb'
+flows='sim emb doc'
 if setup.is_top_module(sys.modules[__name__]):
     setup_dir=os.path.dirname(__file__)
     build_dir=f"../{name}_{version}"
