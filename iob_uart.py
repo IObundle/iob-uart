@@ -6,6 +6,11 @@ import sys
 from iob_module import iob_module
 from setup import setup
 
+# Submodules
+from iob_submodule_utils import iob_submodule_utils
+from iob_reg import iob_reg
+from iob_reg_e import iob_reg_e
+
 class iob_uart(iob_module):
     def __init__(self, **kwargs):
         super().__init__(
@@ -19,23 +24,23 @@ class iob_uart(iob_module):
     def setup(self, **kwargs):
         super().setup(**kwargs)
 
-        self.setup_submodules()
+        # Hardware headers & modules
+        iob_submodule_utils.generate("iob_s_port")
+        iob_submodule_utils.generate("iob_s_portmap")
+        iob_reg.setup()
+        iob_reg_e.setup()
+
         self.setup_confs()
         self.setup_ios()
         self.setup_regs()
         self.setup_block_groups()
 
+        # Verilog modules instances
+        # TODO
+
         # Setup core using LIB function
         setup(self)
 
-
-    def setup_submodules(self):
-        submodules = {
-            'hw_setup': {
-                'headers' : [ 'iob_s_port', 'iob_s_portmap' ],
-                'modules': [ 'iob_reg.v', 'iob_reg_e.v' ]
-            },
-        }
 
     def setup_confs(self):
         super().setup_confs([
