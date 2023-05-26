@@ -11,7 +11,7 @@ class iob_uart(iob_module):
         super().__init__(
                 name='iob_uart',
                 version="V0.10",
-                flows="sim emb",
+                flows="sim emb doc",
                 setup_dir=os.path.dirname(__file__),
                 **kwargs
                 )
