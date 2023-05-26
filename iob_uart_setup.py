@@ -5,9 +5,9 @@ import os, sys
 sys.path.insert(0, os.getcwd() + "/submodules/LIB/scripts")
 import setup
 
-name = "iob_uart"
-version = "V0.10"
-flows = "sim emb"
+name='iob_uart'
+version='V0.10'
+flows='sim emb doc'
 if setup.is_top_module(sys.modules[__name__]):
     setup_dir = os.path.dirname(__file__)
     build_dir = f"../{name}_{version}"
