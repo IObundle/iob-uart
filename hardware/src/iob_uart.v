@@ -31,7 +31,7 @@ module iob_uart #(
    iob_reg_e #(
       .DATA_W (UART_DATA_W),
       .RST_VAL(0)
-   ) iob_reg_ready (
+   ) TXDATA_datareg (
       .clk_i (clk_i),
       .arst_i(arst_i),
       .cke_i (cke_i),
