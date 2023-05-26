@@ -32,8 +32,8 @@ jobs:
         with:
           submodules: 'recursive'
       - name: setup
-        run: make clean && make setup
+        run: nix-shell --run "make clean && make setup"
       - name: sim-test
-        run: make -C ../iob_uart_* sim-test
+        run: nix-shell --run "make -C ../iob_uart_* sim-test"
       - name: sim-clean
-        run: make -C ../iob_uart_* sim-clean
+        run: nix-shell --run "make -C ../iob_uart_* sim-clean"
