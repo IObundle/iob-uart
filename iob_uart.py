@@ -12,38 +12,34 @@ from iob_reg import iob_reg
 from iob_reg_e import iob_reg_e
 
 class iob_uart(iob_module):
-    def __init__(self, **kwargs):
-        super().__init__(
-                name='iob_uart',
-                version="V0.10",
-                flows="sim emb doc",
-                setup_dir=os.path.dirname(__file__),
-                **kwargs
-                )
+    name='iob_uart'
+    version="V0.10"
+    flows="sim emb doc"
+    setup_dir=os.path.dirname(__file__)
 
-    def setup(self, **kwargs):
-        super().setup(**kwargs)
-
+    @classmethod
+    def _run_setup(cls):
         # Hardware headers & modules
         iob_submodule_utils.generate("iob_s_port")
         iob_submodule_utils.generate("iob_s_portmap")
         iob_reg.setup()
         iob_reg_e.setup()
 
-        self.setup_confs()
-        self.setup_ios()
-        self.setup_regs()
-        self.setup_block_groups()
+        cls._setup_confs()
+        cls._setup_ios()
+        cls._setup_regs()
+        cls._setup_block_groups()
 
         # Verilog modules instances
         # TODO
 
         # Setup core using LIB function
-        setup(self)
+        setup(cls)
 
 
-    def setup_confs(self):
-        super().setup_confs([
+    @classmethod
+    def _setup_confs(cls):
+        super()._setup_confs([
             # Macros
 
             # Parameters
@@ -52,8 +48,9 @@ class iob_uart(iob_module):
             {'name':'UART_DATA_W', 'type':'P', 'val':'8', 'min':'NA', 'max':'8', 'descr':""}
         ])
 
-    def setup_ios(self):
-        self.ios += [
+    @classmethod
+    def _setup_ios(cls):
+        cls.ios += [
             {'name': 'iob_s_port', 'descr':'CPU native interface', 'ports': [
             ]},
             {'name': 'general', 'descr':'GENERAL INTERFACE SIGNALS', 'ports': [
@@ -70,8 +67,9 @@ class iob_uart(iob_module):
             ]}
         ]
 
-    def setup_regs(self):
-        self.regs += [
+    @classmethod
+    def _setup_regs(cls):
+        cls.regs += [
             {'name': 'uart', 'descr':'UART software accessible registers.', 'regs': [
                 {'name':"SOFTRESET", 'type':"W", 'n_bits':1, 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':True, 'descr':"Soft reset."},
                 {'name':"DIV", 'type':"W", 'n_bits':16, 'rst_val':0, 'addr':-1, 'log2n_items':0, 'autologic':True, 'descr':"Bit duration in system clock cycles."},
@@ -84,5 +82,6 @@ class iob_uart(iob_module):
             ]}
         ]
 
-    def setup_block_groups(self):
-        self.block_groups += []
+    @classmethod
+    def _setup_block_groups(cls):
+        cls.block_groups += []
