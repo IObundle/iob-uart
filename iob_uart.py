@@ -7,7 +7,6 @@ from iob_module import iob_module
 from setup import setup
 
 # Submodules
-from iob_submodule_utils import iob_submodule_utils
 from iob_reg import iob_reg
 from iob_reg_e import iob_reg_e
 
@@ -20,8 +19,8 @@ class iob_uart(iob_module):
     @classmethod
     def _run_setup(cls):
         # Hardware headers & modules
-        iob_submodule_utils.generate("iob_s_port")
-        iob_submodule_utils.generate("iob_s_portmap")
+        iob_module.generate("iob_s_port")
+        iob_module.generate("iob_s_portmap")
         iob_reg.setup()
         iob_reg_e.setup()
 
