@@ -3,7 +3,7 @@
 `include "iob_uart_swreg_def.vh"
 
 //ASCII codes used
-`define STX 2 //start of text 
+`define STX 2 //start of text
 `define ETX 3 //end of text
 `define EOT 4 //end of transission
 `define ENQ 5 //enquiry
@@ -18,36 +18,36 @@ module uart_tb;
    parameter clk_per = 1e9 / clk_frequency;
 
    //iterator
-   integer                       i;
+   integer i, fd;
 
    // CORE SIGNALS
-   reg                           rst;
-   reg                           clk;
+   reg                        rst;
+   reg                        clk;
 
    //control interface (backend)
-   reg                           rst_soft;
-   reg                           wr_en;
-   reg                           rd_en;
-   reg     [`IOB_UART_DIV_W-1:0] div;
+   reg                        rst_soft;
+   reg                        wr_en;
+   reg                        rd_en;
+   reg  [`IOB_UART_DIV_W-1:0] div;
 
-   reg                           tx_en;
-   reg     [                7:0] tx_data;
-   wire                          tx_ready;
+   reg                        tx_en;
+   reg  [                7:0] tx_data;
+   wire                       tx_ready;
 
-   reg                           rx_en;
-   wire    [                7:0] rx_data;
-   reg     [                7:0] rcvd_data;
-   wire                          rx_ready;
+   reg                        rx_en;
+   wire [                7:0] rx_data;
+   reg  [                7:0] rcvd_data;
+   wire                       rx_ready;
 
    //rs232 interface (frontend)
-   wire                          rts2cts;
-   wire                          tx2rx;
+   wire                       rts2cts;
+   wire                       tx2rx;
 
 
    initial begin
 `ifdef VCD
       $dumpfile("uut.vcd");
-      $dumpvars;
+      $dumpvars();
 `endif
 
       clk      = 1;
@@ -69,13 +69,13 @@ module uart_tb;
       // assert tx not ready
       if (tx_ready) begin
          $display("ERROR: TX is ready initially");
-         $finish;
+         $finish();
       end
 
       // assert rx not ready
       if (rx_ready) begin
          $display("ERROR: RX is ready initially");
-         $finish;
+         $finish();
       end
 
       //pulse soft reset
@@ -113,12 +113,11 @@ module uart_tb;
 
          // check received data
          if (rcvd_data != i) begin
-            $display("got %x, expected %x", rcvd_data, i);
-            $display("Test failed");
-            i = $fopen("test.log", "w");
-            $fwrite(i, "Test failed!");
-            $fclose(i);
-            $finish;
+            $display("Test failed: got %x, expected %x", rcvd_data, i);
+            fd = $fopen("test.log", "w");
+            $fdisplay(fd, "Test failed: got %x, expected %x", rcvd_data, i);
+            $fclose(fd);
+            $finish();
          end
 
          @(posedge clk);
@@ -128,10 +127,11 @@ module uart_tb;
       end  // for (i=0; i < 256; i= i+1)
 
       $display("Test PASSED");
-      i = $fopen("test.log", "w");
-      $fwrite(i, "Test passed!");
-      $fclose(i);
-      $finish;
+
+      fd = $fopen("test.log", "w");
+      $fdisplay(fd, "Test passed!");
+      $fclose(fd);
+      $finish();
 
    end
 

@@ -4,9 +4,9 @@
 `include "iob_uart_swreg_def.vh"
 
 module iob_uart #(
-   `include "iob_uart_params.vh"
+   `include "iob_uart_params.vs"
 ) (
-   `include "iob_uart_io.vh"
+   `include "iob_uart_io.vs"
 );
 
    // This mapping is required because "iob_uart_swreg_inst.vh" uses "iob_s_portmap.vh" (This would not be needed if mkregs used "iob_s_s_portmap.vh" instead)
@@ -22,19 +22,22 @@ module iob_uart #(
    assign iob_ready_o = iob_ready;  //Interface ready.
 
    //BLOCK Register File & Configuration control and status register file.
-   `include "iob_uart_swreg_inst.vh"
+   `include "iob_uart_swreg_inst.vs"
 
    wire [UART_DATA_W-1:0] TXDATA = iob_wdata[UART_DATA_W-1:0];
 
    // TXDATA Manual logic
    wire [UART_DATA_W-1:0]                                      TXDATA_o;
-   iob_reg_e #(UART_DATA_W, 0) TXDATA_datareg (
-      clk_i,
-      arst_i,
-      cke_i,
-      TXDATA_wen,
-      TXDATA,
-      TXDATA_o
+   iob_reg_e #(
+      .DATA_W (UART_DATA_W),
+      .RST_VAL(0)
+   ) TXDATA_datareg (
+      .clk_i (clk_i),
+      .arst_i(arst_i),
+      .cke_i (cke_i),
+      .en_i  (TXDATA_wen),
+      .data_i(TXDATA),
+      .data_o(TXDATA_o)
    );
    assign TXDATA_ready  = 1'b1;
    // RXDATA Manual logic
