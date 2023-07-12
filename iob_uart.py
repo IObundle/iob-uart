@@ -7,8 +7,6 @@ from iob_module import iob_module
 # Submodules
 from iob_lib import iob_lib
 from iob_utils import iob_utils
-from iob_clkenrst_portmap import iob_clkenrst_portmap
-from iob_clkenrst_port import iob_clkenrst_port
 from iob_reg import iob_reg
 from iob_reg_e import iob_reg_e
 
@@ -26,8 +24,8 @@ class iob_uart(iob_module):
         iob_module.generate("iob_s_portmap")
         iob_lib.setup()
         iob_utils.setup()
-        iob_clkenrst_portmap.setup()
-        iob_clkenrst_port.setup()
+        iob_module.generate("clk_en_rst_portmap")
+        iob_module.generate("clk_en_rst_port")
         iob_reg.setup()
         iob_reg_e.setup()
 
