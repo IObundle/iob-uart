@@ -11,7 +11,7 @@
 `define FTX 7 //transmit file
 `define FRX 8 //receive file
 
-module uart_tb;
+module iob_uart_tb;
 
    parameter clk_frequency = 100e6;  //100 MHz
    parameter baud_rate = 1e6;  //high value to speed sim
