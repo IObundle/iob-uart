@@ -18,19 +18,19 @@ class iob_uart(iob_module):
     setup_dir = os.path.dirname(__file__)
 
     @classmethod
-    def _specific_setup(cls):
-        # Hardware headers & modules
-        iob_module.generate("iob_s_port")
-        iob_module.generate("iob_s_portmap")
-        iob_lib.setup()
-        iob_utils.setup()
-        iob_module.generate("clk_en_rst_portmap")
-        iob_module.generate("clk_en_rst_port")
-        iob_reg.setup()
-        iob_reg_e.setup()
-
-        # Verilog modules instances
-        # TODO
+    def _create_submodules_list(cls):
+        ''' Create submodules list with dependencies of this module
+        '''
+        super()._create_submodules_list([
+            "iob_s_port",
+            "iob_s_portmap",
+            iob_lib,
+            iob_utils,
+            "clk_en_rst_portmap",
+            "clk_en_rst_port",
+            iob_reg,
+            iob_reg_e,
+        ])
 
     @classmethod
     def _setup_confs(cls):
