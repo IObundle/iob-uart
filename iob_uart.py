@@ -70,7 +70,7 @@ class iob_uart(iob_module):
     def _setup_ios(cls):
         cls.ios += [
             {
-                "name": "iob_clk_en_rst_port",
+                "name": "clk_en_rst_port",
                 "descr": "Clock, clock enable and reset",
                 "ports": [],
             },
