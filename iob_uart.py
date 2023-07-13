@@ -19,18 +19,19 @@ class iob_uart(iob_module):
 
     @classmethod
     def _create_submodules_list(cls):
-        ''' Create submodules list with dependencies of this module
-        '''
-        super()._create_submodules_list([
-            "iob_s_port",
-            "iob_s_portmap",
-            iob_lib,
-            iob_utils,
-            "clk_en_rst_portmap",
-            "clk_en_rst_port",
-            iob_reg,
-            iob_reg_e,
-        ])
+        """Create submodules list with dependencies of this module"""
+        super()._create_submodules_list(
+            [
+                "iob_s_port",
+                "iob_s_portmap",
+                iob_lib,
+                iob_utils,
+                "clk_en_rst_portmap",
+                "clk_en_rst_port",
+                iob_reg,
+                iob_reg_e,
+            ]
+        )
 
     @classmethod
     def _setup_confs(cls):
