@@ -69,31 +69,12 @@ class iob_uart(iob_module):
     @classmethod
     def _setup_ios(cls):
         cls.ios += [
-            {"name": "iob_s_port", "descr": "CPU native interface", "ports": []},
             {
-                "name": "general",
-                "descr": "GENERAL INTERFACE SIGNALS",
-                "ports": [
-                    {
-                        "name": "clk_i",
-                        "type": "I",
-                        "n_bits": "1",
-                        "descr": "System clock input",
-                    },
-                    {
-                        "name": "arst_i",
-                        "type": "I",
-                        "n_bits": "1",
-                        "descr": "System reset, asynchronous and active high",
-                    },
-                    {
-                        "name": "cke_i",
-                        "type": "I",
-                        "n_bits": "1",
-                        "descr": "System reset, asynchronous and active high",
-                    },
-                ],
+                "name": "iob_clk_en_rst_port",
+                "descr": "Clock, clock enable and reset",
+                "ports": [],
             },
+            {"name": "iob_s_port", "descr": "CPU native interface", "ports": []},
             {
                 "name": "rs232",
                 "descr": "Cache invalidate and write-trough buffer IO chain",
