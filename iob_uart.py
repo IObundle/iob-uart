@@ -81,25 +81,25 @@ class iob_uart(iob_module):
                 "ports": [
                     # {'name':'interrupt', 'type':'O', 'n_bits':'1', 'descr':'be done'},
                     {
-                        "name": "txd",
+                        "name": "txd_o",
                         "type": "O",
                         "n_bits": "1",
                         "descr": "transmit line",
                     },
                     {
-                        "name": "rxd",
+                        "name": "rxd_i",
                         "type": "I",
                         "n_bits": "1",
                         "descr": "receive line",
                     },
                     {
-                        "name": "cts",
+                        "name": "cts_i",
                         "type": "I",
                         "n_bits": "1",
                         "descr": "to send; the destination is ready to receive a transmission sent by the UART",
                     },
                     {
-                        "name": "rts",
+                        "name": "rts_o",
                         "type": "O",
                         "n_bits": "1",
                         "descr": "to send; the UART is ready to receive a transmission from the sender.",
