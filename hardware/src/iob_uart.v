@@ -49,10 +49,10 @@ module iob_uart #(
       .data_write_en_i(TXDATA_wen),
       .data_read_en_i (RXDATA_ren),
       .bit_duration_i (DIV),
-      .rxd_i          (rxd),
-      .txd_o          (txd),
-      .cts_i          (cts),
-      .rts_o          (rts)
+      .rxd_i          (rxd_i),
+      .txd_o          (txd_o),
+      .cts_i          (cts_i),
+      .rts_o          (rts_o)
    );
 
 endmodule
