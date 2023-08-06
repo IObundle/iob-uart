@@ -5,7 +5,6 @@ import os
 from iob_module import iob_module
 
 # Submodules
-from iob_lib import iob_lib
 from iob_utils import iob_utils
 from iob_reg import iob_reg
 from iob_reg_e import iob_reg_e
@@ -24,10 +23,9 @@ class iob_uart(iob_module):
             [
                 {"interface": "iob_s_port"},
                 {"interface": "iob_s_portmap"},
-                iob_lib,
                 iob_utils,
-                {"interface": "clk_en_rst_portmap"},
-                {"interface": "clk_en_rst_port"},
+                {"interface": "clk_en_rst_s_s_portmap"},
+                {"interface": "clk_en_rst_s_port"},
                 iob_reg,
                 iob_reg_e,
             ]
@@ -70,7 +68,7 @@ class iob_uart(iob_module):
     def _setup_ios(cls):
         cls.ios += [
             {
-                "name": "clk_en_rst_port",
+                "name": "clk_en_rst_s_port",
                 "descr": "Clock, clock enable and reset",
                 "ports": [],
             },
