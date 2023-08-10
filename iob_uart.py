@@ -22,10 +22,9 @@ class iob_uart(iob_module):
         super()._create_submodules_list(
             [
                 {"interface": "iob_s_port"},
-                {"interface": "iob_s_portmap"},
-                iob_utils,
                 {"interface": "clk_en_rst_s_s_portmap"},
                 {"interface": "clk_en_rst_s_port"},
+                iob_utils,
                 iob_reg,
                 iob_reg_e,
             ]
