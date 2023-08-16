@@ -21,9 +21,7 @@ class iob_uart(iob_module):
         """Create submodules list with dependencies of this module"""
         super()._create_submodules_list(
             [
-                {"interface": "iob_s_port"},
                 {"interface": "clk_en_rst_s_s_portmap"},
-                {"interface": "clk_en_rst_s_port"},
                 iob_utils,
                 iob_reg,
                 iob_reg_e,
@@ -74,7 +72,7 @@ class iob_uart(iob_module):
             {"name": "iob_s_port", "descr": "CPU native interface", "ports": []},
             {
                 "name": "rs232",
-                "descr": "Cache invalidate and write-trough buffer IO chain",
+                "descr": "RS232 interface",
                 "ports": [
                     # {'name':'interrupt', 'type':'O', 'n_bits':'1', 'descr':'be done'},
                     {
