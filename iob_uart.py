@@ -21,7 +21,6 @@ class iob_uart(iob_module):
         """Create submodules list with dependencies of this module"""
         super()._create_submodules_list(
             [
-                {"interface": "clk_en_rst_s_s_portmap"},
                 iob_utils,
                 iob_reg,
                 iob_reg_e,
@@ -44,19 +43,11 @@ class iob_uart(iob_module):
                 },
                 {
                     "name": "ADDR_W",
-                    "type": "P",
+                    "type": "F",
                     "val": "`IOB_UART_SWREG_ADDR_W",
                     "min": "NA",
                     "max": "NA",
                     "descr": "Address bus width",
-                },
-                {
-                    "name": "UART_DATA_W",
-                    "type": "P",
-                    "val": "8",
-                    "min": "NA",
-                    "max": "8",
-                    "descr": "",
                 },
             ]
         )
@@ -69,32 +60,36 @@ class iob_uart(iob_module):
                 "descr": "Clock, clock enable and reset",
                 "ports": [],
             },
-            {"name": "iob_s_port", "descr": "CPU native interface", "ports": []},
             {
-                "name": "rs232_custom_port",
+                "name": "iob_s_port",
+                "descr": "CPU native interface",
+                "ports": []
+            },
+            {
+                "name": "rs232_m_port",
                 "descr": "RS232 interface",
                 "ports": [
                     {
                         "name": "txd",
-                        "type": "output",
+                        "direction": "output",
                         "n_bits": "1",
                         "descr": "transmit line",
                     },
                     {
                         "name": "rxd",
-                        "type": "input",
+                        "direction": "input",
                         "n_bits": "1",
                         "descr": "receive line",
                     },
                     {
                         "name": "cts",
-                        "type": "input",
+                        "direction": "input",
                         "n_bits": "1",
                         "descr": "to send; the destination is ready to receive a transmission sent by the UART",
                     },
                     {
                         "name": "rts",
-                        "type": "output",
+                        "direction": "output",
                         "n_bits": "1",
                         "descr": "to send; the UART is ready to receive a transmission from the sender.",
                     },
@@ -132,7 +127,7 @@ class iob_uart(iob_module):
                     {
                         "name": "TXDATA",
                         "type": "W",
-                        "n_bits": "UART_DATA_W",
+                        "n_bits": 8,
                         "rst_val": 0,
                         "addr": -1,
                         "log2n_items": 0,
@@ -182,7 +177,7 @@ class iob_uart(iob_module):
                     {
                         "name": "RXDATA",
                         "type": "R",
-                        "n_bits": "UART_DATA_W",
+                        "n_bits": 8,
                         "rst_val": 0,
                         "addr": 4,
                         "log2n_items": 0,

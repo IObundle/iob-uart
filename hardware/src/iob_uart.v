@@ -14,13 +14,13 @@ module iob_uart #(
 
    //BLOCK Register File & Configuration control and status register file.
    `include "iob_uart_swreg_inst.vs"
-
-   wire [UART_DATA_W-1:0] TXDATA = iob_wdata_i[UART_DATA_W-1:0];
+   
+   wire [8-1:0] TXDATA = iob_wdata_i[8-1:0];
 
    // TXDATA Manual logic
-   wire [UART_DATA_W-1:0]                                      TXDATA_o;
+   wire [8-1:0] TXDATA_o;
    iob_reg_e #(
-      .DATA_W (UART_DATA_W),
+      .DATA_W (8),
       .RST_VAL(0)
    ) TXDATA_datareg (
       .clk_i (clk_i),
