@@ -73,7 +73,7 @@ class iob_uart(iob_module):
             },
             {
                 "name": "rs232",
-                "type": "neutral",
+                "type": "master",
                 "port_prefix": "",
                 "wire_prefix": "",
                 "descr": "RS232 interface",
@@ -81,25 +81,25 @@ class iob_uart(iob_module):
                     {
                         "name": "txd",
                         "direction": "output",
-                        "width": "1",
+                        "width": 1,
                         "descr": "transmit line",
                     },
                     {
                         "name": "rxd",
                         "direction": "input",
-                        "width": "1",
+                        "width": 1,
                         "descr": "receive line",
                     },
                     {
                         "name": "cts",
                         "direction": "input",
-                        "width": "1",
+                        "width": 1,
                         "descr": "to send; the destination is ready to receive a transmission sent by the UART",
                     },
                     {
                         "name": "rts",
                         "direction": "output",
-                        "width": "1",
+                        "width": 1,
                         "descr": "to send; the UART is ready to receive a transmission from the sender.",
                     },
                 ],
