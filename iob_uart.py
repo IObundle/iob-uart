@@ -2,7 +2,12 @@
 
 import os
 
-from iob_module import iob_module
+if __name__ == "__main__":
+    # Find python modules
+    import sys
+    sys.path.append("./submodules/LIB/scripts")
+    from iob_module import iob_module
+    iob_module.find_modules()
 
 # Submodules
 from iob_utils import iob_utils
@@ -200,3 +205,7 @@ class iob_uart(iob_module):
     @classmethod
     def _setup_block_groups(cls):
         cls.block_groups += []
+
+
+if __name__ == "__main__":
+    iob_uart.setup_as_top_module()
