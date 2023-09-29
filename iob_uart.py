@@ -17,26 +17,22 @@ from iob_reg_e import iob_reg_e
 
 
 class iob_uart(iob_module):
+
     name = "iob_uart"
     version = "V0.10"
     flows = "sim emb doc"
     setup_dir = os.path.dirname(__file__)
 
     @classmethod
-    def _create_submodules_list(cls):
-        """Create submodules list with dependencies of this module"""
-        super()._create_submodules_list(
-            [
-                iob_utils,
-                iob_reg,
-                iob_reg_e,
-            ]
-        )
+    def _init_attributes(cls):
 
-    @classmethod
-    def _setup_confs(cls):
-        super()._setup_confs(
-            [
+        cls.submodules = [
+            iob_utils,
+            iob_reg,
+            iob_reg_e,
+        ]
+
+        cls.confs = [
                 # Macros
                 # Parameters
                 {
@@ -56,10 +52,7 @@ class iob_uart(iob_module):
                     "descr": "Address bus width",
                 },
             ]
-        )
 
-    @classmethod
-    def _setup_ios(cls):
         cls.ios += [
             {
                 "name": "clk_en_rst",
@@ -112,8 +105,6 @@ class iob_uart(iob_module):
             },
         ]
 
-    @classmethod
-    def _setup_regs(cls):
         cls.regs += [
             {
                 "name": "uart",
@@ -203,8 +194,6 @@ class iob_uart(iob_module):
             }
         ]
 
-    @classmethod
-    def _setup_block_groups(cls):
         cls.block_groups += []
 
 
