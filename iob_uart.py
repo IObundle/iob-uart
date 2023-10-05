@@ -5,8 +5,10 @@ import os
 # Find python modules
 if __name__ == "__main__":
     import sys
+
     sys.path.append("./submodules/LIB/scripts")
 from iob_module import iob_module
+
 if __name__ == "__main__":
     iob_module.find_modules()
 
@@ -17,15 +19,13 @@ from iob_reg_e import iob_reg_e
 
 
 class iob_uart(iob_module):
-
-    name = "iob_uart"
-    version = "V0.10"
-    flows = "sim emb doc"
-    setup_dir = os.path.dirname(__file__)
-
     @classmethod
     def _init_attributes(cls):
-
+        """Init module attributes"""
+        cls.name = "iob_uart"
+        cls.version = "V0.10"
+        cls.flows = "sim emb doc"
+        cls.setup_dir = os.path.dirname(__file__)
         cls.submodules = [
             iob_utils,
             iob_reg,
@@ -33,25 +33,25 @@ class iob_uart(iob_module):
         ]
 
         cls.confs = [
-                # Macros
-                # Parameters
-                {
-                    "name": "DATA_W",
-                    "type": "P",
-                    "val": "32",
-                    "min": "NA",
-                    "max": "NA",
-                    "descr": "Data bus width",
-                },
-                {
-                    "name": "ADDR_W",
-                    "type": "F",
-                    "val": "`IOB_UART_SWREG_ADDR_W",
-                    "min": "NA",
-                    "max": "NA",
-                    "descr": "Address bus width",
-                },
-            ]
+            # Macros
+            # Parameters
+            {
+                "name": "DATA_W",
+                "type": "P",
+                "val": "32",
+                "min": "NA",
+                "max": "NA",
+                "descr": "Data bus width",
+            },
+            {
+                "name": "ADDR_W",
+                "type": "F",
+                "val": "`IOB_UART_SWREG_ADDR_W",
+                "min": "NA",
+                "max": "NA",
+                "descr": "Address bus width",
+            },
+        ]
 
         cls.ios += [
             {
