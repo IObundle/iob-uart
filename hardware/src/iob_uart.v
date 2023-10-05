@@ -15,22 +15,10 @@ module iob_uart #(
    //BLOCK Register File & Configuration control and status register file.
    `include "iob_uart_swreg_inst.vs"
 
-   wire [UART_DATA_W-1:0] TXDATA = iob_wdata_i[UART_DATA_W-1:0];
-
    // TXDATA Manual logic
-   wire [UART_DATA_W-1:0]                                      TXDATA_o;
-   iob_reg_e #(
-      .DATA_W (UART_DATA_W),
-      .RST_VAL(0)
-   ) TXDATA_datareg (
-      .clk_i (clk_i),
-      .arst_i(arst_i),
-      .cke_i (cke_i),
-      .en_i  (TXDATA_wen),
-      .data_i(TXDATA),
-      .data_o(TXDATA_o)
-   );
+   wire [UART_DATA_W-1:0] TXDATA = iob_wdata_i[8*(`IOB_UART_TXDATA_ADDR%(DATA_W/8))+:UART_DATA_W];
    assign TXDATA_ready  = 1'b1;
+   
    // RXDATA Manual logic
    assign RXDATA_ready  = 1'b1;
    assign RXDATA_rvalid = 1'b1;
@@ -43,7 +31,7 @@ module iob_uart #(
       .rx_en_i        (RXEN),
       .tx_ready_o     (TXREADY),
       .rx_ready_o     (RXREADY),
-      .tx_data_i      (TXDATA_o),
+      .tx_data_i      (TXDATA),
       .rx_data_o      (RXDATA),
       .data_write_en_i(TXDATA_wen),
       .data_read_en_i (RXDATA_ren),
