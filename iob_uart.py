@@ -23,6 +23,7 @@ class iob_uart(iob_module):
             [
                 {"interface": "iob_s_port"},
                 {"interface": "iob_s_portmap"},
+                {"interface": "iob_wire"},
                 iob_utils,
                 {"interface": "clk_en_rst_s_s_portmap"},
                 {"interface": "clk_en_rst_s_port"},
