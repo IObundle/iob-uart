@@ -21,3 +21,7 @@ sim-test: clean setup
 	make -C ../$(CORE)_V*/ sim-test
 
 
+test: clean setup
+	make -C ../iob_uart_* sim-test
+
+
