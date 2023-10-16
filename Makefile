@@ -1,5 +1,6 @@
 CORE := iob_uart
 DISABLE_LINT:=1
+export DISABLE_LINT
 
 clean:
 	rm -rf ../$(CORE)_V*
@@ -18,5 +19,9 @@ sim-waves:
 
 sim-test: clean setup
 	make -C ../$(CORE)_V*/ sim-test
+
+
+test: clean setup
+	make -C ../iob_uart_* sim-test
 
 

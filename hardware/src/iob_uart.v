@@ -8,29 +8,27 @@ module iob_uart #(
    `include "iob_uart_io.vs"
 );
 
+   `include "iob_wire.vs"
+
+   assign iob_avalid = iob_avalid_i;
+   assign iob_addr = iob_addr_i;
+   assign iob_wdata = iob_wdata_i;
+   assign iob_wstrb = iob_wstrb_i;
+   assign iob_rvalid_o = iob_rvalid;
+   assign iob_rdata_o = iob_rdata;
+   assign iob_ready_o = iob_ready;
+
    //Dummy iob_ready_nxt_o and iob_rvalid_nxt_o to be used in swreg (unused ports)
-   wire iob_ready_nxt_o;
-   wire iob_rvalid_nxt_o;
+   wire iob_ready_nxt;
+   wire iob_rvalid_nxt;
 
    //BLOCK Register File & Configuration control and status register file.
    `include "iob_uart_swreg_inst.vs"
-   
-   wire [8-1:0] TXDATA = iob_wdata_i[8-1:0];
 
    // TXDATA Manual logic
-   wire [8-1:0] TXDATA_o;
-   iob_reg_e #(
-      .DATA_W (8),
-      .RST_VAL(0)
-   ) TXDATA_datareg (
-      .clk_i (clk_i),
-      .arst_i(arst_i),
-      .cke_i (cke_i),
-      .en_i  (TXDATA_wen),
-      .data_i(TXDATA),
-      .data_o(TXDATA_o)
-   );
+   wire [8-1:0] TXDATA = iob_wdata_i[8*(`IOB_UART_TXDATA_ADDR%(DATA_W/8))+:8];
    assign TXDATA_ready  = 1'b1;
+   
    // RXDATA Manual logic
    assign RXDATA_ready  = 1'b1;
    assign RXDATA_rvalid = 1'b1;
@@ -43,7 +41,7 @@ module iob_uart #(
       .rx_en_i        (RXEN),
       .tx_ready_o     (TXREADY),
       .rx_ready_o     (RXREADY),
-      .tx_data_i      (TXDATA_o),
+      .tx_data_i      (TXDATA),
       .rx_data_o      (RXDATA),
       .data_write_en_i(TXDATA_wen),
       .data_read_en_i (RXDATA_ren),
