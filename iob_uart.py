@@ -69,6 +69,10 @@ class iob_uart(iob_module):
                 "wire_prefix": "",
                 "descr": "CPU native interface",
                 "ports": [],
+                "widths": {
+                    "ADDR_W": "ADDR_W",
+                    "DATA_W": "DATA_W",
+                },
             },
             {
                 "name": "rs232",
