@@ -185,6 +185,8 @@ class iob_uart(iob_module):
                         "autologic": True,
                         "descr": "RX data is ready to be read.",
                     },
+                    # NOTE: RXDATA needs to be the only Read register in a CPU Word
+                    # RXDATA_ren access is used to change UART state machine
                     {
                         "name": "RXDATA",
                         "type": "R",
