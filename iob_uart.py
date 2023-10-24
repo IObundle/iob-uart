@@ -23,6 +23,7 @@ class iob_uart(iob_module):
             [
                 {"interface": "iob_s_port"},
                 {"interface": "iob_s_portmap"},
+                {"interface": "iob_wire"},
                 iob_utils,
                 {"interface": "clk_en_rst_s_s_portmap"},
                 {"interface": "clk_en_rst_s_port"},
@@ -108,6 +109,7 @@ class iob_uart(iob_module):
 
     @classmethod
     def _setup_regs(cls):
+        cls.autoaddr = False
         cls.regs += [
             {
                 "name": "uart",
@@ -118,7 +120,7 @@ class iob_uart(iob_module):
                         "type": "W",
                         "n_bits": 1,
                         "rst_val": 0,
-                        "addr": -1,
+                        "addr": 0,
                         "log2n_items": 0,
                         "autoreg": True,
                         "descr": "Soft reset.",
@@ -128,7 +130,7 @@ class iob_uart(iob_module):
                         "type": "W",
                         "n_bits": 16,
                         "rst_val": 0,
-                        "addr": -1,
+                        "addr": 2,
                         "log2n_items": 0,
                         "autoreg": True,
                         "descr": "Bit duration in system clock cycles.",
@@ -138,7 +140,7 @@ class iob_uart(iob_module):
                         "type": "W",
                         "n_bits": "UART_DATA_W",
                         "rst_val": 0,
-                        "addr": -1,
+                        "addr": 4,
                         "log2n_items": 0,
                         "autoreg": False,
                         "descr": "TX data.",
@@ -148,7 +150,7 @@ class iob_uart(iob_module):
                         "type": "W",
                         "n_bits": 1,
                         "rst_val": 0,
-                        "addr": -1,
+                        "addr": 5,
                         "log2n_items": 0,
                         "autoreg": True,
                         "descr": "TX enable.",
@@ -168,7 +170,7 @@ class iob_uart(iob_module):
                         "type": "R",
                         "n_bits": 1,
                         "rst_val": 0,
-                        "addr": -1,
+                        "addr": 0,
                         "log2n_items": 0,
                         "autoreg": True,
                         "descr": "TX ready to receive data.",
@@ -178,11 +180,13 @@ class iob_uart(iob_module):
                         "type": "R",
                         "n_bits": 1,
                         "rst_val": 0,
-                        "addr": -1,
+                        "addr": 1,
                         "log2n_items": 0,
                         "autoreg": True,
                         "descr": "RX data is ready to be read.",
                     },
+                    # NOTE: RXDATA needs to be the only Read register in a CPU Word
+                    # RXDATA_ren access is used to change UART state machine
                     {
                         "name": "RXDATA",
                         "type": "R",
