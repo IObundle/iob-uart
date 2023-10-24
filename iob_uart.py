@@ -120,7 +120,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": -1,
                         "log2n_items": 0,
-                        "autologic": True,
+                        "autoreg": True,
                         "descr": "Soft reset.",
                     },
                     {
@@ -130,7 +130,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": -1,
                         "log2n_items": 0,
-                        "autologic": True,
+                        "autoreg": True,
                         "descr": "Bit duration in system clock cycles.",
                     },
                     {
@@ -140,7 +140,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": -1,
                         "log2n_items": 0,
-                        "autologic": False,
+                        "autoreg": False,
                         "descr": "TX data.",
                     },
                     {
@@ -150,7 +150,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": -1,
                         "log2n_items": 0,
-                        "autologic": True,
+                        "autoreg": True,
                         "descr": "TX enable.",
                     },
                     {
@@ -160,7 +160,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": 6,
                         "log2n_items": 0,
-                        "autologic": True,
+                        "autoreg": True,
                         "descr": "RX enable.",
                     },
                     {
@@ -170,7 +170,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": -1,
                         "log2n_items": 0,
-                        "autologic": True,
+                        "autoreg": True,
                         "descr": "TX ready to receive data.",
                     },
                     {
@@ -180,7 +180,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": -1,
                         "log2n_items": 0,
-                        "autologic": True,
+                        "autoreg": True,
                         "descr": "RX data is ready to be read.",
                     },
                     {
@@ -190,7 +190,7 @@ class iob_uart(iob_module):
                         "rst_val": 0,
                         "addr": 4,
                         "log2n_items": 0,
-                        "autologic": False,
+                        "autoreg": False,
                         "descr": "RX data.",
                     },
                 ],
